@@ -1,0 +1,455 @@
+<!--HERO-->
+<div class="mast-grid">
+  <div class="mast-copy">
+    <div class="kicker"><span class="pill">Session 1</span> WA3899 · Prompt Engineering for Analytics</div>
+    <h1 class="title">Mind-reader <em>not included</em></h1>
+    <p class="lede">An AI model ships without a mind-reader. Whatever you leave out of a prompt (the timeframe, the definition, the consent rule, the real table names) it fills in with a confident guess. You never see the guess. You see a fluent answer. <strong>What you don't say, it makes up. Your job is to say it.</strong></p>
+    <div class="chips"><span>Follow-along · <b>~28 min</b></span><span>Claude Desktop · <b>Sonnet</b></span><span>SQLTools · <b>HORIZON</b></span><span>Market · <b>Indonesia</b></span></div>
+    <div class="cta"><a class="btn" href="#step1">Start Step 1 {{ICON:down}}</a><a class="btn ghost" href="#loop">How this lab works</a></div>
+  </div>
+  <figure class="mast-art parallax" data-depth="18">{{ART:s1}}</figure>
+</div>
+
+<!--BRIEF-->
+<div class="brief-l">
+  <span class="lbl">The request that just landed in your inbox</span>
+  <article class="msg">
+    <div class="msg-h"><span class="ava">ID</span><div><b>Indonesia Markets Lead</b><span>Project HORIZON · Teams · just now</span></div><span class="ping">New</span></div>
+    <p class="msg-b">“What's our early VEEV adoption looking like?”</p>
+  </article>
+  <p class="theme-line"><b>Real-world echo.</b> PMI's Q3 2026 results (21 October 2026) report VEEV launching in Indonesia in August 2026. HORIZON is fictional training data, but this is exactly the question an Indonesia markets lead is asking right now.</p>
+</div>
+<div class="brief-r">
+  <span class="lbl">Your route · four steps, about 28 minutes</span>
+  <ol class="route">
+    <li data-step="step1"><span class="n">1</span><a class="t" href="#step1"><b>Ask it raw</b><span>Does its query even run?</span></a><span class="m">5 min</span></li>
+    <li data-step="step2"><span class="n">2</span><a class="t" href="#step2"><b>Ground it</b><span>How many people do the rules quietly remove?</span></a><span class="m">10 min</span></li>
+    <li data-step="step3"><span class="n">3</span><a class="t" href="#step3"><b>The silent zero</b><span>What does one harmless-looking line do?</span></a><span class="m">6 min</span></li>
+    <li data-step="step4"><span class="n">4</span><a class="t" href="#step4"><b>Make it reusable</b><span>The next analyst starts reliable by default</span></a><span class="m">7 min</span></li>
+  </ol>
+</div>
+
+<!--MAIN-->
+<section class="part" id="theme" data-toc="The theme" data-toc-grp="Set-up">
+  <div class="theme rise">
+    <span class="stamp">Theme · Session 1 of 4</span>
+    <span class="box-lbl">Today's theme</span>
+    <h3>Mind-reader <em>not included</em></h3>
+    <p>Every silence in your prompt gets filled. Leave out the timeframe and it picks one. Leave out the definition of "adoption" and it invents one. Leave out the consent rule and it counts people the business may not market to. <strong>None of it shows up as a warning.</strong></p>
+    <span class="one">What you don't say, it makes up.</span>
+  </div>
+</section>
+
+<section class="part" id="loop" data-toc="How this lab works">
+  <div class="part-h">
+    <span class="eyebrow">The loop you use all day</span>
+    <h2>How this lab <span>works</span></h2>
+    <p class="dek">Claude Desktop is a chat window. It <b>cannot see the warehouse</b> and it cannot run anything on your VM. So every step is the same four moves.</p>
+  </div>
+  <div class="loop rise">
+    <div class="lp"><span class="ic">{{ICON:paste}}</span><b>Paste</b><span>a prompt from this guide into Claude Desktop.</span></div>
+    <div class="lp"><span class="ic">{{ICON:copy}}</span><b>Copy</b><span>the SQL it writes: hover the code block, click Copy.</span></div>
+    <div class="lp"><span class="ic">{{ICON:run}}</span><b>Run</b><span>it in a SQLTools tab in VS Code: <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd>.</span></div>
+    <div class="lp"><span class="ic">{{ICON:read}}</span><b>Read the number</b><span>The warehouse decides whether the SQL was right, not the chat.</span></div>
+  </div>
+  <p>Your SQL will not match your neighbour's word for word. The model <b>samples</b>: it picks from a spread of likely next words, so one prompt gives two analysts two different queries. That's normal. What matters is whether it runs, and whether it counts the right people.</p>
+
+  <div class="widget dark sampler rise" data-widget="sampler" data-cands='[["up",-1.17],["strong",-1.66],["12%",-2.12],["down",-2.41],["flat",-2.81],["higher",-3.0]]'>
+    <div class="widget-h"><span class="tag">Try it</span><b>How a language model picks its next word</b><span class="sp">illustrative numbers, not a real model</span></div>
+    <div class="widget-b">
+      <p class="stem">"IQOS conversions in Italy were<span class="pick"></span><span class="cur"></span>"</p>
+      <div class="rows"></div>
+      <div class="ctrl">
+        <div><label for="s1-temp">Temperature <b class="tval">1.0</b> · how adventurous the pick is</label><input id="s1-temp" type="range" min="0" max="2" step="0.1" value="1"></div>
+        <button class="btn sample" type="button">Sample 10 times</button>
+      </div>
+      <div class="draws" aria-live="polite"></div>
+      <p class="fine">At temperature 0 it always takes the top word. Above 0, ten samples give you a mix: that's why your SQL differs from your neighbour's. And notice one candidate is a number, <code>12%</code>. It didn't come from your data either: the prompt is everything the model knows.</p>
+    </div>
+  </div>
+
+  <a class="try rise" href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">
+    <div><span class="k">See the real thing · 2 minutes</span><b>Transformer Explainer</b><span>GPT-2 running live in your browser. Type a sentence, watch the probability bars, drag the temperature slider.</span></div>
+    <span class="go">{{ICON:ext}}</span>
+  </a>
+</section>
+
+<section class="part" id="words" data-toc="Words you will hear">
+  <div class="part-h">
+    <span class="eyebrow">Plain English, once</span>
+    <h2>Words you will <span>hear</span></h2>
+  </div>
+  <dl class="terms">
+    <div class="term"><dt>LLM <small>large language model</small></dt><dd>The engine behind Claude. It writes by predicting the next word-piece, over and over, from the text it can see.</dd></div>
+    <div class="term"><dt>Token</dt><dd>The word-pieces a model reads and writes. Roughly ¾ of an English word; <code>lifecycle_events</code> is several.</dd></div>
+    <div class="term"><dt>Context window</dt><dd>Everything the model can see right now: your prompt and the chat so far. It knows nothing else about HORIZON.</dd></div>
+    <div class="term"><dt>Temperature · sampling</dt><dd>How adventurous the next-token pick is. Above zero, the same prompt gives different answers.</dd></div>
+    <div class="term"><dt>Hallucination</dt><dd>A confident, fluent statement that isn't true, like a table name that doesn't exist.</dd></div>
+    <div class="term"><dt>Grounding</dt><dd>Giving the model the real facts it needs (tables, columns, rules) so it writes against reality instead of a guess.</dd></div>
+    <div class="term"><dt>Schema</dt><dd>The tables and their columns. In the database a schema is also a folder of tables: <code>clr</code>, <code>mpl</code>, <code>ref</code>.</dd></div>
+    <div class="term"><dt>Adoption</dt><dd>Here: distinct consumers who reached the <code>trial</code> or <code>conversion</code> stage. Without a definition, the model picks one for you.</dd></div>
+    <div class="term"><dt>Age-gate</dt><dd>A rule that blocks marketing to a group. In HORIZON nobody under 25 may be marketed to in Indonesia or Italy.</dd></div>
+    <div class="term"><dt>Consent</dt><dd><code>mpl.consent_records.marketing_allowed</code>: whether we may market to that consumer at all.</dd></div>
+    <div class="term"><dt>Half-open date range</dt><dd><code>&gt;= '2025-07-01' AND &lt; '2025-10-01'</code>: the whole quarter, no "is the 30th included?" debate.</dd></div>
+    <div class="term"><dt>NULL</dt><dd>"Unknown". SQL has three truth values: true, false, unknown. <code>WHERE</code> keeps only <em>true</em>.</dd></div>
+    <div class="term"><dt>IS DISTINCT FROM</dt><dd>A comparison that treats NULL as a normal value, so unattributed rows are kept.</dd></div>
+    <div class="term"><dt>Few-shot</dt><dd>Showing the model one finished example so it copies your house style. Show, don't tell.</dd></div>
+    <div class="term"><dt>Chain-of-thought</dt><dd>Asking the model to list its plan (tables, joins, filters) before it writes SQL, so wrong assumptions surface early.</dd></div>
+    <div class="term"><dt>Template</dt><dd>A prompt with labelled <code>{{PLACEHOLDERS}}</code> that the next analyst fills in.</dd></div>
+  </dl>
+</section>
+
+<section class="part" id="before" data-toc="Before you start">
+  <div class="part-h">
+    <span class="eyebrow">One minute</span>
+    <h2>Before you <span>start</span></h2>
+  </div>
+  <ul class="checks">
+    <li><label><input type="checkbox" data-k="s1-pre-1"><span><b>Claude Desktop</b> → <b>New chat</b>. The model picker next to the send button says <b>Sonnet</b> (or the latest Sonnet you have).</span></label></li>
+    <li><label><input type="checkbox" data-k="s1-pre-2"><span><b>VS Code</b> → SQLTools sidebar (the database icon) → right-click <b>HORIZON</b> → <b>Connect</b>. Missing? Create a PostgreSQL connection: host <code>localhost</code>, port <code>5432</code>, database <code>horizon</code>, user <code>postgres</code>, password <code>Horizon!Lab2026</code>.</span></label></li>
+    <li><label><input type="checkbox" data-k="s1-pre-3"><span>Right-click <b>HORIZON</b> → <b>New SQL File</b>. That's where you paste and run. Click inside a query and press <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd> (or <i>Run on active connection</i> above it).</span></label></li>
+  </ul>
+  <div class="shots">
+    <figure class="vmshot"><a href="images/vm-claude-desktop.png" target="_blank" rel="noopener"><img src="images/vm-claude-desktop.png" alt="Claude Desktop on the class VM, with a new chat open and the model picker next to the send button." loading="lazy" width="1616" height="869"></a><figcaption><b>Claude Desktop</b> on your VM. The model picker sits next to the send button.</figcaption></figure>
+    <figure class="vmshot"><a href="images/vm-sqltools.png" target="_blank" rel="noopener"><img src="images/vm-sqltools.png" alt="VS Code with the SQLTools sidebar open and the HORIZON connection connected." loading="lazy" width="1629" height="869"></a><figcaption><b>SQLTools</b> connected to HORIZON in VS Code.</figcaption></figure>
+  </div>
+  <div class="callout note rise">
+    <span class="box-lbl">Prompt hygiene, once</span>
+    <p>Everything you paste into an AI tool leaves your data boundary. <b>Table names, column names and rules: yes. Real consumer rows, credentials, connection strings: never.</b> HORIZON is fictional and nothing in this guide pastes a row, but build the habit here.</p>
+  </div>
+</section>
+
+<section class="part" id="step1" data-toc="Step 1 · Ask it raw" data-toc-grp="The lab">
+  <stephead step="step1" n="1" eyebrow="Step 1 · 5 min" mins="5 min" model="sonnet">Ask it <span>raw</span>|Start the way most people do: just ask.</stephead>
+  <prompt model="sonnet" note="New chat · paste and send">
+What's our early VEEV adoption looking like in Indonesia?
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>What you'll probably see:</b> no query. Claude asks <i>you</i> questions: which timeframe? what counts as adoption? which data source? It may also say it can't see your data. That's the whole session on one screen: the model can tell the question is missing everything that matters.</p>
+  <div class="callout echo">
+    <span class="box-lbl">If web search is switched on</span>
+    <p>Claude may instead summarise public news about PMI's VEEV launch in Indonesia. Notice what happened: it answered a <i>different</i> question (what the press says) because it couldn't see the one you meant (what HORIZON says). Same lesson, louder.</p>
+  </div>
+  <chat hints="timeframe|definition|table|consent|baseline">One word: what did it have to ask you for?</chat>
+  <p>Now force it to guess, the way a busy analyst would. Same chat:</p>
+  <prompt model="sonnet" note="Same chat">
+I don't have time for questions. Just write your best-guess SQL for our Postgres warehouse. The schemas are clr, mpl and ref. Use whatever tables and assumptions you think are reasonable.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>What this asks Claude to do:</b> write a real query while knowing only three schema names. It has to invent everything else: table names, column names, the timeframe, the definition.</p>
+  <predict id="s1-runs" opts="yes|no">Will its query <b>run</b> against HORIZON?</predict>
+  <p>Copy the SQL into your SQLTools tab and run it.</p>
+  <reveal id="s1-runs" title="What usually happens">
+    <p>It errors on the first invented table, for example:</p>
+    <out err label="SQLTools · error">ERROR:  relation "clr.consumer_lifecycle" does not exist</out>
+    <p>Look at how expert the query looks: common table expressions, a date spine, window functions, tidy aliases. It used <i>the right schema names</i> and still invented the tables, because it never saw them. <b>Fluent is not grounded.</b></p>
+    <p>If your Claude happened to guess a real table and the query ran, read its WHERE clause: does it exclude under-25 consumers? Does it check consent? It had no way of knowing it should.</p>
+    <p>The real tables, for comparison:</p>
+    <sql>
+SELECT table_schema, table_name
+FROM information_schema.tables
+WHERE table_schema IN ('clr', 'mpl', 'ref')
+ORDER BY 1, 2;
+    </sql>
+  </reveal>
+  <aside class="lesson rise">
+    <span class="box-lbl">Hold on to this</span>
+    <p>An error is a <em>gift</em>. It tells you something is wrong.</p>
+    <p>The dangerous query is the one that runs and returns a believable number. Step 3 is that query.</p>
+  </aside>
+</section>
+
+<section class="part" id="step2" data-toc="Step 2 · Ground it">
+  <stephead step="step2" n="2" eyebrow="Step 2 · 10 min" mins="10 min" model="sonnet">Ground <span>it</span>|Give the model what it was missing, in a deliberate order: context first, the question last.</stephead>
+  <p>Open a <b>new chat</b>: a clean context window, so Step 1's guesses don't leak in. Then paste the grounded prompt. Click <b>X-ray this prompt</b> to see what every line is for.</p>
+  <div class="xray rise">
+    <prompt model="sonnet" note="New chat · the grounded prompt">
+You are writing SQL for the HORIZON data warehouse (PostgreSQL).
+
+Use only these tables and columns:
+- clr.consumers(consumer_id, market_code, age_band)
+- clr.lifecycle_events(event_id, consumer_id, market_code, product_code, event_date, lifecycle_stage, campaign_id)
+- mpl.consent_records(consumer_id, market_code, marketing_allowed)
+
+Rules (state each one as a SQL comment at the top of the query):
+- Market: Indonesia, market_code = 'ID'.
+- Product: VEEV, product_code = 'VEEV'.
+- Timeframe: Q3 2025, event_date from 2025-07-01 up to (not including) 2025-10-01.
+- Adoption = distinct consumers who reached lifecycle_stage 'trial' or 'conversion'.
+- Age-gate: exclude age_band '18-24' (under-25 marketing is not permitted in Indonesia).
+- Consent: count a consumer only if marketing_allowed = true.
+- If anything else is ambiguous, write it as an ASSUMPTION comment instead of guessing.
+
+Output: one query that returns the number of adopting consumers by month.
+
+Question: How is early VEEV adoption looking in Indonesia?
+
+Respond in Markdown only — do not create a Word document or any file.
+    </prompt>
+    <div class="xray-lines" aria-label="The grounded prompt, line by line">
+      <div class="xl" style="--xc:#5B86F0"><pre>You are writing SQL for the HORIZON data warehouse (PostgreSQL).</pre><div class="why"><b>Context</b>Names the system and the dialect, so it doesn't mix in another database's syntax.</div></div>
+      <div class="xl" style="--xc:#00C9A7"><pre>Use only these tables and columns:
+- clr.consumers(…)
+- clr.lifecycle_events(…)
+- mpl.consent_records(…)</pre><div class="why"><b>Schema</b>Kills Step 1's invented tables. It also stops invented columns like <code>updated_at</code> (the real one is <code>last_updated</code>).</div></div>
+      <div class="xl" style="--xc:#E8A320"><pre>Rules (state each one as a SQL comment at the top of the query):</pre><div class="why"><b>Make guesses visible</b>Every assumption is now written where a reviewer can read it.</div></div>
+      <div class="xl" style="--xc:#E8A320"><pre>- Timeframe: Q3 2025, event_date from 2025-07-01 up to (not including) 2025-10-01.</pre><div class="why"><b>Half-open window</b>A relative window like "the last 90 days" lands after the data ends (2025-12-31) on a 2026 machine, and returns nothing.</div></div>
+      <div class="xl" style="--xc:#E8A320"><pre>- Adoption = distinct consumers who reached lifecycle_stage 'trial' or 'conversion'.</pre><div class="why"><b>Definition</b>Otherwise the model picks its own meaning: registrations, sales, revenue.</div></div>
+      <div class="xl" style="--xc:#FF4A00"><pre>- Age-gate: exclude age_band '18-24' …
+- Consent: count a consumer only if marketing_allowed = true.</pre><div class="why"><b>The business rules</b>Without them it counts people the business may not market to. You'll see how many in a minute.</div></div>
+      <div class="xl" style="--xc:#FF4A00"><pre>- If anything else is ambiguous, write it as an ASSUMPTION comment instead of guessing.</pre><div class="why"><b>Permission to say "I don't know"</b>You gave the model a polite way out of silent invention.</div></div>
+      <div class="xl" style="--xc:#8B5CF6"><pre>Output: one query that returns the number of adopting consumers by month.</pre><div class="why"><b>Output shape</b>One query, one grain, one column you can check.</div></div>
+      <div class="xl" style="--xc:#FF4A00"><pre>Question: How is early VEEV adoption looking in Indonesia?</pre><div class="why"><b>The question goes last</b>Models use the start and end of a prompt best ("lost in the middle"). Rules on top, question at the bottom.</div></div>
+      <div class="xl" style="--xc:#8492A6"><pre>Respond in Markdown only — do not create a Word document or any file.</pre><div class="why"><b>Keep it in the chat</b>Claude Desktop can create files. You want the SQL where you can copy it.</div></div>
+    </div>
+    <div class="xray-toggle"><span>10 lines, 10 jobs</span><button type="button" aria-pressed="false">X-ray this prompt</button></div>
+  </div>
+
+  <figure class="fig">
+    <div class="fig-card anim">
+      <p class="fig-t">Why the question goes last</p>
+      <p class="fig-s">Long prompts have a blind spot in the middle. Put the rules up top and the question at the bottom.</p>
+      {{CHART:s1-lost-middle}}
+    </div>
+  </figure>
+
+  <p><b>What a good answer looks like:</b> a block of <code>-- Assumption:</code> comments, then a SELECT that joins <code>lifecycle_events</code> to <code>consumers</code> and <code>consent_records</code> (on <code>consumer_id</code>, often <code>market_code</code> too), filters Indonesia, VEEV, trial or conversion, the Q3 window, <code>age_band &lt;&gt; '18-24'</code> and <code>marketing_allowed = true</code>, and groups by month. Yours may differ slightly. That's fine.</p>
+  <p>Copy it into SQLTools and run it.</p>
+  <reveal title="What the warehouse says">
+    <div class="tbl-wrap"><table class="res"><thead><tr><th>adoption_month</th><th class="num">adopting_consumers</th></tr></thead>
+      <tbody><tr><td>2025-07-01</td><td class="num">17</td></tr><tr><td>2025-08-01</td><td class="num">16</td></tr><tr><td>2025-09-01</td><td class="num">25</td></tr></tbody></table></div>
+    <p>Three months, a few dozen adopters each: an early-stage market. Got no rows? Check the dates: the data covers 2024 and 2025 only.</p>
+  </reveal>
+
+  <p>Now see what the rules did.</p>
+  <predict id="s1-u25" ph="a number">Ignore the rules and <b>63 different people</b> adopted VEEV in Indonesia in Q3 2025. How many of them are <b>under 25</b>: people we're not allowed to market to?</predict>
+  <sql note="What the age-gate removed, month by month">
+-- What the age-gate removed, month by month
+SELECT date_trunc('month', le.event_date)::date AS adoption_month,
+       count(DISTINCT le.consumer_id)                                      AS all_adopters,
+       count(DISTINCT le.consumer_id) FILTER (WHERE c.age_band <> '18-24') AS after_age_gate
+FROM clr.lifecycle_events le
+JOIN clr.consumers c USING (consumer_id)
+WHERE le.market_code = 'ID'
+  AND le.product_code = 'VEEV'
+  AND le.lifecycle_stage IN ('trial', 'conversion')
+  AND le.event_date >= DATE '2025-07-01'
+  AND le.event_date <  DATE '2025-10-01'
+GROUP BY 1
+ORDER BY 1;
+  </sql>
+  <reveal id="s1-u25" title="Reveal: what the rules removed">
+    <div class="tbl-wrap"><table class="res"><thead><tr><th>adoption_month</th><th class="num">all_adopters</th><th class="num">after_age_gate</th></tr></thead>
+      <tbody><tr><td>2025-07-01</td><td class="num">24</td><td class="num">17</td></tr><tr><td>2025-08-01</td><td class="num">18</td><td class="num">16</td></tr><tr><td>2025-09-01</td><td class="num">25</td><td class="num">25</td></tr></tbody></table></div>
+    <div class="widget" data-widget="agegate" data-total="63" data-u25="9">
+      <div class="widget-h"><span class="tag">See it</span><b>63 adopters, one dot each</b><span class="sp">orange = under 25</span></div>
+      <div class="widget-b">
+        <div class="dots" aria-hidden="true"></div>
+        <div class="dots-foot">
+          <span class="dots-count"><span class="v">63</span><small>people counted</small></span>
+          <button type="button" class="btn apply">Apply the age-gate</button>
+          <span class="after" hidden><b>9 under-25s gone:</b> one adopter in seven.</span>
+        </div>
+      </div>
+    </div>
+    <p>Across the quarter: <b>63 people without the rules, 54 with them.</b> Nine under-25s, one adopter in seven, would have gone into a marketing number. Nobody would have noticed, because 63 looks just as plausible as 54.</p>
+    <p>And the rule is real in the data. Zero of Indonesia's 462 under-25 consent records allow marketing:</p>
+    <sql>
+SELECT count(*) FILTER (WHERE m.marketing_allowed) AS allowed,
+       count(*)                                    AS total
+FROM clr.consumers c
+JOIN mpl.consent_records m USING (consumer_id)
+WHERE c.market_code = 'ID' AND c.age_band = '18-24';
+    </sql>
+    <p>Expected: <code>allowed 0 · total 462</code>.</p>
+  </reveal>
+  <chat>Which rule does <i>your</i> team apply every day that nobody ever writes into a prompt?</chat>
+</section>
+
+<section class="part" id="step3" data-toc="Step 3 · The silent zero">
+  <stephead step="step3" n="3" eyebrow="Step 3 · 6 min" mins="6 min" model="sonnet">The silent <span>zero</span>|The Markets Lead adds one more ask: leave out the 2024 VEEV launch campaign.</stephead>
+  <p>Stay in the <b>same chat</b> and send:</p>
+  <prompt model="sonnet" note="Same chat as Step 2">
+Now also exclude the 2024 VEEV launch campaign (campaign_id 4) from the counts.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>Before you run anything, read the new WHERE clause.</b> Most drafts add one line:</p>
+  <sql note="The line most drafts add">
+AND le.campaign_id <> 4      -- or: != 4
+  </sql>
+  <predict id="s1-zero" ph="two numbers, e.g. 17 and 17">Campaign 4 has <b>zero</b> attributed events in HORIZON. So after excluding it, how many adopters <i>should</i> July show? And how many <i>will</i> this SQL return? Type two numbers.</predict>
+  <p>Now run the typical draft in full: your Step 2 query plus that one line.</p>
+  <sql note="The typical draft · run it">
+SELECT date_trunc('month', le.event_date)::date AS adoption_month,
+       count(DISTINCT le.consumer_id)           AS adopting_consumers
+FROM clr.lifecycle_events le
+JOIN clr.consumers c
+  ON c.consumer_id = le.consumer_id AND c.market_code = le.market_code
+JOIN mpl.consent_records cr
+  ON cr.consumer_id = le.consumer_id AND cr.market_code = le.market_code
+WHERE le.market_code = 'ID'
+  AND le.product_code = 'VEEV'
+  AND le.lifecycle_stage IN ('trial', 'conversion')
+  AND le.event_date >= DATE '2025-07-01'
+  AND le.event_date <  DATE '2025-10-01'
+  AND c.age_band <> '18-24'
+  AND cr.marketing_allowed = true
+  «AND le.campaign_id <> 4»
+GROUP BY 1
+ORDER BY 1;
+  </sql>
+  <reveal id="s1-zero" title="Reveal: the silent zero">
+    <div class="answer"><span class="big bad">0 rows</span><span class="cap">No error. No warning.<span>A dashboard built on this would say nobody adopted VEEV in Indonesia.</span></span></div>
+    <p>The right answer is "nothing changes": <b>17 · 16 · 25</b>, because campaign 4 never had an event attributed to it.</p>
+    <p>Why: every single Indonesia event (<b>2,343 of 2,343</b>) has <code>campaign_id</code> = NULL, meaning "no campaign". And <code>NULL &lt;&gt; 4</code> isn't <i>true</i>, it's <i>unknown</i>. <code>WHERE</code> keeps only <i>true</i>, so the "filter" throws every row away. Play with it:</p>
+    <div class="widget nullab" data-widget="nullab" data-sets='{"mixed":{"rows":[["event 101",4],["event 102",1],["event 103",null],["event 104",2],["event 105",null],["event 106",null]]},"id":{"scale":2343,"rows":[["ID event 1",null],["ID event 2",null],["ID event 3",null],["ID event 4",null],["ID event 5",null],["… 2,338 more",null]]}}'>
+      <div class="widget-h"><span class="tag">Try it</span><b>Three truth values</b><span class="sp"><code class="filter-sql">campaign_id &lt;&gt; 4</code></span></div>
+      <div class="widget-b">
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px">
+          <div class="seg" data-k="f" role="group" aria-label="Filter"><button type="button" data-v="ne" aria-pressed="true">&lt;&gt; 4</button><button type="button" data-v="idf" aria-pressed="false">IS DISTINCT FROM 4</button><button type="button" data-v="or" aria-pressed="false">IS NULL OR &lt;&gt; 4</button></div>
+          <div class="seg" data-k="set" role="group" aria-label="Rows"><button type="button" data-v="mixed" aria-pressed="true">A mixed example</button><button type="button" data-v="id" aria-pressed="false">Indonesia, as it really is</button></div>
+        </div>
+        <div class="tbl-wrap" style="margin:0"><table><thead><tr><th>row</th><th>campaign_id</th><th>the filter says</th><th>WHERE</th></tr></thead><tbody></tbody></table></div>
+        <p class="verdict" aria-live="polite"></p>
+      </div>
+    </div>
+  </reveal>
+  <p>Did <b>your</b> Claude fall into it? Read its WHERE clause. If it wrote <code>campaign_id IS DISTINCT FROM 4</code> or <code>(campaign_id IS NULL OR campaign_id &lt;&gt; 4)</code>, it handled NULL on its own: good model, but you still had to check. If it wrote <code>&lt;&gt; 4</code>, send the fix as an explicit rule:</p>
+  <prompt model="sonnet" note="Only if yours fell in">
+Most events have no campaign: campaign_id is NULL for unattributed events. Exclude only events attributed to campaign 4 and keep every unattributed (NULL) event. Rewrite the query and add this rule as a comment.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p>Run the rewrite. Expected: <b>17 · 16 · 25</b> again.</p>
+  <aside class="lesson rise">
+    <span class="box-lbl">The lesson in one line</span>
+    <p>The structure you add to the prompt is what makes the answer <em>trustworthy</em>.</p>
+    <p>"Exclude campaign 4" sounded complete. It was missing the one rule (what to do with "no campaign") that decided the answer.</p>
+  </aside>
+</section>
+
+<section class="part" id="step4" data-toc="Step 4 · Make it reusable">
+  <stephead step="step4" n="4" eyebrow="Step 4 · 7 min" mins="7 min" model="sonnet">Make it <span>reusable</span>|You just did the hard thinking once. Don't do it again next week.</stephead>
+  <p>Stay in the same chat:</p>
+  <prompt model="sonnet" note="Same chat">
+Turn what we just built into a reusable prompt template I can use for any HORIZON adoption question.
+
+Requirements:
+1. Placeholders in double braces: {{MARKET_CODE}}, {{PRODUCT_CODE}}, {{TIMEFRAME_START}}, {{TIMEFRAME_END}}, {{ADOPTION_STAGES}}, {{AGE_GATE_RULE}}, {{CAMPAIGN_RULE}}.
+2. Keep the structure: context, schema (tables and columns), rules, output, and the question LAST.
+3. Keep the instruction to state every assumption as a SQL comment, and to write ASSUMPTION instead of guessing.
+4. Add this line: "Before writing SQL, list the tables, joins and filters you will use, and how you will treat NULL values."
+5. Include our final Indonesia query as one worked example of house style.
+6. No VEEV or Indonesia values may remain outside the worked example.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>What this asks for, in plain English.</b> Three prompting patterns in one template:</p>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Pattern · the line that does it</th><th>Why it helps</th></tr></thead><tbody>
+    <tr><td><b>Template</b> · the <code>{{PLACEHOLDERS}}</code></td><td>Every placeholder is a hidden assumption from Step 1, now impossible to forget.</td></tr>
+    <tr><td><b>Chain-of-thought</b> · "Before writing SQL, list the tables, joins and filters…"</td><td>The model shows its plan first, so a wrong join or a missing NULL rule surfaces while it's cheap to fix.</td></tr>
+    <tr><td><b>Few-shot</b> · the worked Indonesia example</td><td>One finished query locks in house style (comment header, join order, filter style) without re-spelling every rule.</td></tr>
+  </tbody></table></div>
+  <p><b>What a good template looks like:</b> labelled placeholders, the schema block, the rules block with <code>{{AGE_GATE_RULE}}</code> and <code>{{CAMPAIGN_RULE}}</code>, the "list your plan first" line, the worked example, and the question at the very end. If VEEV or <code>'ID'</code> still appear outside the example, ask Claude to replace them.</p>
+  <div class="callout tip"><span class="box-lbl">Your day-one takeaway</span><p><b>Copy the template into a note you keep.</b> It's the first reusable thing you've built today.</p></div>
+
+  <h3 id="japan" data-toc="Optional: a second market" data-toc-sub>Optional: test it on a different market</h3>
+  <p>If there's time, fill the template for <b>IQOS in Japan, Q3 2025</b>, adoption = trial or conversion, and paste it into a new chat. Flip the market to see which placeholders change meaning:</p>
+  <div class="widget tpl" data-widget="tpl" data-vals='{"ID":{"m":"ID","p":"VEEV","w":"2025-07-01 → 2025-10-01 (Q3 2025)","a":"trial, conversion","g":"exclude age_band 18-24 (no under-25 marketing in Indonesia)","c":"exclude campaign 4 only; keep unattributed (NULL) events"},"JP":{"m":"JP","p":"IQOS","w":"2025-07-01 → 2025-10-01 (Q3 2025)","a":"trial, conversion","g":"none in Japan: the 18-24 band may be marketed to (consent still required)","c":"no campaign exclusion; keep unattributed (NULL) events"}}'>
+    <div class="widget-h"><span class="tag">Try it</span><b>One template, two markets</b><span class="sp"><span class="seg" role="group" aria-label="Market"><button type="button" data-v="ID" aria-pressed="true">Indonesia</button><button type="button" data-v="JP" aria-pressed="false">Japan</button></span></span></div>
+    <div class="widget-b">
+      <dl>
+        <dt>{{MARKET_CODE}}</dt><dd data-k="m"></dd>
+        <dt>{{PRODUCT_CODE}}</dt><dd data-k="p"></dd>
+        <dt>{{TIMEFRAME_*}}</dt><dd data-k="w"></dd>
+        <dt>{{ADOPTION_STAGES}}</dt><dd data-k="a"></dd>
+        <dt>{{AGE_GATE_RULE}}</dt><dd data-k="g"></dd>
+        <dt>{{CAMPAIGN_RULE}}</dt><dd data-k="c"></dd>
+      </dl>
+    </div>
+  </div>
+  <p>A hardcoded "exclude 18-24" would wrongly throw away a legitimate audience in Japan. <b>That's why it's a placeholder and not a rule.</b> (How big is that audience? Session 2 measures it.)</p>
+  <reveal title="Reveal: Japan IQOS, Q3 2025">
+    <div class="tbl-wrap"><table class="res"><thead><tr><th>adoption_month</th><th class="num">adopting_consumers</th></tr></thead>
+      <tbody><tr><td>2025-07-01</td><td class="num">69</td></tr><tr><td>2025-08-01</td><td class="num">77</td></tr><tr><td>2025-09-01</td><td class="num">75</td></tr></tbody></table></div>
+    <p>A mature market: roughly four times Indonesia's numbers. Same template, same discipline, different rules filled in.</p>
+  </reveal>
+  <div class="callout tip rise">
+    <span class="box-lbl">Pro tip · bring your own mind-reader</span>
+    <p>In Claude Desktop, a <b>Project</b> keeps instructions for every chat inside it (left sidebar → Projects → New project → <i>Set project instructions</i>). Paste the schema block and your rules there once, and every new chat starts grounded. No Projects on your plan? Paste the same block as the first message of a fresh chat.</p>
+  </div>
+</section>
+
+<section class="part" id="debrief" data-toc="Debrief" data-toc-grp="Wrap-up">
+  <div class="part-h">
+    <span class="eyebrow">Five minutes</span>
+    <h2>What just <span>happened</span></h2>
+    <p class="dek">You took one short question from "the model can't answer" to a query you can defend.</p>
+  </div>
+  <div class="debrief">
+    <div class="row rise"><span class="did"><i>01</i>Asked it raw</span><span class="taught">The model interviews you or invents a schema. Fluent is not grounded.</span></div>
+    <div class="row rise"><span class="did"><i>02</i>Grounded it</span><span class="taught">Real tables + explicit rules = SQL that runs, and 9 unmarketable people correctly left out.</span></div>
+    <div class="row rise"><span class="did"><i>03</i>The silent zero</span><span class="taught">One missing rule (NULL means "no campaign") turned 17 · 16 · 25 into zero rows, with no error.</span></div>
+    <div class="row rise"><span class="did"><i>04</i>Made it reusable</span><span class="taught">The next analyst fills seven placeholders instead of starting from a vague question.</span></div>
+  </div>
+  <chat label="Discussion">Which question do you ask an AI tool most often at work? Name the three placeholders that would turn it into a template, and the hidden assumption each one makes explicit.</chat>
+  <unmute>"Who has shipped a number that was right for the question they <b>heard</b>, but not for the question that was <b>meant</b>?"</unmute>
+</section>
+
+<section class="part" id="takeaways" data-toc="Key takeaways">
+  <div class="part-h">
+    <span class="eyebrow">Leave with these</span>
+    <h2>Key <span>takeaways</span></h2>
+  </div>
+  <div class="takeaways">
+    <div class="tk rise"><h4>The model only knows what the prompt says.</h4><p>Ground it in the real schema, define the metric, state the rules, and make it write its assumptions as comments. Everything you leave out, it fills in with a confident guess.</p></div>
+    <div class="tk rise"><h4>The warehouse is the arbiter.</h4><p>An error is a gift; a query that silently returns the wrong population, or zero, is the danger. Run it and read the number. Then turn what worked into a template so the next prompt is reliable by default.</p></div>
+  </div>
+  <div class="monday rise">
+    <div class="cal"><b>MON</b><span>1</span></div>
+    <div><h4>Your Monday move</h4><p>Take one ambiguous request from your own work this week. Before you prompt, write down the timeframe, the definition and the one rule it silently assumes. Make those three placeholders. That's your first template.</p></div>
+  </div>
+</section>
+
+<section class="part wide" id="card" data-toc="Collect your card">
+  <div class="collect">
+    <button type="button" class="card3d" data-card="s1" aria-label="Flip your Session 1 card" aria-pressed="false">
+      <span class="inner">
+        <span class="face back"><span class="ring"></span><span><span class="lg">Project HORIZON</span><span class="q">1</span><span class="lg">card 1 of 4</span><span class="tap" style="display:block">Finished the lab? Tap to collect.</span></span></span>
+        <span class="face front">
+          <span class="shine"></span>
+          <span class="top"><span>Card 1 / 4</span><span>WA3899</span></span>
+          <span class="art">{{ART:s1:c1-}}</span>
+          <h5>Mind-reader <em>not included</em></h5>
+          <span class="line">What you don't say, it makes up.</span>
+          <span class="num"><b>0 rows</b><span>from one innocent <code>&lt;&gt; 4</code>. No error. Everyone gone.</span></span>
+          <span class="rule">AI answers · Data decides · You sign</span>
+        </span>
+      </span>
+    </button>
+    <div class="collect-copy">
+      <span class="eyebrow">Card 1 of 4</span>
+      <h3>Collect your card</h3>
+      <p>Finished the four steps? Flip the card. It's a one-glance reminder of the session, and the start page keeps your set. Collect all four by the end of the day.</p>
+      <p>Your own score so far: <b>Gut <span data-score="gut">0</span></b> · <b>Ground Truth <span data-score="truth">0</span></b>. The room's score is read out at the close.</p>
+    </div>
+  </div>
+</section>
+
+<section class="part wide" id="reading" data-toc="Further reading">
+  <div class="part-h">
+    <span class="eyebrow">If you want more</span>
+    <h2>Further <span>reading</span></h2>
+  </div>
+  <div class="links">
+    <a class="lnk" href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener"><span class="fi">TX</span><span><b>Transformer Explainer</b><span>Watch GPT-2 predict the next token, live in your browser</span></span></a>
+    <a class="lnk" href="https://tiktokenizer.vercel.app/" target="_blank" rel="noopener"><span class="fi">TK</span><span><b>Tiktokenizer</b><span>See how your prompt splits into tokens</span></span></a>
+    <a class="lnk" href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener"><span class="fi">A\</span><span><b>Anthropic · prompt engineering overview</b><span>The official guide to prompting Claude</span></span></a>
+    <a class="lnk" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener"><span class="fi">LM</span><span><b>Liu et al., Lost in the Middle</b><span>TACL 2024: why the question goes last</span></span></a>
+    <a class="lnk" href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener"><span class="fi">CoT</span><span><b>Wei et al., Chain-of-Thought Prompting</b><span>2022: asking for the plan first</span></span></a>
+    <a class="lnk" href="https://www.postgresql.org/docs/current/functions-comparison.html" target="_blank" rel="noopener"><span class="fi">PG</span><span><b>PostgreSQL · comparisons and NULL</b><span>The official word on three-valued logic</span></span></a>
+  </div>
+</section>

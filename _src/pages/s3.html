@@ -1,0 +1,390 @@
+<!--HERO-->
+<div class="mast-grid">
+  <div class="mast-copy">
+    <div class="kicker"><span class="pill">Session 3</span> WA3901 · Evidence-Based Reasoning in AI-Assisted Analysis</div>
+    <h1 class="title">Compared <em>to what?</em></h1>
+    <p class="lede">Every "up 20%", "ahead of plan" or "lifted 15%" hides a comparison it never states: a <b>baseline</b>, a <b>window</b> and a <b>population</b>. If you can't name all three, you don't have a finding. You have a sentence. <strong>No baseline, no claim.</strong></p>
+    <div class="chips"><span>Follow-along · <b>~27 min</b></span><span>Claude Desktop · <b>Sonnet</b></span><span>SQLTools · <b>HORIZON</b></span><span>Market · <b>Indonesia · VEEV</b></span></div>
+    <div class="cta"><a class="btn" href="#step1">Start Step 1 {{ICON:down}}</a><a class="btn ghost" href="#blanks">The three blanks</a></div>
+  </div>
+  <figure class="mast-art parallax" data-depth="14">{{ART:s3}}</figure>
+</div>
+
+<!--BRIEF-->
+<div class="brief-l">
+  <span class="lbl">The AI-generated insight on your dashboard</span>
+  <article class="msg">
+    <div class="msg-h"><span class="ava">AI</span><div><b>Dashboard insight</b><span>AI-generated · Project HORIZON · today</span></div><span class="ping">Insight</span></div>
+    <p class="msg-b">“VEEV launch adoption in Indonesia is tracking 20% ahead of plan.”</p>
+  </article>
+  <p class="theme-line"><b>It sounds finished.</b> Indonesia is an early-stage market with smaller samples, a strict under-25 rule (BPOM) and the weakest regulatory posture of the three markets. Your job: turn the sentence into a testable hypothesis, test it, and write the finding you would actually sign.</p>
+</div>
+<div class="brief-r">
+  <span class="lbl">Your route · four steps, about 27 minutes</span>
+  <ol class="route">
+    <li data-step="step1"><span class="n">1</span><a class="t" href="#step1"><b>Watch it explain anything</b><span>Ask Claude to explain the 20%. Then push back.</span></a><span class="m">4 min</span></li>
+    <li data-step="step2"><span class="n">2</span><a class="t" href="#step2"><b>Reframe</b><span>Fill the three blanks. Look for the plan.</span></a><span class="m">6 min</span></li>
+    <li data-step="step3"><span class="n">3</span><a class="t" href="#step3"><b>Stress-test</b><span>Build the comparison group. Ask the warehouse why.</span></a><span class="m">10 min</span></li>
+    <li data-step="step4"><span class="n">4</span><a class="t" href="#step4"><b>Rate it</b><span>A confidence-rated finding you'd sign.</span></a><span class="m">7 min</span></li>
+  </ol>
+</div>
+
+<!--MAIN-->
+<section class="part" id="theme" data-toc="The theme" data-toc-grp="Set-up">
+  <div class="theme rise">
+    <span class="stamp">Theme · Session 3 of 4</span>
+    <span class="box-lbl">Today's theme</span>
+    <h3>Compared <em>to what?</em></h3>
+    <p><i>"At the heart of quantitative reasoning is a single question: Compared to what?"</i> Edward Tufte, <i>Envisioning Information</i> (1990).</p>
+    <p>A scale with one pan loaded always tips the same way. <strong>A claim with nothing on the other side always wins</strong>, which is exactly why you can't trust it. And sometimes the honest finding is: <i>we can't tell yet, and here's why.</i></p>
+    <span class="one">No baseline, no claim.</span>
+  </div>
+</section>
+
+<section class="part" id="blanks" data-toc="The three blanks">
+  <div class="part-h">
+    <span class="eyebrow">From claim to hypothesis</span>
+    <h2>Fill the three <span>blanks</span></h2>
+    <p class="dek">Every "up", "ahead" or "lifted" hides three things it never says. Click each blank.</p>
+  </div>
+  <div class="widget blanks" data-widget="blanks">
+    <div class="widget-b">
+      <p class="sentence">Among <button type="button" class="blank" data-k="pop" aria-expanded="false">[population]</button>, VEEV adoption over <button type="button" class="blank" data-k="win" aria-expanded="false">[window]</button> is X% ahead of <button type="button" class="blank" data-k="base" aria-expanded="false">[baseline]</button>.</p>
+      <div class="blank-cards">
+        <div class="bcard" data-k="base"><span class="k">Baseline</span><h4>Ahead of what?</h4><p>A plan? Last quarter? A group the campaign never reached?</p><p class="ans">To check: does a plan exist in the warehouse? Is there a comparison group at all?</p></div>
+        <div class="bcard" data-k="win"><span class="k">Window</span><h4>Since when?</h4><p>Since launch? This quarter? Move the window and the number moves.</p><p class="ans">To check: when does the data start, and when did the campaign run?</p></div>
+        <div class="bcard" data-k="pop"><span class="k">Population</span><h4>Who exactly?</h4><p>Everyone, or only the consumers we may actually market to?</p><p class="ans">To check: who is marketable in Indonesia?</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="words" data-toc="Words you will hear">
+  <div class="part-h">
+    <span class="eyebrow">Plain English, once</span>
+    <h2>Words you will <span>hear</span></h2>
+  </div>
+  <dl class="terms">
+    <div class="term"><dt>Hypothesis</dt><dd>A claim restated so data can prove or disprove it: who, over when, compared to what.</dd></div>
+    <div class="term"><dt>Baseline</dt><dd>What you compare against: a plan, a prior period, or a group that wasn't treated.</dd></div>
+    <div class="term"><dt>Comparison group</dt><dd>The people the campaign did <i>not</i> reach. Without them, "lift" has nothing to be measured against.</dd></div>
+    <div class="term"><dt>Attributed · unattributed</dt><dd>An event tagged to a campaign (<code>campaign_id</code> set) vs one with no campaign (<code>campaign_id IS NULL</code>).</dd></div>
+    <div class="term"><dt>Window</dt><dd>The time period the claim covers. Move it and the number moves.</dd></div>
+    <div class="term"><dt>Population</dt><dd>Who the claim is about: everyone, or only the consumers we may market to?</dd></div>
+    <div class="term"><dt>Independent control query</dt><dd>The same number computed a second, different way. If both agree, trust the shape of the query.</dd></div>
+    <div class="term"><dt>Data-completeness gap</dt><dd>Data that should exist but was never loaded. The claim can't be tested until it is.</dd></div>
+    <div class="term"><dt>Confidence rating</dt><dd>Your judgment of the <b>evidence</b> (1/5 to 5/5), not how sure the model sounded.</dd></div>
+    <div class="term"><dt>Sycophancy</dt><dd>A model's tendency to agree with you, including changing a correct answer when you push back.</dd></div>
+    <div class="term"><dt>Percent vs points</dt><dd>13.5% → 21.4% is <b>+7.9 points</b> but <b>+59% relative</b>. Same data, two very different headlines.</dd></div>
+  </dl>
+</section>
+
+<section class="part" id="before" data-toc="Before you start">
+  <div class="part-h">
+    <span class="eyebrow">One minute</span>
+    <h2>Before you <span>start</span></h2>
+  </div>
+  <ul class="checks">
+    <li><label><input type="checkbox" data-k="s3-pre-1"><span><b>Claude Desktop</b> → <b>New chat</b>, model <b>Sonnet</b>.</span></label></li>
+    <li><label><input type="checkbox" data-k="s3-pre-2"><span><b>SQLTools</b> → connect <b>HORIZON</b> → <b>New SQL File</b>. Run with <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd>.</span></label></li>
+  </ul>
+  <div class="callout tip">
+    <span class="box-lbl">Keep this checklist visible · AI-generated SQL can be valid and wrong</span>
+    <ul class="checks mini" style="margin:8px 0 0">
+      <li><label><input type="checkbox" data-k="s3-v1"><span>Row count reconciles</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v2"><span>Grain is what you expect</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v3"><span>NULLs and duplicates checked</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v4"><span>Join cardinality is intentional</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v5"><span>Metric definition matches</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v6"><span>Independent control query agrees</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v7"><span>Compared to history</span></label></li>
+      <li><label><input type="checkbox" data-k="s3-v8"><span>Stress-tested across windows and segments</span></label></li>
+    </ul>
+  </div>
+</section>
+
+<section class="part" id="step1" data-toc="Step 1 · Explain anything" data-toc-grp="The lab">
+  <stephead step="step1" n="1" eyebrow="Step 1 · 4 min" mins="4 min" model="sonnet">Watch it explain <span>anything</span>|Ask for an explanation of a number nobody has checked. Then push back with no evidence at all.</stephead>
+  <prompt model="sonnet" note="New chat">
+Our dashboard says: "VEEV launch adoption in Indonesia is tracking 20% ahead of plan." Write three sentences for the Indonesia leadership team explaining what is driving the outperformance.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>What you might see:</b> fluent, plausible drivers ("strong retail activation", "effective early campaign", "favourable product-market fit"). Some newer models hedge first ("I don't have the data behind this, but…") and then write the drivers anyway. With web search on, it may even cite real news about VEEV in Indonesia as "evidence" for a number from your dashboard. Either way: <b>you now have a confident explanation for a number nobody has checked.</b></p>
+  <p>Now push back. Same chat, no evidence:</p>
+  <prompt model="sonnet" note="Same chat">
+Are you sure? I think adoption is actually behind plan.
+  </prompt>
+  <figure class="fig rise">
+    <div class="fig-card dark flip">
+      <p class="fig-t">Same model. Same data (none). Opposite story.</p>
+      <p class="fig-s">An illustration of what often happens next.</p>
+      <div class="convo">
+        <div class="bub u">Write three sentences explaining what is driving the outperformance.</div>
+        <div class="bub a">VEEV's lead reflects strong retail activation, an effective early campaign and favourable product-market fit among adult smokers…</div>
+        <div class="bub u">Are you sure? I think adoption is actually behind plan.</div>
+        <div class="bub a flipd">You're right to question that, and I apologise. If adoption is behind plan, the likely drivers are limited retail reach, slower awareness and early supply constraints…</div>
+      </div>
+    </div>
+  </figure>
+  <div class="callout science rise">
+    <span class="box-lbl">Why this matters · sycophancy</span>
+    <p>Anthropic researchers found AI assistants often change a correct answer when a user simply says "I don't think that's right. Are you sure?" (Sharma et al., ICLR 2024). And Anthropic's interpretability work found that when Claude explains <i>how</i> it reached an answer, the explanation can differ from what it actually computed. <b>An explanation is not evidence.</b></p>
+  </div>
+  <aside class="lesson rise">
+    <span class="box-lbl">The rule</span>
+    <p>Never ask the model "is this right?" Ask "<em>what would make this wrong, and how would I check?</em>"</p>
+    <p>Then go to the warehouse.</p>
+  </aside>
+  <chat hints="yes|no|maybe|already-have">One word: would you have forwarded that three-sentence summary?</chat>
+</section>
+
+<section class="part" id="step2" data-toc="Step 2 · Reframe">
+  <stephead step="step2" n="2" eyebrow="Step 2 · 6 min" mins="6 min" model="sonnet">Reframe: <span>compared to what?</span>|A new chat (a clean context, without the story it just invented) and a better question.</stephead>
+  <prompt model="sonnet" note="New chat">
+A dashboard claims: "VEEV launch adoption in Indonesia is tracking 20% ahead of plan." Before I trust it, restate it as a testable hypothesis. Name the baseline, the time window and the population the claim depends on but does not state. Then list the warehouse checks that would confirm or refute it.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <p><b>What a good answer looks like:</b> three named blanks (ahead of <i>what</i> baseline, over <i>which</i> window, for <i>which</i> consumers) and a short list of checks: a comparison group, a time-window stress test, a sample-size check. Write the hypothesis down:</p>
+  <div class="quote"><p>"Among the marketable Indonesia VEEV population, launch adoption in [window] is X% ahead of [baseline]."</p><cite>Your hypothesis · fill the brackets as you go</cite></div>
+
+  <h3 id="pop" data-toc="Ground the population" data-toc-sub>Ground the population</h3>
+  <predict id="s3-pop" ph="e.g. 120 of 462">How many of Indonesia's under-25 consent records allow marketing?</predict>
+  <sql>
+SELECT c.market_code,
+       count(*) FILTER (WHERE m.marketing_allowed) AS allowed,
+       count(*)                                    AS total
+FROM clr.consumers c
+JOIN mpl.consent_records m USING (consumer_id)
+WHERE c.market_code = 'ID' AND c.age_band = '18-24'
+GROUP BY c.market_code;
+  </sql>
+  <reveal id="s3-pop" title="Reveal · who is in the population">
+    <div class="answer"><span class="big">0 of 462</span><span class="cap">under-25 consent records allow marketing in Indonesia.<span>They sit outside the population any marketing claim can be about.</span></span></div>
+  </reveal>
+
+  <h3 id="plan" data-toc="Ground the baseline" data-toc-sub>Ground the baseline</h3>
+  <p>The claim says "ahead of <i>plan</i>".</p>
+  <predict id="s3-plan" ph="a schema and table name">Where in HORIZON is the plan stored? Look in the SQLTools sidebar first, then run the search.</predict>
+  <sql>
+-- Any table or column that looks like a plan, target, forecast or budget?
+SELECT table_schema, table_name, column_name
+FROM information_schema.columns
+WHERE table_schema IN ('clr', 'mpl', 'rst', 'det', 'rfr', 'ref')
+  AND (table_name ~* '(plan|target|forecast|budget)'
+       OR column_name ~* '(plan|target|forecast|budget)');
+  </sql>
+  <reveal id="s3-plan" title="Reveal · the plan">
+    <div class="answer"><span class="big bad">0 rows</span><span class="cap">There is no plan in the warehouse.<span>"20% ahead of plan" is compared to something nobody can see.</span></span></div>
+    <p>First caveat, before any SQL about adoption: <b>which plan, and who owns it?</b></p>
+  </reveal>
+  <chat>Who would you ask for the plan at PMI, and how long would it take to get it?</chat>
+</section>
+
+<section class="part" id="step3" data-toc="Step 3 · Stress-test">
+  <stephead step="step3" n="3" eyebrow="Step 3 · 10 min" mins="10 min" model="sonnet">Stress-test <span>against the warehouse</span>|Even without the plan, "ahead" implies a campaign effect. So test the comparison group.</stephead>
+  <p>Back in your Step 2 chat:</p>
+  <prompt model="sonnet" note="Same chat as Step 2">
+Write a PostgreSQL query against clr.lifecycle_events (columns: event_id, consumer_id, market_code, product_code, event_date, lifecycle_stage, campaign_id) that splits Indonesia VEEV conversion events into two groups and counts each:
+- campaign-attributed: campaign_id IS NOT NULL
+- unattributed baseline: campaign_id IS NULL (never campaign_id != something: unattributed events are NULL, and a comparison with NULL drops them)
+Filter on market_code = 'ID', product_code = 'VEEV' and lifecycle_stage = 'conversion'. No join is needed. Return one row per group with its event count.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <div class="callout echo"><span class="box-lbl">Why the prompt spells out IS NULL</span><p>You met this trap in Session 1. A baseline written as <code>campaign_id != 4</code> is an empty set, and a "lift" measured against an empty set can be made to look like any number.</p></div>
+  <predict id="s3-attr" ph="a number">Indonesia has <b>116</b> VEEV conversions. How many of them are <b>campaign-attributed</b>?</predict>
+  <p>Copy Claude's query into SQLTools and run it.</p>
+  <reveal id="s3-attr" title="Reveal · the comparison group">
+    <div class="answer"><span class="big bad">0 of 116</span><span class="cap">conversions are attributed to a campaign.<span>There is no campaign group at all, so nothing to compare the baseline against.</span></span></div>
+    <div class="tbl-wrap"><table class="res"><thead><tr><th>grp</th><th class="num">conversion_events</th></tr></thead><tbody><tr><td>unattributed baseline</td><td class="num">116</td></tr></tbody></table></div>
+    <p><b>One row</b> (or, if Claude wrote it as two separate counts, a campaign-attributed count of <b>0</b>). A campaign-driven "20% ahead" is not merely unproven. <b>It is untestable as stated.</b></p>
+  </reveal>
+  <p>Check the metric with an <b>independent control query</b> (same scope, different shape):</p>
+  <sql>
+SELECT count(*) AS id_veev_conversions
+FROM clr.lifecycle_events
+WHERE market_code = 'ID' AND product_code = 'VEEV' AND lifecycle_stage = 'conversion';
+  </sql>
+  <p>Expected: <b>116</b>, matching the split. The query shape is right; the data is what's missing.</p>
+  <p>Before you conclude "there was no campaign", ask the warehouse whether it <i>thinks</i> one ran:</p>
+  <sql>
+-- Campaigns on record vs events actually attributed to them
+SELECT c.campaign_id,
+       c.market_code,
+       c.campaign_name,
+       c.start_date,
+       c.end_date,
+       count(e.event_id) AS attributed_events
+FROM ref.campaigns c
+LEFT JOIN clr.lifecycle_events e ON e.campaign_id = c.campaign_id
+GROUP BY 1, 2, 3, 4, 5
+ORDER BY 1;
+  </sql>
+  <p><b>What this query does:</b> lists every campaign the reference table knows about and counts the lifecycle events tagged to each. The <code>LEFT JOIN</code> keeps campaigns with no events at all, which is exactly what we're hunting for.</p>
+  <reveal title="Reveal · campaigns on paper">
+    <figure class="fig" style="margin-top:0"><div class="fig-card anim"><p class="fig-t">Attributed lifecycle events, per campaign on record</p><p class="fig-s">Five campaigns in <code>ref.campaigns</code>. Only one ever had an event tagged to it.</p>{{CHART:s3-campaigns}}</div></figure>
+    <p><b>The Indonesia campaigns exist on paper. Not one event was ever tagged to them.</b> Attribution was loaded for Italy (74 events) and never for Indonesia. This is a <b>data-completeness defect</b>: the evidence needed to validate the claim is not in this warehouse. Wherever "20% ahead of plan" came from, it did not come from here.</p>
+  </reveal>
+
+  <h3 id="ramp" data-toc="Stretch: the campaign jump" data-toc-sub>Stretch: "But conversions jumped during the campaign!"</h3>
+  <p>Someone will say it. Check:</p>
+  <sql>
+SELECT date_trunc('quarter', event_date)::date AS quarter,
+       count(*)                                AS conversions
+FROM clr.lifecycle_events
+WHERE market_code = 'ID' AND product_code = 'VEEV' AND lifecycle_stage = 'conversion'
+GROUP BY 1
+ORDER BY 1;
+  </sql>
+  <reveal title="Reveal · compared to what?">
+    <figure class="fig" style="margin-top:0"><div class="fig-card anim"><p class="fig-t">Indonesia VEEV conversions by quarter</p><p class="fig-s">The shaded band is the ID VEEV campaign window. The data starts on 1 January 2024.</p>{{CHART:s3-quarters}}</div></figure>
+    <p>The campaign ran 24 March to 23 May 2024, and Q2 2024 shows a tenfold jump over Q1. Proof? No: the data <b>starts</b> on 1 January 2024. Q1 is the launch ramp, when consumers had only just registered and nobody had had time to convert. A before/after comparison on a launch ramp measures the ramp, not the campaign. <b>Compared to what? Compared to a quarter in which conversion was barely possible.</b></p>
+  </reveal>
+</section>
+
+<section class="part" id="step4" data-toc="Step 4 · Rate it">
+  <stephead step="step4" n="4" eyebrow="Step 4 · 7 min" mins="7 min" model="sonnet">Rate it: <span>the finding you'd sign</span>|A defensible finding doesn't invent a number the data can't support.</stephead>
+  <p>Paste this, filling the brackets from what you found:</p>
+  <prompt model="sonnet" note="Fill the brackets first">
+Help me write a confidence-rated finding to replace a dashboard claim that "VEEV launch adoption in Indonesia is tracking 20% ahead of plan".
+
+What I found in the warehouse:
+- There is no plan or target table, so the baseline is unknown.
+- There are [your count] Indonesia VEEV conversion events and every one is unattributed (campaign_id IS NULL).
+- ref.campaigns lists the Indonesia campaigns, but each has 0 attributed events: campaign attribution was loaded for Italy only.
+- No under-25 Indonesian consumer may be marketed to (0 of 462 consent records allow it).
+
+Write, short enough to sit on a dashboard:
+1. A corrected headline that says the claim is unverified and currently untestable.
+2. The method in one sentence (what I checked).
+3. A confidence rating in the form "n/5 Label", with a one-line justification.
+4. The two most important caveats.
+5. The actions needed before this figure can be trusted, with an owner for each.
+6. One sentence saying the rating reflects evidence strength and validation coverage, not the model's self-confidence and not statistical certainty.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <div class="widget rise">
+    <div class="widget-h"><span class="tag">Your call first</span><b>Before you read Claude's draft: rate the evidence</b><span class="sp">type it in the chat too</span></div>
+    <div class="widget-b">
+      <div class="conf" data-widget="conf" data-id="s3-conf" role="group" aria-label="Confidence rating">
+        <button type="button" data-v="1" aria-pressed="false"><span class="n">1/5</span><span class="l">Low</span><span class="d">Untestable or contradicted</span></button>
+        <button type="button" data-v="2" aria-pressed="false"><span class="n">2/5</span><span class="l">Weak</span><span class="d">One source, no comparison group</span></button>
+        <button type="button" data-v="3" aria-pressed="false"><span class="n">3/5</span><span class="l">Moderate</span><span class="d">Right method, small sample or one window</span></button>
+        <button type="button" data-v="4" aria-pressed="false"><span class="n">4/5</span><span class="l">Strong</span><span class="d">Holds across windows and segments</span></button>
+        <button type="button" data-v="5" aria-pressed="false"><span class="n">5/5</span><span class="l">Confirmed</span><span class="d">Directly observed, two ways</span></button>
+      </div>
+      <p class="conf-out" aria-live="polite"></p>
+    </div>
+  </div>
+  <reveal id="s3-conf" title="Reveal · what a good finding looks like">
+    <div class="exhibit good" style="margin-top:28px">
+      <h4>Not yet verifiable.</h4>
+      <p style="font-family:var(--sans);font-size:16px">"20% ahead of plan" cannot be tested against HORIZON: there is no plan baseline in the warehouse, and none of Indonesia's 116 VEEV conversions is attributed to a campaign.</p>
+      <p style="font-family:var(--sans);font-size:16px;margin-top:10px"><b>Method:</b> split conversions into campaign-attributed vs unattributed; confirmed with an independent count; checked every campaign on record for attributed events.</p>
+      <p style="font-family:var(--sans);font-size:16px;margin-top:10px"><b>Confidence: 1/5 Low.</b> The evidence needed to test the claim was never loaded.</p>
+      <p style="font-family:var(--sans);font-size:16px;margin-top:10px"><b>Caveats:</b> (1) attribution missing for every Indonesia campaign; (2) early-stage market, small samples, launch ramp in 2024.</p>
+      <p style="font-family:var(--sans);font-size:16px;margin-top:10px"><b>Actions:</b> load and verify Indonesia campaign attribution (data engineering); obtain the plan baseline (Indonesia Markets Lead); then re-run this check.</p>
+    </div>
+    <p>Claude drafts it. <b>The calls are yours:</b> the rating is low because the data is missing, not because the sample is thin. Naming the gap and the fix is better analysis than passing along a plausible number.</p>
+  </reveal>
+  <aside class="lesson rise">
+    <span class="box-lbl">Say it out loud</span>
+    <p>"Not testable yet" is a <em>finding</em>.</p>
+    <p>Rate confidence on the evidence, not on how sure the model sounds. Put the method, the caveats and the next action on the artifact the stakeholder reads.</p>
+  </aside>
+</section>
+
+<section class="part" id="debrief" data-toc="Debrief" data-toc-grp="Wrap-up">
+  <div class="part-h">
+    <span class="eyebrow">Five minutes</span>
+    <h2>What just <span>happened</span></h2>
+  </div>
+  <div class="debrief">
+    <div class="row rise"><span class="did"><i>01</i>Asked it to explain</span><span class="taught">A model will write a confident story for any number, and rewrite it when you push. An explanation is not evidence.</span></div>
+    <div class="row rise"><span class="did"><i>02</i>Reframed</span><span class="taught">"Ahead of plan" hid a baseline that doesn't exist in the warehouse.</span></div>
+    <div class="row rise"><span class="did"><i>03</i>Stress-tested</span><span class="taught">116 conversions, 0 attributed: no comparison group, so no testable lift.</span></div>
+    <div class="row rise"><span class="did"><i>04</i>Rated it</span><span class="taught">1/5, "not yet verifiable", with the actions that would change the rating. That is a finding.</span></div>
+  </div>
+  <chat label="Discussion">Which PMI tool or dashboard produces the outputs most relevant to your role (DCA, REEV, DUSI, VAIR, MCTS, APS, BPS…)? What would this triage look like for a typical output from it?</chat>
+  <unmute>"Has anyone ever been the person who said '<b>we can't tell yet</b>' in a meeting? What happened next?"</unmute>
+</section>
+
+<section class="part" id="takeaways" data-toc="Key takeaways">
+  <div class="part-h">
+    <span class="eyebrow">Leave with these</span>
+    <h2>Key <span>takeaways</span></h2>
+  </div>
+  <div class="takeaways">
+    <div class="tk rise"><h4>Compared to what?</h4><p>Name the baseline, the window and the population before you sign any number. If you can't name all three, the analysis isn't done.</p></div>
+    <div class="tk rise"><h4>"Not testable yet" is a finding.</h4><p>Rate confidence on the evidence, not on how sure the model sounds. Put the method, the caveats and the next action on the artifact the stakeholder reads.</p></div>
+  </div>
+  <div class="monday rise">
+    <div class="cal"><b>MON</b><span>3</span></div>
+    <div><h4>Your Monday move</h4><p>Take one number you'll present this week. Write its baseline, window and population underneath it. If you can't name all three, say "not testable yet", and name who owns the missing piece.</p></div>
+  </div>
+</section>
+
+<section class="part wide" id="card" data-toc="Collect your card">
+  <div class="collect">
+    <button type="button" class="card3d" data-card="s3" aria-label="Flip your Session 3 card" aria-pressed="false">
+      <span class="inner">
+        <span class="face back"><span class="ring"></span><span><span class="lg">Project HORIZON</span><span class="q">3</span><span class="lg">card 3 of 4</span><span class="tap" style="display:block">Finished the lab? Tap to collect.</span></span></span>
+        <span class="face front">
+          <span class="shine"></span>
+          <span class="top"><span>Card 3 / 4</span><span>WA3901</span></span>
+          <span class="art">{{ART:s3:c3-}}</span>
+          <h5>Compared <em>to what?</em></h5>
+          <span class="line">No baseline, no claim.</span>
+          <span class="num"><b>0 / 116</b><span>conversions attributed to a campaign. No comparison group, no lift.</span></span>
+          <span class="rule">AI answers · Data decides · You sign</span>
+        </span>
+      </span>
+    </button>
+    <div class="collect-copy">
+      <span class="eyebrow">Card 3 of 4</span>
+      <h3>Collect your card</h3>
+      <p>Rated the evidence and wrote the finding? Flip it. One more to go.</p>
+      <p>Your own score so far: <b>Gut <span data-score="gut">0</span></b> · <b>Ground Truth <span data-score="truth">0</span></b>.</p>
+    </div>
+  </div>
+</section>
+
+<section class="part" id="italy" data-toc="Case file: Italy's 15%">
+  <div class="part-h">
+    <span class="eyebrow">Instructor case file · two minutes</span>
+    <h2>Italy's <span>"15% lift"</span></h2>
+    <p class="dek">The vendor demo for this session tests a different claim: <i>"IQOS conversion in Italy lifted 15% post-Q3 campaign."</i></p>
+  </div>
+  <figure class="fig">
+    <div class="fig-card anim">
+      <p class="fig-t">Italy IQOS conversion rate</p>
+      <p class="fig-s">Unattributed baseline (343 of 2,546 events) vs after the campaign.</p>
+      {{CHART:s3-italy}}
+    </div>
+  </figure>
+  <div class="widget dark pvp" data-widget="pvp" data-txt='{"claim":["Italy IQOS conversion <em>lifted 15%</em>","The original claim: no baseline, no window, no unit. Which 15%?"],"pts":["Italy IQOS conversion is up <em>7.9 points</em>","13.5% → 21.4%: the absolute gap between two rates."],"rel":["Italy IQOS conversion is up <em>59%</em>","21.4 ÷ 13.5 = 1.59: the relative change. Same data, bigger headline."]}'>
+    <div class="widget-h"><span class="tag">Try it</span><b>One change, three headlines</b><span class="sp"><span class="seg" role="group" aria-label="Headline"><button type="button" data-v="claim" aria-pressed="true">The claim</button><button type="button" data-v="pts" aria-pressed="false">In points</button><button type="button" data-v="rel" aria-pressed="false">Relative</button></span></span></div>
+    <div class="widget-b">
+      <p class="headline">Italy IQOS conversion <em>lifted 15%</em></p>
+      <p class="sub">The original claim: no baseline, no window, no unit. Which 15%?</p>
+    </div>
+  </div>
+  <p>The post-campaign rate ran at <b>21.4%</b> (Jul–Dec 2025), rising to about 31% in Q4 2025. Is that a lift of <b>7.9 percentage points</b>, or a <b>59% relative</b> lift? The "15%" never said which, never named its baseline, and rested on just <b>74</b> attributed events: moderate confidence at best.</p>
+</section>
+
+<section class="part wide" id="reading" data-toc="Further reading">
+  <div class="part-h">
+    <span class="eyebrow">If you want more</span>
+    <h2>Further <span>reading</span></h2>
+  </div>
+  <div class="links">
+    <a class="lnk" href="https://callingbullshit.org" target="_blank" rel="noopener"><span class="fi">CB</span><span><b>Calling Bullshit</b><span>Data reasoning in a digital world (Bergstrom &amp; West)</span></span></a>
+    <a class="lnk" href="https://www.tylervigen.com/spurious-scholar" target="_blank" rel="noopener"><span class="fi">SS</span><span><b>Spurious Scholar</b><span>Absurd correlations, and the AI-written papers that "explain" them</span></span></a>
+    <a class="lnk" href="https://arxiv.org/abs/2310.13548" target="_blank" rel="noopener"><span class="fi">SY</span><span><b>Sharma et al., sycophancy</b><span>ICLR 2024: models agree with you, even when you're wrong</span></span></a>
+    <a class="lnk" href="https://www.anthropic.com/research/tracing-thoughts-language-model" target="_blank" rel="noopener"><span class="fi">A\</span><span><b>Tracing the thoughts of an LLM</b><span>Anthropic, 2025: the explanation isn't the computation</span></span></a>
+    <a class="lnk" href="https://www.research.autodesk.com/publications/same-stats-different-graphs/" target="_blank" rel="noopener"><span class="fi">DS</span><span><b>Same Stats, Different Graphs</b><span>The Datasaurus Dozen</span></span></a>
+  </div>
+</section>
