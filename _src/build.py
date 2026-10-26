@@ -53,6 +53,34 @@ PAGES = [
 ]
 NAV_DOT = {"s1": "#FF4A00", "s2": "#00C9A7", "s3": "#E8A320", "s4": "#5B86F0"}
 
+# Instructor guides: one hub plus one guide per session. Built with guide_html(): noindex, their own
+# nav, assets/guide.css on top of site.css, and never linked from the student pages.
+GUIDES = [
+    dict(key="i0", file="instructor.html", hue="s0", fx="embers", nav="Hub", short="Instructor hub",
+         title="Instructor hub", student="index.html",
+         pin="AI answers. Data decides. You sign. Every guide on this site serves that one sentence.",
+         desc="Instructor guides for the PMI Data Analyst Future Skills class: the basics from zero, then one guide per session."),
+    dict(key="i1", file="instructor-s1.html", hue="s1", fx="tokens", nav="S1", dot="s1", short="Session 1 guide",
+         title="Session 1 instructor guide · Mind-reader not included", student="session1.html",
+         pin="What you don't say, the model makes up. Your job is to say it, then check the number.",
+         desc="Instructor guide for Session 1 (WA3899): the lab taught from zero, every number explained, a timed script and the fixes."),
+    dict(key="i2", file="instructor-s2.html", hue="s2", fx="rows", nav="S2", dot="s2", short="Session 2 guide",
+         title="Session 2 instructor guide · Deepfake data", student="session2.html",
+         pin="Realistic is not real. Plan on the expensive model, prove the plan in the warehouse, let the cheap model type, then count.",
+         desc="Instructor guide for Session 2 (WA3900): the lab taught from zero, every number explained, a timed script and the fixes."),
+    dict(key="i3", file="instructor-s3.html", hue="s3", fx="percent", nav="S3", dot="s3", short="Session 3 guide",
+         title="Session 3 instructor guide · Compared to what?", student="session3.html",
+         pin="No baseline, no claim. If you can't say what a number is compared to, it isn't a finding yet.",
+         desc="Instructor guide for Session 3 (WA3901): the lab taught from zero, every number explained, a timed script and the fixes."),
+    dict(key="i4", file="instructor-s4.html", hue="s4", fx="stars", nav="S4", dot="s4", short="Session 4 guide",
+         title="Session 4 instructor guide · The dog that didn't bark", student="session4.html",
+         pin="Read for what's missing. AI output never warns you about its own gaps, so you find them and confirm each one in the warehouse.",
+         desc="Instructor guide for Session 4 (WA3902): the lab taught from zero, every number explained, a timed script and the fixes."),
+]
+
+LANES = {"do": "Students do", "see": "They see", "mean": "It means", "say": "You say",
+         "you": "You do", "watch": "Watch for"}
+
 ICONS = {
     "target": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/><path d="M12 1v4M12 19v4M1 12h4M19 12h4"/></svg>',
     "chat": '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg>',
@@ -222,6 +250,17 @@ def expand(src):
 
     src = re.sub(r"<stephead((?:\s[^>]*)?)>(.*?)</stephead>", stephead, src, flags=re.S)
 
+    # instructor guides: walked-step lanes and the recurring "Back to the point" box
+    def lane(m):
+        k = m.group(1)
+        label = attrs(m.group(2) or "").get("label", LANES[k])
+        return f'<div class="lane {k}"><span class="k">{escape(label)}</span><div>{m.group(3).strip()}</div></div>'
+
+    src = re.sub(r'<lane ([a-z]+)((?:\s[^>]*)?)>(.*?)</lane>', lane, src, flags=re.S)
+    src = re.sub(r"<point>(.*?)</point>",
+                 lambda m: f'<div class="point rise"><span class="k">Back to the point</span><p>{m.group(1).strip()}</p></div>',
+                 src, flags=re.S)
+
     def tok(m):
         kind, name = m.group(1), m.group(2)
         if kind == "CHART":
@@ -386,6 +425,117 @@ def page_html(p, blocks, prev, nxt):
 '''
 
 
+def guide_html(p, blocks, prev, nxt):
+    """An instructor guide: same shell as a lab page, with its own nav, the point pinned on the TOC, noindex."""
+    hero = expand(blocks.get("HERO", ""))
+    main = expand(blocks.get("MAIN", ""))
+    toc = build_toc(main)
+    nav = []
+    for q in GUIDES:
+        cur = ' aria-current="page"' if q["key"] == p["key"] else ""
+        if q.get("dot"):
+            nav.append(f'<a href="{q["file"]}"{cur} style="--d:{NAV_DOT[q["dot"]]}"><span class="dot"></span>{escape(q["nav"])}'
+                       f'<span class="lbl-long"> guide</span></a>')
+        else:
+            nav.append(f'<a href="{q["file"]}"{cur}>{escape(q["short"])}</a>')
+    nav.append(f'<a href="{p["student"]}" class="stu">Student page ↗</a>')
+    nav = "\n      ".join(nav)
+    title = f'{p["title"]} · HORIZON analyst labs'
+    og = f'{SITE}images/og-{p["hue"]}.jpg'
+    pager = []
+    if prev:
+        pager.append(f'<a class="pv" href="{prev["file"]}"><span class="k">← Previous</span><b>{escape(prev["short"])}</b></a>')
+    else:
+        pager.append("<span></span>")
+    if nxt:
+        pager.append(f'<a class="nx" href="{nxt["file"]}"><span class="k">Next →</span><b>{escape(nxt["short"])}</b></a>')
+    pager = f'<nav class="pager" aria-label="Previous and next guide">{"".join(pager)}</nav>'
+    switch = "".join(
+        f'<a href="{q["file"]}"' + (' aria-current="page"' if q["key"] == p["key"] else "") + f'>{escape(q["short"])}</a>'
+        for q in GUIDES)
+    hero = hero.replace("{{GUIDES}}", f'<nav class="guides" aria-label="Instructor guides">{switch}'
+                                      f'<a href="{p["student"]}" class="stu">Student page ↗</a></nav>')
+    return f'''<!doctype html>
+<html lang="en" class="no-js hue-{p["hue"]} guide" data-page="{p["key"]}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{escape(title)}</title>
+<meta name="description" content="{escape(p["desc"])}">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Project HORIZON · Data Analyst instructor guides">
+<meta property="og:title" content="{escape(p["title"])}">
+<meta property="og:description" content="{escape(p["desc"])}">
+<meta property="og:image" content="{og}">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{{var t=localStorage.getItem('pmi-da-theme');if(/[?&]dark/.test(location.search))t='dark';if(t)document.documentElement.setAttribute('data-theme',t)}}catch(e){{}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/guide.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C2040'/%3E%3Ccircle cx='16' cy='19' r='8' fill='%23FF4A00'/%3E%3Crect x='4' y='19' width='24' height='9' fill='%230C2040'/%3E%3Crect x='6' y='20' width='20' height='2' rx='1' fill='%2300C9A7'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="instructor.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#FF4A00" fill-opacity=".14"/><circle cx="16" cy="19" r="8" fill="#FF4A00"/><rect x="4" y="19" width="24" height="9" fill="#0C2040"/><rect x="6" y="20" width="20" height="2" rx="1" fill="#00C9A7"/></svg>Project HORIZON <span>· instructor</span></a>
+    <nav class="nav" aria-label="Instructor guides">
+      {nav}
+    </nav>
+    <div class="tools">
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch theme">{ICONS["theme"]}</button>
+      <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false">{ICONS["menu"]}</button>
+    </div>
+  </div>
+</header>
+
+<section class="mast">
+  <canvas class="mast-fx" data-fx="{p["fx"]}" aria-hidden="true"></canvas>
+  <div class="mast-in">
+{hero}
+  </div>
+  <a class="scroll-cue" href="#main">Scroll</a>
+</section>
+
+<div class="frame">
+  <details class="toc" id="toc" open>
+    <summary>On this page</summary>
+    <div class="pin"><b>The point</b>{escape(p["pin"])}</div>
+    <ol>
+{toc}
+    </ol>
+  </details>
+  <main id="main" tabindex="-1">
+{main}
+{pager}
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <p class="rule-big"><span>AI answers.</span> <span>Data decides.</span> <span>You sign.</span></p>
+      <p>Instructor guides for the PMI DI&amp;A Future Skills Data Analyst class: WA3899 · WA3900 · WA3901 · WA3902. Not linked from the student pages and hidden from search engines, but public to anyone who has the link. Project HORIZON is a fictional, training-only data estate.</p>
+    </div>
+    <nav aria-label="All instructor guides">
+      {"".join(f'<a href="{q["file"]}">{escape(q["title"])}</a>' for q in GUIDES)}
+      <a href="index.html">Student site</a>
+    </nav>
+  </div>
+</footer>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
+'''
+
+
 def split_blocks(text):
     blocks = {}
     for m in re.finditer(r"<!--(HERO|BRIEF|MAIN)-->(.*?)(?=<!--(?:HERO|BRIEF|MAIN)-->|\Z)", text, re.S):
@@ -421,6 +571,19 @@ def main():
             f.write(html)
         left = re.findall(r"<(?:prompt|sql|predict|reveal|chat|unmute|stephead)\b|\{\{[A-Z]+:", html)
         print(f"{p['file']:16} {len(html) // 1024:4} KB" + (f"   UNEXPANDED: {left}" if left else ""))
+    for i, p in enumerate(GUIDES):
+        src = os.path.join(HERE, "pages", p["key"] + ".html")
+        if not os.path.exists(src):
+            print("skip (no source yet):", p["key"])
+            continue
+        blocks = split_blocks(open(src, encoding="utf-8").read())
+        prev = GUIDES[i - 1] if i > 0 else None
+        nxt = GUIDES[i + 1] if i + 1 < len(GUIDES) else None
+        html = guide_html(p, blocks, prev, nxt)
+        with open(os.path.join(OUT, p["file"]), "w", encoding="utf-8") as f:
+            f.write(html)
+        left = re.findall(r"<(?:prompt|sql|predict|reveal|chat|unmute|stephead|lane|point)\b|\{\{[A-Z]+[:}]", html)
+        print(f"{p['file']:20} {len(html) // 1024:4} KB" + (f"   UNEXPANDED: {left}" if left else ""))
 
 
 if __name__ == "__main__":

@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en" class="no-js hue-s2 guide" data-page="i2">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Session 2 instructor guide · Deepfake data · HORIZON analyst labs</title>
+<meta name="description" content="Instructor guide for Session 2 (WA3900): the lab taught from zero, every number explained, a timed script and the fixes.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Project HORIZON · Data Analyst instructor guides">
+<meta property="og:title" content="Session 2 instructor guide · Deepfake data">
+<meta property="og:description" content="Instructor guide for Session 2 (WA3900): the lab taught from zero, every number explained, a timed script and the fixes.">
+<meta property="og:image" content="https://varoonsahgal.github.io/pmidataanalyst-labs/images/og-s2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem('pmi-da-theme');if(/[?&]dark/.test(location.search))t='dark';if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/guide.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C2040'/%3E%3Ccircle cx='16' cy='19' r='8' fill='%23FF4A00'/%3E%3Crect x='4' y='19' width='24' height='9' fill='%230C2040'/%3E%3Crect x='6' y='20' width='20' height='2' rx='1' fill='%2300C9A7'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="instructor.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#FF4A00" fill-opacity=".14"/><circle cx="16" cy="19" r="8" fill="#FF4A00"/><rect x="4" y="19" width="24" height="9" fill="#0C2040"/><rect x="6" y="20" width="20" height="2" rx="1" fill="#00C9A7"/></svg>Project HORIZON <span>· instructor</span></a>
+    <nav class="nav" aria-label="Instructor guides">
+      <a href="instructor.html">Instructor hub</a>
+      <a href="instructor-s1.html" style="--d:#FF4A00"><span class="dot"></span>S1<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s2.html" aria-current="page" style="--d:#00C9A7"><span class="dot"></span>S2<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s3.html" style="--d:#E8A320"><span class="dot"></span>S3<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s4.html" style="--d:#5B86F0"><span class="dot"></span>S4<span class="lbl-long"> guide</span></a>
+      <a href="session2.html" class="stu">Student page ↗</a>
+    </nav>
+    <div class="tools">
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+      <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="mast">
+  <canvas class="mast-fx" data-fx="rows" aria-hidden="true"></canvas>
+  <div class="mast-in">
+
+<div class="mast-grid">
+  <div class="mast-copy">
+    <div class="kicker"><span class="pill">Instructor guide</span> Session 2 · WA3900 · class time 1:05 to 1:55</div>
+    <h1 class="title">Deepfake <em>data</em><small>Session 2 taught from zero: what fake ("synthetic") data is, why the best AI model still gets it wrong, the four free checks that catch it, what to say, and what to do when it goes sideways.</small></h1>
+    <p class="lede">You don't need to know SQL, PMI or marketing to read this. Read it top to bottom once (<b>18 minutes</b>), do the dry run (<b>15 minutes</b>), then keep the "In class" half open on a second screen while you teach. <strong>Every number on this page was run against the HORIZON warehouse on 25 October 2026.</strong></p>
+    <div class="chips"><span>Read · <b>18 min</b></span><span>Dry run · <b>15 min</b></span><span>Class · <b>50 min</b></span><span>Plan · <b>Opus</b></span><span>Produce · <b>Haiku</b></span><span>Market · <b>Japan · ZYN</b></span></div>
+    <nav class="guides" aria-label="Instructor guides"><a href="instructor.html">Instructor hub</a><a href="instructor-s1.html">Session 1 guide</a><a href="instructor-s2.html" aria-current="page">Session 2 guide</a><a href="instructor-s3.html">Session 3 guide</a><a href="instructor-s4.html">Session 4 guide</a><a href="session2.html" class="stu">Student page ↗</a></nav>
+  </div>
+  <aside class="console" aria-label="The numbers that carry Session 2">
+    <p class="pt">Realistic is not real. <b>Prove the plan, then count what it made.</b></p>
+    <div class="hd"><span>The numbers that carry the hour</span><span>value</span></div>
+    <div class="row"><span class="lbl">Check A: age bands HORIZON really uses<small>top band is 55+, no 65+</small></span><span class="v">5</span></div>
+    <div class="row"><span class="lbl">Check B: Japan under-25 consent records that allow marketing<small>Italy and Indonesia: 0%</small></span><span class="v hot">73.1%</span></div>
+    <div class="row"><span class="lbl">Check C: real Japan ZYN adopted · converted · retained<small>609 real consumers</small></span><span class="v good">83 · 45 · 65%</span></div>
+    <div class="row"><span class="lbl">Check D: ZYN rows in device telemetry<small>ZYN is a pouch: no device</small></span><span class="v bad">0</span></div>
+    <div class="row"><span class="lbl">Step 3: rows per age band in the fake table<small>18-24 · 25-34 · 35-44 · 45-54 · 55+</small></span><span class="v">13·30·30·15·12</span></div>
+    <div class="row"><span class="lbl">Output price, Opus vs Haiku<small>plan premium, run thrifty</small></span><span class="v hot">40×</span></div>
+    <p class="ft">If you remember one thing: <b>the best model in the picker wrote a polished plan full of guesses, and four free queries caught them.</b></p>
+  </aside>
+</div>
+
+
+  </div>
+  <a class="scroll-cue" href="#main">Scroll</a>
+</section>
+
+<div class="frame">
+  <details class="toc" id="toc" open>
+    <summary>On this page</summary>
+    <div class="pin"><b>The point</b>Realistic is not real. Plan on the expensive model, prove the plan in the warehouse, let the cheap model type, then count.</div>
+    <ol>
+<li class="grp">Understand it · 11 min</li>
+<li><a href="#route"><span>Your 18 minutes</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#point"><span>The point</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#story"><span>The story and business words</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#tech"><span>The tech words</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#data"><span>The data, drawn</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#traps"><span>The five traps, drawn</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li class="grp">Walk the lab · 7 min</li>
+<li><a href="#opener"><span>Opener · the face, the dinosaur, the price</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#step1"><span>Step 1 · Plan on Opus</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#step2"><span>Step 2 · Prove in HORIZON</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#step3"><span>Step 3 · Produce on Haiku</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#debrief"><span>Debrief</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li class="grp">In class · keep open</li>
+<li><a href="#ros"><span>Run of show, with script</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#chat"><span>Chat questions and answers</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#rescue"><span>When something breaks</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li class="grp">Be ready</li>
+<li><a href="#before"><span>Before class</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#dryrun"><span>Dry run on your Mac</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#asks"><span>If a student asks…</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#sixty"><span>Teach it in 60 seconds</span><span class="ok" aria-hidden="true">✓</span></a></li>
+    </ol>
+  </details>
+  <main id="main" tabindex="-1">
+
+<style>#dryrun p, #dryrun .exp { overflow-wrap: anywhere; } #opener .sliders > div { min-width: 0; } #opener .sliders input { width: 100%; }</style>
+<div class="zone" id="z-understand"><b>Understand it</b><span>The lab from zero: the point, the words, the data, the traps.</span><i>11 min</i></div>
+
+<section class="part" id="route" data-toc="Your 18 minutes" data-toc-grp="Understand it · 11 min">
+  <div class="part-h">
+    <span class="eyebrow">Start here · 30 seconds</span>
+    <h2>Your 18 <span>minutes</span></h2>
+    <p class="dek">Each section answers one question you'd otherwise have to ask somebody. Skip nothing the first time. After that, the "In class" half is your script.</p>
+  </div>
+  <div class="budget">
+    <div class="k"><span>Reading route</span><span>minutes</span></div>
+    <ol>
+      <li><span><a href="#point">The point</a><span>The one sentence the session proves, and the two ideas it teaches.</span></span><i>1</i></li>
+      <li><span><a href="#story">The story, and the business words</a><span>Who asked for what. What synthetic data, a cohort, ZYN, the funnel and consent per age band mean.</span></span><i>3</i></li>
+      <li><span><a href="#tech">The tech words</a><span>Model tiers and token prices, planner vs executor, and the SQL tricks the checks use (bool_or, ROLLUP, averaging true/false).</span></span><i>3</i></li>
+      <li><span><a href="#data">The data, drawn</a><span>The real tables the fake has to imitate, with real rows. You meet three real Japan ZYN consumers.</span></span><i>2</i></li>
+      <li><span><a href="#traps">The five traps, drawn</a><span>Invented bands, the wrong market's rule, launch-market rates, a device that doesn't exist, and a model that can't count.</span></span><i>2</i></li>
+      <li><span><a href="#opener">Walk the lab</a><span>Opener, three steps and the debrief: what students do, see, what it means, what you say.</span></span><i>7</i></li>
+      <li class="tot"><span><b>Then, at the keyboard: the dry run</b><span>Do the lab once yourself, exactly like a student. Every expected result is written down for you.</span></span><i>+15</i></li>
+    </ol>
+  </div>
+</section>
+
+<section class="part" id="point" data-toc="The point">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 1 minute</span>
+    <h2>The <span>point</span></h2>
+    <p class="dek">Every section below ends with a "Back to the point" box that ties what you just read back to this.</p>
+  </div>
+  <div class="lesson rise">
+    <span class="box-lbl">The sentence the session proves</span>
+    <p>Realistic is not real. <em>AI-generated data is built to look right, not to be right</em>, and only the real data can tell you which.</p>
+    <p>So before anyone builds on a fake table, you check its shape against the warehouse. And you spend money sensibly while you do it: the expensive model plans, the database checks the plan for free, the cheap model does the typing, and then you count what it typed.</p>
+  </div>
+  <p>Here's the lab in plain words. Japan's manager wants to try out a new analysis on <b>made-up data</b> first, because the real customer data is locked behind privacy approvals. Students ask the most expensive AI model (Opus) for a one-page plan of the fake table. The plan looks finished. Then they run four quick database queries and find the plan guessed wrong in several places. They fix the plan, hand it to the cheapest model (Haiku) to type out 100 fake rows, and finally count the rows to see whether it did what it was told.</p>
+  <div class="bigs">
+    <div><span class="n">5</span><b>Check A</b><p>Real age bands. Plans often invent bands like 65+ that don't exist.</p></div>
+    <div><span class="n hot">73%</span><b>Check B</b><p>Japan's under-25s may be marketed to. Plans often copy Italy's "never".</p></div>
+    <div><span class="n good">83%</span><b>Check C</b><p>Of real Japan ZYN consumers tried it. Plans usually guess far lower.</p></div>
+    <div><span class="n bad">0</span><b>Check D</b><p>Device data for ZYN. A "sessions per day" column for ZYN is pure invention.</p></div>
+  </div>
+  <p>The second idea rides along all session: <b>premium planning, thrifty execution.</b> Pay for the best model on the short job that needs judgment (the plan), and use the cheap model for the long job that's just typing (100 rows).</p>
+  <div class="point rise"><span class="k">Back to the point</span><p>If you remember one thing: <b>a fake that looks right isn't the same as a fake that behaves like the real thing.</b> The only way to know is to compare it with the warehouse, before anyone builds on it.</p></div>
+</section>
+
+<section class="part" id="story" data-toc="The story and business words">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 3 minutes</span>
+    <h2>The story, and the <span>business words</span></h2>
+    <p class="dek">A small workplace story in four panels, then every company and marketing word in it, decoded.</p>
+  </div>
+  <div class="story">
+    <div><b>The ask</b><p>PMI's <span class="em">Japan Markets Lead</span> wants a ZYN analysis prototyped "on a synthetic cohort first, before anyone touches production extracts".</p></div>
+    <div><b>The plan</b><p>Students ask <span class="em">Opus</span>, the premium model, for a one-page blueprint of 100 fake Japan ZYN consumers. It looks complete and professional.</p></div>
+    <div><b>The catch</b><p>Opus has never seen the warehouse. The blueprint <span class="em">guesses</span> the age bands, the under-25 rule, the adoption rates and a device signal, and several guesses are wrong.</p></div>
+    <div><b>The fix</b><p>Four free checks fix the plan. <span class="em">Haiku</span>, the cheap model, types 100 rows from it. Students count the rows, because the model can't.</p></div>
+  </div>
+
+  <h3 class="cards-h" style="--k:var(--gold)">The business words, decoded</h3>
+  <div class="wcards">
+    <div class="wcard biz"><h4>Synthetic data · deepfake data <small>made-up but realistic</small></h4><p>Data generated by a computer to imitate real data. No real person is in it. Teams use it to build and test dashboards before they're allowed to see the real thing.</p><p class="like">a crash-test dummy: useful only if it's built like a real body in every way the test depends on.</p></div>
+    <div class="wcard biz"><h4>Cohort <small>a group of people</small></h4><p>A defined group of consumers studied together, for example "Japan consumers interested in ZYN". A synthetic cohort is a fake version of that group.</p><p class="here">100 fake Japan ZYN consumers, one row each, in a table called <code>analytics.synthetic_japan_zyn_cohort</code>.</p></div>
+    <div class="wcard biz"><h4>Production extracts · access approvals <small>why fake at all</small></h4><p>"Production" means the real, live data. Consumer ages and consent are personal data, so getting an extract (a copy) needs privacy sign-off, which takes weeks.</p><p class="here">The manager wants the dashboard built while those approvals are pending. That only works if the fake behaves like the real data.</p></div>
+    <div class="wcard biz"><h4>ZYN · IQOS · VEEV <small>pouch vs devices</small></h4><p><b>ZYN</b> is a nicotine pouch you put under your lip: no battery, no app, no device. <b>IQOS</b> (heated tobacco) and <b>VEEV</b> (a vape) are electronic devices that can report usage.</p><p class="here">The whole of Check D. A pouch can't send "sessions per day".</p></div>
+    <div class="wcard biz"><h4>Japan · JP <small>a mature market</small></h4><p>PMI calls each country a market. Japan (<code>JP</code>) is HORIZON's biggest and most established market (3,000 consumers), so lots of people get far down the funnel.</p><p class="here">Students' blueprints often imagine a new market with low numbers. Japan isn't one.</p></div>
+    <div class="wcard biz"><h4>The funnel: adopted · converted · retained <small>three rates</small></h4><p>The customer journey is registration → trial → conversion → retention (or churn). <b>Adopted</b> = reached trial or conversion. <b>Converted</b> = reached conversion (switched for real). <b>Retained</b> = still using it 90 days after converting.</p><p class="like">a gym: tried a class (adopted), bought a membership (converted), still going three months later (retained).</p></div>
+    <div class="wcard biz"><h4>Consent per age band <small>who we may market to</small></h4><p>Each consumer has permission slips (one per channel) saying yes or no to marketing: the <code>marketing_allowed</code> column. In Italy and Indonesia, under-25s are never allowed. <b>In Japan they are</b>, about as often as everyone else.</p><p class="here">Check B. A blueprint that copied Italy's rule erased a real audience.</p></div>
+    <div class="wcard biz"><h4>Engagement · telemetry <small>usage data from devices</small></h4><p>Telemetry is data a device sends home: how many sessions, how many minutes. "Engagement" is the marketing word for how much people use a product.</p><p class="here">The table <code>det.device_telemetry</code> has IQOS and VEEV rows only.</p></div>
+    <div class="wcard biz"><h4>Scenario · low / base / high <small>a range, not a number</small></h4><p>A forecast given as a range: a likely ("base") value plus a pessimistic and an optimistic one, often for several stories (baseline, upside, downside).</p><p class="here">Item 6 of the plan. A forecast without a range pretends to know more than it does.</p></div>
+    <div class="wcard biz"><h4>Provenance · owner <small>where it came from, who answers for it</small></h4><p>Provenance is the source of each number ("proved by Check B"). The owner is the named person who answers questions about the table.</p><p class="here">The final script writes both into its header. A fake table nobody owns is a table nobody can question.</p></div>
+  </div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The manager asked for something that sounds harmless: a fake table to practise on. But a fake table that gets the bands, the consent rule or the rates wrong teaches the dashboard team the wrong shape. <b>Realistic is not real.</b></p></div>
+</section>
+
+<section class="part" id="tech" data-toc="The tech words">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 3 minutes</span>
+    <h2>The <span>tech words</span></h2>
+    <p class="dek">AI words first (this session is about choosing models), then the database words the four checks use. Each comes with an everyday picture. Session 1's basics (table, row, WHERE, JOIN, NULL) are on the <a href="instructor-s1.html#tech">Session 1 guide</a>.</p>
+  </div>
+
+  <h3 class="cards-h" style="--k:#8B5CF6">AI words</h3>
+  <div class="wcards">
+    <div class="wcard ai"><h4>Model tiers: Opus · Sonnet · Haiku <small>same family, three sizes</small></h4><p>Anthropic sells Claude in three sizes. <b>Opus</b> is the biggest and best at judgment, and the most expensive. <b>Sonnet</b> is the middle. <b>Haiku</b> is small, fast and very cheap. All three type SQL and tables perfectly well.</p><p class="here">The model picker next to the send button in Claude Desktop. The VM may show older versions (e.g. Sonnet 4.6, Haiku 4.5); the idea is the same.</p></div>
+    <div class="wcard ai"><h4>Tokens · price per million <small>how AI is billed</small></h4><p>A token is a small piece of text (about ¾ of a word). Models are priced per million tokens, separately for what you send in (input) and what it writes (output). <b>Output costs five times input</b> on every tier.</p><p class="here">Opus $4 in / $20 out · Sonnet $2 / $10 · Haiku $0.10 / $0.50 per million tokens. Haiku's output is <b>40×</b> cheaper than Opus's.</p></div>
+    <div class="wcard ai"><h4>Premium planning, thrifty execution <small>the money idea</small></h4><p>A plan is short (about 800 tokens) and needs judgment. 100 rows are long (about 5,000 tokens) and need none. So: the expensive model writes the plan, the cheap model types the rows.</p><p class="like">you wouldn't ask your most senior analyst to type 100 rows into a spreadsheet. You'd ask them to design it.</p></div>
+    <div class="wcard ai"><h4>Planner · executor <small>two jobs, two prompts</small></h4><p>The planner prompt says "do not generate any rows". The executor prompt says "follow this blueprint exactly; do not change any number". Each model gets one job.</p><p class="here">The catch: a cheap executor copies the plan faithfully, mistakes and all, 100 times. That's why the plan is proved first.</p></div>
+    <div class="wcard ai"><h4>Tokens, not tallies <small>models can't count their own output</small></h4><p>When a model writes 100 rows and then prints "13 rows are 18-24", that summary is just more text it predicted. It didn't count anything. It's often a row or two off.</p><p class="here">Step 3's prediction: "will the counts match what Claude printed?" The database counts; you sign.</p></div>
+    <div class="wcard ai"><h4>Switching models mid-chat <small>the picker</small></h4><p>Click the model name next to the send button and choose another. The new model answers from the next message on, with the whole chat so far as context.</p><p class="here">Opus for Step 1, Haiku (or Sonnet if Haiku isn't offered) for Step 3.</p></div>
+  </div>
+
+  <h3 class="cards-h" style="--k:var(--blue)">Database and SQL words</h3>
+  <div class="wcards">
+    <div class="wcard tech"><h4>Reference table <small>the official list</small></h4><p>A small table that holds the official list of something: markets, products, age bands. If a value isn't in the reference table, it doesn't exist in this company's data.</p><p class="here"><code>ref.age_bands</code> (Check A) and <code>ref.products</code> (Check D).</p></div>
+    <div class="wcard tech"><h4>Averaging true/false <small>a percentage in one line</small></h4><p><code>marketing_allowed::int</code> turns true into 1 and false into 0. The average of a column of 1s and 0s is the share of trues. Multiply by 100 and round: a percentage.</p><p class="like">ten slips, seven say yes: (1+1+1+1+1+1+1+0+0+0) ÷ 10 = 0.7 = 70%.</p></div>
+    <div class="wcard tech"><h4>Records vs people <small>which percentage?</small></h4><p>A person has several permission slips. "73.1% of under-25 consent <b>records</b> allow marketing" (675 of 924 slips) isn't the same as "% of people" (319 of 359 under-25s have at least one yes).</p><p class="here">The lab uses the record share as the chance a fake consumer is allowed, and writes that down as an assumption.</p></div>
+    <div class="wcard tech"><h4>bool_or <small>"did it ever happen?"</small></h4><p>Looks at all of one person's rows and answers true if <b>any</b> of them matches. "Did this person ever reach conversion?"</p><p class="here">Check C turns each real consumer's diary into three yes/no flags: adopted, converted, retained.</p></div>
+    <div class="wcard tech"><h4>WITH … AS (…) <small>a named step</small></h4><p>A "common table expression": a temporary mini-table you name at the top of a query and then use below it, like a recipe's prep step.</p><p class="here">Check C builds a mini-table called <code>zyn</code> (one row per real consumer) and then summarises it.</p></div>
+    <div class="wcard tech"><h4>GROUP BY ROLLUP <small>subtotals plus a total</small></h4><p>Gives one result line per group (per age band) <b>plus</b> one extra line for everything together. That extra line has a blank group name, which the query relabels "ALL".</p><p class="here">The "ALL" row in Check C and in the produce check.</p></div>
+    <div class="wcard tech"><h4>CREATE TABLE · INSERT · DROP <small>building a table</small></h4><p><code>DROP TABLE IF EXISTS</code> deletes an old copy if there is one. <code>CREATE TABLE</code> makes an empty table with named columns. <code>INSERT … VALUES</code> adds rows. The database replies <code>INSERT 0 100</code> when 100 rows went in.</p><p class="here">Haiku's script does all three, in the <code>analytics</code> schema (a sandbox folder for anything students create).</p></div>
+    <div class="wcard tech"><h4>Literal rows vs random() <small>reproducible</small></h4><p>A literal row is typed out in full: <code>('SYN-JP-0001','JP','18-24',…)</code>. <code>random()</code> would make different rows every run, so nobody could reproduce or check the table.</p><p class="here">The executor prompt bans random() and "…": every row written out.</p></div>
+    <div class="wcard tech"><h4>Running a whole script <small>select all first</small></h4><p>In SQLTools, <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd> runs the query the cursor is in. To run a script with several statements, press <kbd>Ctrl+A</kbd> first to select everything.</p><p class="here">Step 3. Forget Ctrl+A and only the DROP runs.</p></div>
+  </div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The AI words explain <i>why</i> the session is shaped the way it is (expensive model plans, cheap model types). The SQL words are just four quick ways of asking the warehouse "what does the real thing look like?" <b>The warehouse is the only thing in the room that has seen the real data.</b></p></div>
+</section>
+
+<section class="part" id="data" data-toc="The data, drawn">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 2 minutes</span>
+    <h2>The data, <span>drawn</span></h2>
+    <p class="dek">The fake table has to imitate these real tables. Here they are with real rows.</p>
+  </div>
+
+  <h3>The official age bands: <code>ref.age_bands</code></h3>
+  <div class="drawn">
+    <div class="drawn-tab">ref.age_bands <em>"the official list"</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one age band</b>. Five rows. That's all of them.</div>
+      <table><thead><tr><th>age_band</th><th>min_age</th><th>max_age</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>18-24</td><td>18</td><td>24</td><td class="note">the youngest band: the one with market-specific rules</td></tr>
+        <tr><td>25-34</td><td>25</td><td>34</td><td class="note"></td></tr>
+        <tr><td>35-44</td><td>35</td><td>44</td><td class="note"></td></tr>
+        <tr><td>45-54</td><td>45</td><td>54</td><td class="note"></td></tr>
+        <tr class="hi"><td>55+</td><td>55</td><td>99</td><td class="note">the top band. There is no 55-64 and no 65+.</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+
+  <h3>Three real Japan ZYN consumers, from diary to yes/no flags</h3>
+  <p>Check C reads each real consumer's diary (<code>clr.lifecycle_events</code>) and turns it into three flags. Here's what that looks like for three real people:</p>
+  <div class="drawn">
+    <div class="drawn-tab">clr.lifecycle_events <em>three Japan ZYN consumers</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one thing one consumer did, on one day</b>.</div>
+      <table><thead><tr><th>consumer_id</th><th>age_band</th><th>their ZYN diary</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>46</td><td>35-44</td><td>registration 2024-03-20 → trial 04-10 → conversion 05-18 → retention 08-17</td><td class="note">went all the way down the funnel</td></tr>
+        <tr><td>37</td><td>35-44</td><td>registration 2024-08-12 → trial 08-21</td><td class="note">tried it, never switched</td></tr>
+        <tr class="dim"><td>7</td><td>25-34</td><td>registration 2024-05-20</td><td class="note">signed up, nothing else</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+  <div class="drawn small">
+    <div class="drawn-tab">after bool_or <em>one row per person</em></div>
+    <div class="drawn-box">
+      <table><thead><tr><th>consumer_id</th><th>adopted</th><th>converted</th><th>retained</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>46</td><td class="t">true</td><td class="t">true</td><td class="t">true</td></tr>
+        <tr><td>37</td><td class="t">true</td><td class="f">false</td><td class="f">false</td></tr>
+        <tr class="dim"><td>7</td><td class="f">false</td><td class="f">false</td><td class="f">false</td></tr>
+        <tr class="more"><td colspan="4">… 606 more real Japan ZYN consumers</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Do that for all <b>609</b> and count: <b>507</b> adopted (83.3%), <b>276</b> converted (45.3%), <b>179</b> retained (64.9% of the 276). Those are the rates the fake table must copy.</p>
+  </div>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">The real Japan ZYN funnel, 609 consumers</p><p class="fig-s">Consumers who ever reached each stage.</p><svg class="chart" viewBox="0 0 680 170" role="img" aria-label="Japan ZYN funnel: 609 consumers, 507 adopted, 276 converted, 179 retained."><line class="axis" x1="130" x2="130" y1="6" y2="146"/><text class="lab" x="118" y="29.5" text-anchor="end">ZYN consumers</text><path class="b-main growx" style="--i:0" d="M130.0,15.1 L526.0,15.1 Q530.0,15.1 530.0,19.1 L530.0,30.9 Q530.0,34.9 526.0,34.9 L130.0,34.9 Z" data-tip="609|ZYN consumers" tabindex="0"/><text class="val" x="540.0" y="29.5">609<tspan class="note" dx="8">100%</tspan></text><text class="lab" x="118" y="63.5" text-anchor="end">adopted</text><path class="b-good growx" style="--i:1" d="M130.0,49.1 L459.0,49.1 Q463.0,49.1 463.0,53.1 L463.0,64.9 Q463.0,68.9 459.0,68.9 L130.0,68.9 Z" data-tip="507|adopted" tabindex="0"/><text class="val" x="473.0" y="63.5">507<tspan class="note" dx="8">83.3%</tspan></text><text class="lab" x="118" y="97.5" text-anchor="end">converted</text><path class="b-good growx" style="--i:2" d="M130.0,83.1 L307.3,83.1 Q311.3,83.1 311.3,87.1 L311.3,98.9 Q311.3,102.9 307.3,102.9 L130.0,102.9 Z" data-tip="276|converted" tabindex="0"/><text class="val" x="321.3" y="97.5">276<tspan class="note" dx="8">45.3%</tspan></text><text class="lab" x="118" y="131.5" text-anchor="end">retained 90d</text><path class="b-good growx" style="--i:3" d="M130.0,117.1 L243.6,117.1 Q247.6,117.1 247.6,121.1 L247.6,132.9 Q247.6,136.9 243.6,136.9 L130.0,136.9 Z" data-tip="179|retained 90d" tabindex="0"/><text class="val" x="257.6" y="131.5">179<tspan class="note" dx="8">64.9% of converters</tspan></text></svg></div></figure>
+
+  <h3>Who may be marketed to, by age band (Japan)</h3>
+  <div class="tbl-wrap"><table class="res"><thead><tr><th>age_band</th><th class="num">% of Japan consent records allowing marketing</th></tr></thead><tbody>
+    <tr class="hl"><td>18-24</td><td class="num">73.1</td></tr><tr><td>25-34</td><td class="num">69.5</td></tr><tr><td>35-44</td><td class="num">71.1</td></tr><tr><td>45-54</td><td class="num">70.2</td></tr><tr><td>55+</td><td class="num">69.7</td></tr></tbody></table></div>
+  <p>About 70% in every band, under-25s included. Compare Italy and Indonesia, where the 18-24 figure is <b>0%</b>. Same band, different country, opposite rule.</p>
+
+  <h3>Which products send device data: <code>det.device_telemetry</code> and <code>ref.products</code></h3>
+  <div class="drawn-pair">
+    <div class="drawn small">
+      <div class="drawn-tab">det.device_telemetry <em>Japan, rows per product</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one device's usage report</b>.</div>
+        <table><thead><tr><th>product_code</th><th>rows</th></tr></thead>
+        <tbody><tr><td>IQOS</td><td>13,052</td></tr><tr><td>VEEV</td><td>7,411</td></tr><tr class="gone"><td>ZYN</td><td>(no row at all)</td></tr></tbody></table>
+      </div>
+    </div>
+    <div class="drawn small">
+      <div class="drawn-tab">ref.products <em>"the official list"</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one product</b>.</div>
+        <table><thead><tr><th>product_code</th><th>category</th><th>has_device</th></tr></thead>
+        <tbody><tr><td>IQOS</td><td>Heated Tobacco</td><td class="t">true</td></tr><tr><td>VEEV</td><td>Vapor</td><td class="t">true</td></tr><tr class="hi"><td>ZYN</td><td>Oral Nicotine</td><td class="f">false</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+  <p class="drawn-cap">Not one ZYN telemetry row anywhere in HORIZON, in any market. The two tables agree: no device, no usage data.</p>
+  <div class="point rise"><span class="k">Back to the point</span><p>None of these facts are secret. They sit in five small tables. But the AI model has never seen them, so it fills in each one with what sounds typical. <b>Realistic for "a market somewhere" isn't real for Japan.</b></p></div>
+</section>
+
+<section class="part" id="traps" data-toc="The five traps, drawn">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 2 minutes</span>
+    <h2>The five traps, <span>drawn</span></h2>
+    <p class="dek">Four are in the plan (caught in Step 2). The fifth is in the output (caught in Step 3). If you can explain these five, you can teach the session.</p>
+  </div>
+
+  <h3>Trap 1 · Invented bands (Check A)</h3>
+  <div class="vs">
+    <div class="wrong"><span class="k">What a plan often says</span><p>18-24 · 25-34 · 35-49 · 50-64 · 65+, or similar. The original vendor prompt for this course even prescribed bands HORIZON doesn't have (35-49, 50-64, 65+).</p></div>
+    <div class="right"><span class="k">What HORIZON uses</span><p>18-24 · 25-34 · 35-44 · 45-54 · 55+. Five bands, top band 55+.</p></div>
+  </div>
+  <p>Why it matters: the dashboard team builds filters on the fake table. The day real data arrives, a "65+" filter matches nobody and "35-49" doesn't line up with anything.</p>
+
+  <h3>Trap 2 · The wrong market's rule (Check B)</h3>
+  <div class="vs">
+    <div class="wrong"><span class="k">Over-correction</span><p>"Under-25s may not be marketed to" → 0% allowed for 18-24. True in Italy and Indonesia. <b>Wrong in Japan</b>: it erases a real audience.</p></div>
+    <div class="right"><span class="k">What Japan's data says</span><p>73.1% of 18-24 consent records allow marketing, about the same as every other band (~70%).</p></div>
+  </div>
+  <p>The other way to get it wrong: setting 18-24 to 100% allowed, which invents permission nobody gave. Either way, <b>the same assumption can be right in one market and wrong in another.</b> This idea comes back in Session 4.</p>
+
+  <h3>Trap 3 · A launch market's numbers (Check C)</h3>
+  <div class="vs">
+    <div class="wrong"><span class="k">What a plan often guesses</span><p>20 to 40% adopted, maybe 15 to 25% converted: numbers that sound right for a brand-new product.</p></div>
+    <div class="right"><span class="k">Real Japan ZYN</span><p>83.3% adopted · 45.3% converted · 64.9% of converters retained.</p></div>
+  </div>
+
+  <h3>Trap 4 · A device that doesn't exist (Check D)</h3>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">Japan device telemetry rows, by product</p><p class="fig-s">The query returns two rows, not three.</p><svg class="chart" viewBox="0 0 680 136" role="img" aria-label="Japan device telemetry rows by product: IQOS 13,052, VEEV 7,411, ZYN none."><line class="axis" x1="80" x2="80" y1="6" y2="112"/><text class="lab" x="68" y="29.5" text-anchor="end">IQOS</text><path class="b-main growx" style="--i:0" d="M80.0,15.1 L526.0,15.1 Q530.0,15.1 530.0,19.1 L530.0,30.9 Q530.0,34.9 526.0,34.9 L80.0,34.9 Z" data-tip="13,052|IQOS" tabindex="0"/><text class="val" x="540.0" y="29.5">13,052</text><text class="lab" x="68" y="63.5" text-anchor="end">VEEV</text><path class="b-main growx" style="--i:1" d="M80.0,49.1 L331.5,49.1 Q335.5,49.1 335.5,53.1 L335.5,64.9 Q335.5,68.9 331.5,68.9 L80.0,68.9 Z" data-tip="7,411|VEEV" tabindex="0"/><text class="val" x="345.5" y="63.5">7,411</text><text class="lab" x="68" y="97.5" text-anchor="end">ZYN</text><rect class="b-ghost" x="81" y="83.1" width="27.0" height="19.7" rx="4" data-tip="0|ZYN" tabindex="0"/><text class="val" x="117.0" y="97.5">0<tspan class="note" dx="8">no device, no telemetry</tspan></text></svg></div></figure>
+  <p>If the plan added "daily sessions" or "usage minutes" for ZYN, it fabricated a structure that can't exist: a pouch has no electronics. Many good Opus plans already say "no device data for a pouch; use purchase frequency instead". That's a good plan, and <b>it still needed the warehouse to sign it.</b> "The model said so" isn't evidence.</p>
+
+  <h3>Trap 5 · Tokens, not tallies (Step 3)</h3>
+  <div class="vs">
+    <div class="wrong"><span class="k">What the model prints after its rows</span><p>"18-24: 13 rows, 69% allowed …" A tidy summary table.</p></div>
+    <div class="right"><span class="k">What the database counts</span><p>Often a row or two different, because the summary was predicted, not counted.</p></div>
+  </div>
+  <p>The fix is never to edit rows by hand. Tell the executor what's wrong ("18-24 has 12 rows, it must have 13; regenerate") and run it again. The deliverable is the script, so the script must be right.</p>
+  <div class="point rise"><span class="k">Back to the point</span><p>Every trap is the same trap: something generated that <i>looks</i> like your data. Bands, a rule, rates, a column, a count. <b>Realistic is not real</b>, and four free queries plus one count tell you which parts are which.</p></div>
+</section>
+
+<div class="zone" id="z-walk"><b>Walk the lab</b><span>Each step: what students do, what they see, what it means, what you say.</span><i>7 min</i></div>
+
+<section class="part" id="opener" data-toc="Opener · the face, the dinosaur, the price" data-toc-grp="Walk the lab · 7 min">
+  <div class="part-h">
+    <span class="eyebrow">Walk the lab · 1.5 minutes · class time 1:05 to 1:20 · slides 30 to 36</span>
+    <h2>Opener: the face, the dinosaur, <span>the price</span></h2>
+    <p class="dek">Three short beats before the lab: feel the theme, see why averages aren't enough, then the money idea.</p>
+  </div>
+  <h3>Beat 1 · Which face is real? (1:05, slide 30, 4 min)</h3>
+  <div class="lanes">
+    <div class="lane you"><span class="k">You do</span><div><p>Share your screen on <a href="https://www.whichfaceisreal.com" target="_blank" rel="noopener">whichfaceisreal.com</a> (pre-opened). Two faces, one real, one generated by AI. Play three fresh rounds: the room votes "left" or "right" in the chat, then you click. Keep a saved pair for the very last slide of the day.</p></div></div>
+    <div class="lane see"><span class="k">They see</span><div><p>A split room, and some confident wrong answers.</p></div></div>
+    <div class="lane mean"><span class="k">It means</span><div><p>On the site people get about 70% right. In a 2022 study with newer fakes, people picked the real face only <b>48.2%</b> of the time (worse than a coin toss) and rated the fake faces <b>7.7% more trustworthy</b> (Nightingale &amp; Farid, PNAS).</p></div></div>
+    <div class="lane say"><span class="k">You say</span><div><p>"The generator was built to look real, not to be true. In ten minutes Claude will hand you a synthetic table of Japanese consumers. It will look exactly this real."</p></div></div>
+  </div>
+  <h3>Beat 2 · The Datasaurus (1:14, slide 35, 1 min)</h3>
+  <div class="lanes">
+    <div class="lane you"><span class="k">You do</span><div><p>Open <a href="https://www.research.autodesk.com/publications/same-stats-different-graphs/" target="_blank" rel="noopener">Same Stats, Different Graphs</a> and let the animation run for 60 seconds: thirteen datasets with identical averages, spreads and correlation, one of which is drawn as a dinosaur.</p></div></div>
+    <div class="lane say"><span class="k">You say</span><div><p>"Same averages, completely different shapes. A fake cohort can hit every headline average and still be the wrong shape. So today we check structure, not just totals."</p></div></div>
+  </div>
+  <h3>Beat 3 · Premium planning, thrifty execution (1:17, slide 36, 3 min)</h3>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">Price per million output tokens</p><p class="fig-s">Anthropic API list prices, October 2026. Output costs five times input on every tier.</p><svg class="chart" viewBox="0 0 680 154" role="img" aria-label="Price per million output tokens: Opus 5.5 $20, Sonnet 5.5 $10, Haiku 5.5 $0.50."><line class="axis" x1="110" x2="110" y1="6" y2="130"/><text class="lab" x="98" y="32.5" text-anchor="end">Opus 5.5</text><path class="b-main growx" style="--i:0" d="M110.0,17.0 L526.0,17.0 Q530.0,17.0 530.0,21.0 L530.0,35.0 Q530.0,39.0 526.0,39.0 L110.0,39.0 Z" data-tip="$20|Opus 5.5" tabindex="0"/><text class="val" x="540.0" y="32.5">$20</text><text class="lab" x="98" y="72.5" text-anchor="end">Sonnet 5.5</text><path class="b-main growx" style="--i:1" d="M110.0,57.0 L316.0,57.0 Q320.0,57.0 320.0,61.0 L320.0,75.0 Q320.0,79.0 316.0,79.0 L110.0,79.0 Z" data-tip="$10|Sonnet 5.5" tabindex="0"/><text class="val" x="330.0" y="72.5">$10</text><text class="lab" x="98" y="112.5" text-anchor="end">Haiku 5.5</text><path class="b-hot growx" style="--i:2" d="M110.0,97.0 L116.5,97.0 Q120.5,97.0 120.5,101.0 L120.5,115.0 Q120.5,119.0 116.5,119.0 L110.0,119.0 Z" data-tip="$0.50|Haiku 5.5" tabindex="0"/><text class="val hot" x="130.5" y="112.5">$0.50<tspan class="note" dx="8">40× cheaper than Opus</tspan></text></svg></div></figure>
+  <div class="widget dark calc rise" data-widget="cost">
+    <div class="widget-h"><span class="tag">Try it</span><b>What the split saves</b><span class="sp">output tokens only · list prices</span></div>
+    <div class="widget-b">
+      <div class="sliders">
+        <div><label for="c-rows">Rows to generate: <b class="rows-v">100</b></label><input id="c-rows" name="rows" type="range" min="0" max="3" step="1" value="0"></div>
+        <div><label for="c-runs">Runs per week (analysts × prototypes): <b class="runs-v">1</b></label><input id="c-runs" name="runs" type="range" min="1" max="200" step="1" value="1"></div>
+      </div>
+      <div class="bars">
+        <div class="bar-row all"><span class="nm">Everything on Opus<small>plan + rows</small></span><span class="tr"><i class="op"></i></span><span class="cost"></span></div>
+        <div class="bar-row split"><span class="nm">Plan on Opus, rows on Haiku<small>premium plan · thrifty run</small></span><span class="tr"><i class="op"></i><i class="hk"></i></span><span class="cost"></span></div>
+      </div>
+      <div class="verdict"><span class="x">6.3×</span><p>cheaper <span class="per">for one run</span>, and the rows arrive faster. At 10,000 rows or 200 analysts a week, the ratio <i>is</i> the bill.</p></div>
+      <p class="fine">Assumes an 800-token blueprint on Opus and 50 output tokens per generated row. Opus 5.5 $20 and Haiku 5.5 $0.50 per million output tokens; input tokens and caching ignored.</p>
+    </div>
+  </div>
+  <p>The arithmetic, if anyone asks: the plan is ~800 tokens × $20 per million = <b>$0.016</b>. The 100 rows are ~5,000 tokens: <b>$0.10</b> on Opus, <b>$0.0025</b> on Haiku. Total about $0.12 all on Opus vs about $0.02 split: roughly <b>one sixth</b>. Pennies today; at 10,000 rows or 200 analysts a week, the ratio is the bill.</p>
+  <div class="lanes">
+    <div class="lane say"><span class="k">You say</span><div><p>"Would you have your most senior analyst type 100 rows of a spreadsheet? Same logic. The expensive model plans, the warehouse checks the plan for free, the cheap model types. And then you count, because it can't."</p></div></div>
+    <div class="lane do"><span class="k">Students do</span><div><p>Debate in the chat: <b>"Would you rather have a wrong plan executed perfectly, or a right plan executed sloppily?"</b> Then everyone switches their picker to <b>Opus</b>.</p></div></div>
+    <div class="lane mean"><span class="k">It means</span><div><p>A cheap executor turns a wrong plan into 100 wrong rows, faithfully. That's why Step 2 proves the plan <i>before</i> anything is generated.</p></div></div>
+  </div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The face says "realistic can fool you". The dinosaur says "matching averages isn't proof". The prices say "spend judgment where it's short". Put together: <b>plan carefully, check the plan against reality, then let the cheap model type.</b></p></div>
+</section>
+
+<section class="part" id="step1" data-toc="Step 1 · Plan on Opus">
+  <div class="part-h">
+    <span class="eyebrow">Step 1 · 7 min · class time 1:20 · slides 37 and 38 · Opus</span>
+    <h2>Plan on the <span>premium model</span></h2>
+    <p class="dek">The one step that's pure judgment. Opus writes a one-page blueprint of the fake table. No rows.</p>
+  </div>
+  <div class="lanes">
+    <div class="lane do"><span class="k">Students do</span><div><p>Claude Desktop → <b>New chat</b>. Click the model name next to the send button, pick <b>Opus</b> (it may be under "More models"; no Opus? the strongest model offered). Paste the planner prompt.</p></div></div>
+  </div>
+  <div class="code prompt"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 6.2L19 4.6l-3.6 5.4L22 12l-6.6 1.9 3.6 5.5-5.4-3.6L12 22l-1.6-6.2L5 19.4l3.6-5.5L2 12l6.6-1.9L5 4.6l5.4 3.6z"/></svg>Claude Desktop · Opus (premium)</span><span class="sp"></span><span class="hint">New chat · Opus</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre>You are the PLANNER. Do not generate any data rows.
+
+Context: I&#x27;m a data analyst at PMI on Project HORIZON (a fictional training data estate). The Japan Markets Lead wants a ZYN (oral nicotine pouch) adoption analysis prototyped on a SYNTHETIC cohort before anyone touches production extracts. A cheaper model will generate the rows later, exactly from your blueprint, so be precise.
+
+Write a blueprint for a 100-row synthetic cohort of Japan ZYN consumers:
+1. Columns: name, type, allowed values (one row per synthetic consumer).
+2. Age bands and the number of rows in each (they must add up to 100).
+3. Rates: % adopted (reached trial or conversion), % converted, % retained 90 days after converting.
+4. Marketing permission: % with marketing_allowed = true in EACH age band.
+5. Any engagement or usage signal you would add, and where it would come from.
+6. Next quarter&#x27;s 90-day conversion as three scenarios (baseline, upside, downside), each with low / base / high.
+7. An assumptions table: every number above, marked &quot;guess&quot; because you cannot see our data.
+8. The three assumptions most likely to be wrong, and what I should check to prove each one.
+
+Keep it to one screen. Respond in Markdown only — do not create a Word document or any file.</pre></div>
+  <h3>How to read that prompt</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>Why it's there</th></tr></thead><tbody>
+    <tr><td>"You are the PLANNER. Do not generate any data rows."</td><td>Keeps the expensive model on the short job. Rows are the cheap model's job.</td></tr>
+    <tr><td>"A cheaper model will generate the rows later, exactly from your blueprint, so be precise."</td><td>A plan someone else will follow needs counts, not adjectives ("13 rows", not "a few").</td></tr>
+    <tr><td>1 to 5: columns, age bands, rates, permission per band, engagement signal</td><td>The structure the analysis depends on: who's in it, how they behave, who we may market to, which data exists. <b>Each one becomes a check in Step 2.</b></td></tr>
+    <tr><td>"in EACH age band"</td><td>Forces a separate number per band, so a wrong under-25 rule shows up.</td></tr>
+    <tr><td>6 · three scenarios, each low / base / high</td><td>Ranges, never one number. A forecast without a range is false precision.</td></tr>
+    <tr><td>7 · every number marked "guess"</td><td>Makes it admit it can't see our data. Every "guess" is a thing to check.</td></tr>
+    <tr><td>8 · the three assumptions most likely to be wrong</td><td>Turns the model into a reviewer of its own plan. Its list is a hypothesis; Step 2 tests it.</td></tr>
+    <tr><td>"Keep it to one screen. Respond in Markdown only…"</td><td>A plan you can read in one go, in the chat where you can see it.</td></tr>
+  </tbody></table></div>
+  <div class="lanes">
+    <div class="lane see"><span class="k">They see</span><div><p>A column list, an age-band table that adds up to 100, three rates, a marketing-permission table by band, a scenario table with ranges, an assumptions table full of "guess", and three named risks. <b>It looks finished.</b></p></div></div>
+    <div class="lane mean"><span class="k">It means</span><div><p>That's the point. A polished plan from the best model in the picker is still a stack of guesses: it has never seen HORIZON. While Opus writes, walk the room through "how to read that prompt".</p></div></div>
+    <div class="lane watch"><span class="k">Watch for</span><div><p>Look at three things on your own screen (and ask two volunteers to read theirs): which age bands it chose, what it said for 18-24 marketing, and whether it added any "sessions" or "usage" column for ZYN.</p></div></div>
+    <div class="lane say"><span class="k">You say</span><div><p>"It looks finished. Who'd send this to the dashboard team right now? Keep it on screen: we're about to test it."</p></div></div>
+  </div>
+  <div class="chatbox rise"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg></span><span class="box-lbl">Post in the chat</span><p>Which number in the blueprint would you bet is wrong?</p><div class="hints"><span>bands</span><span>under-25</span><span>adoption</span><span>engagement</span><span>all of them</span></div></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>Step 1 produces the thing we mustn't trust yet: a convincing plan. <b>Realistic is not real</b>, and Step 2 is where we find out which parts are which.</p></div>
+</section>
+
+<section class="part" id="step2" data-toc="Step 2 · Prove in HORIZON">
+  <div class="part-h">
+    <span class="eyebrow">Step 2 · 10 min · class time 1:27 · slide 39 · no model</span>
+    <h2>Prove <span>the blueprint</span></h2>
+    <p class="dek">No AI in this step. Four free queries, each testing one claim in the blueprint. Predict each one first, then run it. Press R on slide 39 to reveal each answer in turn.</p>
+  </div>
+  <div class="lanes">
+    <div class="lane do"><span class="k">Students do</span><div><p>VS Code → SQLTools → HORIZON connected → <b>New SQL File</b>. For each check: predict in the chat, paste the query from the student guide, click inside it, <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd>.</p></div></div>
+  </div>
+
+  <h3>Check A · Which age bands exist?</h3>
+  <p class="said">Predict: "How many age bands does HORIZON use, and what's the top band?"</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">Check A · expect 5 rows, top band 55+</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">SELECT</span> age_band, min_age, max_age
+<span class="k">FROM</span> ref.age_bands
+<span class="k">ORDER</span> <span class="k">BY</span> min_age;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>SELECT age_band, min_age, max_age</code></td><td>Show the band name and its youngest and oldest age.</td></tr>
+    <tr><td><code>FROM ref.age_bands</code></td><td>From the official list of bands.</td></tr>
+    <tr><td><code>ORDER BY min_age</code></td><td>Youngest band first.</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>5 rows</b><span>18-24 · 25-34 · 35-44 · 45-54 · 55+ (max age 99). That's the answer every time: it's a fixed list.</span></div>
+    <div class="bad"><b>blueprint differs</b><span>If the plan used 35-49, 50-64, 65+ or six bands: divergence #1. "Use exactly these five."</span></div>
+  </div>
+
+  <h3>Check B · Who may we market to, by age band?</h3>
+  <p class="said">Predict: "What share of Japan's 18-24 consent records allow marketing? (In Italy and Indonesia it's 0%.)"</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">Check B · expect ~70% in every band, 18-24 = 73.1</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">SELECT</span> c.age_band,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(m.marketing_allowed::int), <span class="n">1</span>) <span class="k">AS</span> pct_consent_rows_allowed
+<span class="k">FROM</span> clr.consumers c
+<span class="k">JOIN</span> mpl.consent_records m <span class="k">USING</span> (consumer_id)
+<span class="k">WHERE</span> c.market_code = <span class="s">&#x27;JP&#x27;</span>
+<span class="k">GROUP</span> <span class="k">BY</span> c.age_band
+<span class="k">ORDER</span> <span class="k">BY</span> c.age_band;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>FROM clr.consumers c JOIN mpl.consent_records m USING (consumer_id)</code></td><td>Glue each person to each of their permission slips. One row per slip.</td></tr>
+    <tr><td><code>WHERE c.market_code = 'JP'</code></td><td>Only Japan.</td></tr>
+    <tr><td><code>GROUP BY c.age_band</code></td><td>One result line per age band.</td></tr>
+    <tr><td><code>avg(m.marketing_allowed::int)</code></td><td>Turn yes into 1 and no into 0, then average: the share of slips saying yes.</td></tr>
+    <tr><td><code>round(100.0 * …, 1)</code></td><td>Make it a percentage with one decimal.</td></tr>
+  </tbody></table></div>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">Japan consent records that allow marketing</p><p class="fig-s">About 70% in every band. The under-25 band is not restricted here.</p><svg class="chart" viewBox="0 0 680 204" role="img" aria-label="Share of Japan consent records that allow marketing, by age band: about 70 percent in every band, 73.1 percent for 18-24."><line class="axis" x1="80" x2="80" y1="6" y2="180"/><text class="lab" x="68" y="29.5" text-anchor="end">18-24</text><path class="b-hot growx" style="--i:0" d="M80.0,15.1 L404.9,15.1 Q408.9,15.1 408.9,19.1 L408.9,30.9 Q408.9,34.9 404.9,34.9 L80.0,34.9 Z" data-tip="73.1%|18-24" tabindex="0"/><text class="val hot" x="418.9" y="29.5">73.1%</text><text class="lab" x="68" y="63.5" text-anchor="end">25-34</text><path class="b-main growx" style="--i:1" d="M80.0,49.1 L388.8,49.1 Q392.8,49.1 392.8,53.1 L392.8,64.9 Q392.8,68.9 388.8,68.9 L80.0,68.9 Z" data-tip="69.5%|25-34" tabindex="0"/><text class="val" x="402.8" y="63.5">69.5%</text><text class="lab" x="68" y="97.5" text-anchor="end">35-44</text><path class="b-main growx" style="--i:2" d="M80.0,83.1 L395.9,83.1 Q399.9,83.1 399.9,87.1 L399.9,98.9 Q399.9,102.9 395.9,102.9 L80.0,102.9 Z" data-tip="71.1%|35-44" tabindex="0"/><text class="val" x="409.9" y="97.5">71.1%</text><text class="lab" x="68" y="131.5" text-anchor="end">45-54</text><path class="b-main growx" style="--i:3" d="M80.0,117.1 L391.9,117.1 Q395.9,117.1 395.9,121.1 L395.9,132.9 Q395.9,136.9 391.9,136.9 L80.0,136.9 Z" data-tip="70.2%|45-54" tabindex="0"/><text class="val" x="405.9" y="131.5">70.2%</text><text class="lab" x="68" y="165.5" text-anchor="end">55+</text><path class="b-main growx" style="--i:4" d="M80.0,151.1 L389.6,151.1 Q393.6,151.1 393.6,155.1 L393.6,166.9 Q393.6,170.9 389.6,170.9 L80.0,170.9 Z" data-tip="69.7%|55+" tabindex="0"/><text class="val" x="403.6" y="165.5">69.7%</text></svg></div></figure>
+  <div class="results">
+    <div class="good"><b>73.1 · 69.5 · 71.1 · 70.2 · 69.7</b><span>Right (18-24 first). Every band about 70%. Under-25s are a normal, marketable audience in Japan.</span></div>
+    <div class="bad"><b>blueprint said 0%</b><span>Over-correction: copied Italy/Indonesia. It erased a legitimate audience. The most common and most valuable catch of the session.</span></div>
+    <div class="bad"><b>blueprint said 100%</b><span>Fabricated permission nobody gave.</span></div>
+  </div>
+  <div class="lanes">
+    <div class="lane say"><span class="k">You say</span><div><p>"The room just learned that Italy and Indonesia are zero. Japan is 73. The same assumption can be right in one market and wrong in another. Remember that at 3 o'clock."</p></div></div>
+    <div class="lane watch"><span class="k">Watch for</span><div><p>The unit. 73.1% is a share of permission <b>slips</b> (675 of 924), not of people (as people, 319 of 359 Japan under-25s have at least one yes). Say "allowed in Japan, zero in Italy and Indonesia" and nobody can nitpick.</p></div></div>
+  </div>
+
+  <h3>Check C · How do real Japan ZYN consumers behave?</h3>
+  <p class="said">Predict: "What share of Japan ZYN consumers reached trial or conversion?"</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">Check C · expect ALL row 609 · 83.3 · 45.3 · 64.9</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">WITH</span> zyn <span class="k">AS</span> (
+    <span class="k">SELECT</span> c.consumer_id,
+           c.age_band,
+           <span class="f">bool_or</span>(e.lifecycle_stage <span class="k">IN</span> (<span class="s">&#x27;trial&#x27;</span>, <span class="s">&#x27;conversion&#x27;</span>)) <span class="k">AS</span> adopted,
+           <span class="f">bool_or</span>(e.lifecycle_stage = <span class="s">&#x27;conversion&#x27;</span>)             <span class="k">AS</span> converted,
+           <span class="f">bool_or</span>(e.lifecycle_stage = <span class="s">&#x27;retention&#x27;</span>)              <span class="k">AS</span> retained
+    <span class="k">FROM</span> clr.consumers c
+    <span class="k">JOIN</span> clr.lifecycle_events e
+      <span class="k">ON</span> e.consumer_id = c.consumer_id <span class="k">AND</span> e.product_code = <span class="s">&#x27;ZYN&#x27;</span>
+    <span class="k">WHERE</span> c.market_code = <span class="s">&#x27;JP&#x27;</span>
+    <span class="k">GROUP</span> <span class="k">BY</span> c.consumer_id, c.age_band
+)
+<span class="k">SELECT</span> <span class="f">coalesce</span>(age_band, <span class="s">&#x27;ALL&#x27;</span>)                                             <span class="k">AS</span> age_band,
+       <span class="f">count</span>(*)                                                              <span class="k">AS</span> consumers,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">count</span>(*) / (<span class="k">SELECT</span> <span class="f">count</span>(*) <span class="k">FROM</span> zyn), <span class="n">1</span>)               <span class="k">AS</span> pct_of_cohort,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(adopted::int), <span class="n">1</span>)                                   <span class="k">AS</span> pct_adopted,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(converted::int), <span class="n">1</span>)                                 <span class="k">AS</span> pct_converted,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">sum</span>(retained::int) / <span class="f">nullif</span>(<span class="f">sum</span>(converted::int), <span class="n">0</span>), <span class="n">1</span>) <span class="k">AS</span> pct_retained_of_converted
+<span class="k">FROM</span> zyn
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">ROLLUP</span> (age_band)
+<span class="k">ORDER</span> <span class="k">BY</span> age_band;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Piece</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>WITH zyn AS ( … )</code></td><td>Step one: build a mini-table called <code>zyn</code> with one row per real Japan consumer who has any ZYN events.</td></tr>
+    <tr><td><code>bool_or(… IN ('trial', 'conversion')) AS adopted</code></td><td>"Did any of their diary rows say trial or conversion?" Same for converted and retained. (See consumers 46, 37 and 7 in <a href="#data">the data, drawn</a>.)</td></tr>
+    <tr><td><code>JOIN … ON … AND e.product_code = 'ZYN'</code> · <code>WHERE c.market_code = 'JP'</code></td><td>Only ZYN diary rows, only Japanese consumers.</td></tr>
+    <tr><td><code>GROUP BY c.consumer_id, c.age_band</code></td><td>Squash each person's diary into one row.</td></tr>
+    <tr><td><code>count(*)</code> · <code>pct_of_cohort</code></td><td>How many people per band, and what share of the 609 that is (the age mix the fake must copy).</td></tr>
+    <tr><td><code>avg(adopted::int)</code> · <code>avg(converted::int)</code></td><td>The share who adopted, the share who converted.</td></tr>
+    <tr><td><code>sum(retained) / nullif(sum(converted), 0)</code></td><td>Retained as a share of <i>converters</i>, not of everyone. <code>nullif</code> just avoids dividing by zero.</td></tr>
+    <tr><td><code>GROUP BY ROLLUP (age_band)</code> · <code>coalesce(age_band, 'ALL')</code></td><td>One line per band plus a total line, labelled "ALL".</td></tr>
+  </tbody></table></div>
+  <div class="tbl-wrap"><table class="res"><thead><tr><th>age_band</th><th class="num">consumers</th><th class="num">pct_of_cohort</th><th class="num">pct_adopted</th><th class="num">pct_converted</th><th class="num">pct_retained_of_converted</th></tr></thead><tbody>
+    <tr><td>18-24</td><td class="num">79</td><td class="num">13.0</td><td class="num">87.3</td><td class="num">41.8</td><td class="num">60.6</td></tr>
+    <tr><td>25-34</td><td class="num">183</td><td class="num">30.0</td><td class="num">83.6</td><td class="num">47.5</td><td class="num">69.0</td></tr>
+    <tr><td>35-44</td><td class="num">183</td><td class="num">30.0</td><td class="num">85.2</td><td class="num">44.8</td><td class="num">52.4</td></tr>
+    <tr><td>45-54</td><td class="num">91</td><td class="num">14.9</td><td class="num">76.9</td><td class="num">38.5</td><td class="num">80.0</td></tr>
+    <tr><td>55+</td><td class="num">73</td><td class="num">12.0</td><td class="num">80.8</td><td class="num">53.4</td><td class="num">71.8</td></tr>
+    <tr class="total"><td>ALL</td><td class="num">609</td><td class="num">100.0</td><td class="num">83.3</td><td class="num">45.3</td><td class="num">64.9</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>83.3 · 45.3 · 64.9</b><span>Right (the ALL row). A mature market. The pct_of_cohort column (13 · 30 · 30 · 15 · 12) becomes the row counts per band in Step 3.</span></div>
+    <div class="bad"><b>blueprint said 20–40%</b><span>The usual guess: a launch market's numbers. Realistic for somewhere, not real for here.</span></div>
+  </div>
+
+  <h3>Check D · Does ZYN have any engagement data?</h3>
+  <p class="said">Predict: "How many ZYN rows are in Japan's device telemetry table?"</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">Check D · expect 2 rows: IQOS 13052, VEEV 7411, no ZYN</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">SELECT</span> product_code, <span class="f">count</span>(*) <span class="k">AS</span> telemetry_rows
+<span class="k">FROM</span> det.device_telemetry
+<span class="k">WHERE</span> market_code = <span class="s">&#x27;JP&#x27;</span>
+<span class="k">GROUP</span> <span class="k">BY</span> product_code
+<span class="k">ORDER</span> <span class="k">BY</span> product_code;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>SELECT product_code, count(*)</code></td><td>For each product, how many usage reports.</td></tr>
+    <tr><td><code>FROM det.device_telemetry WHERE market_code = 'JP'</code></td><td>Japan's device data.</td></tr>
+    <tr><td><code>GROUP BY product_code</code></td><td>One line per product. A product with no rows gets no line at all.</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>IQOS 13052 · VEEV 7411</b><span>Right: two lines, not three. The missing ZYN line is the answer. (A query never prints "ZYN 0" here; it just leaves ZYN out.)</span></div>
+    <div class="bad"><b>blueprint had sessions for ZYN</b><span>Fabricated structure: a column for a device that doesn't exist.</span></div>
+    <div class="warn"><b>blueprint said "no device"</b><span>Good plan. It still needed the warehouse to sign it.</span></div>
+  </div>
+
+  <h3>Write down the divergences</h3>
+  <p>Fill this aloud with two or three volunteers' blueprints. It's what gets fed to the executor in Step 3.</p>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Claim</th><th>Typical blueprint</th><th>Warehouse → fix</th></tr></thead><tbody>
+    <tr><td>Age bands (A)</td><td>…, 50-64, 65+</td><td>18-24 · 25-34 · 35-44 · 45-54 · 55+ → use exactly these five</td></tr>
+    <tr><td>18-24 marketing allowed (B)</td><td>0%</td><td>73.1% (others ~70%) → ~70% in every band</td></tr>
+    <tr><td>Adopted · converted · retained (C)</td><td>35% · 20% · 50%</td><td>83% · 45% · 65% of converters → use the real rates</td></tr>
+    <tr><td>Engagement signal (D)</td><td>daily sessions</td><td>0 ZYN telemetry rows → no device or usage column</td></tr>
+  </tbody></table></div>
+  <aside class="lesson rise">
+    <span class="box-lbl">The test of a test</span>
+    <p>If every assumption "matched", you haven't validated <em>hard enough</em>.</p>
+    <p>A polished plan from the best model is still a stack of guesses. It couldn't see the data.</p>
+  </aside>
+  <div class="callout note"><span class="box-lbl">If Claude raised Japan's legal age</span><p>Some models point out that the legal age for nicotine in Japan is 20, so a real cohort would have no 18-19s. Correct, and a great catch: praise it. HORIZON is fictional training data with one 18-24 band in every market. Note it as a caveat and carry on.</p></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>Four queries, no AI, no cost, and the "finished" plan turned out to be several guesses in a nice format. <b>Realistic is not real</b>, and the cheapest step of the session is the one that saved it.</p></div>
+</section>
+
+<section class="part" id="step3" data-toc="Step 3 · Produce on Haiku">
+  <div class="part-h">
+    <span class="eyebrow">Step 3 · 9 min · class time 1:37 · slide 40 · Haiku</span>
+    <h2>Produce on the <span>thrifty model</span></h2>
+    <p class="dek">Switch to the cheap model. It types 100 rows from the proved plan. Then students count what it actually made.</p>
+  </div>
+  <div class="lanes">
+    <div class="lane do"><span class="k">Students do</span><div><p>Click the model name → <b>Haiku</b> (or Sonnet if Haiku isn't offered). Same chat or a new one: the prompt carries everything. Paste the executor prompt. The numbers are already filled in from Step 2, because everyone's warehouse is the same.</p></div></div>
+    <div class="lane say"><span class="k">You say</span><div><p>"Watch how fast it is."</p></div></div>
+  </div>
+  <div class="code prompt"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.6 6.2L19 4.6l-3.6 5.4L22 12l-6.6 1.9 3.6 5.5-5.4-3.6L12 22l-1.6-6.2L5 19.4l3.6-5.5L2 12l6.6-1.9L5 4.6l5.4 3.6z"/></svg>Claude Desktop · Haiku (thrifty)</span><span class="sp"></span><span class="hint">Switch the picker to Haiku first</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre>You are the EXECUTOR. Follow this proved blueprint exactly. Do not change any number.
+
+Write ONE PostgreSQL script that:
+1. Starts with a comment header: the table name, the grain in one sentence, owner &quot;[your name]&quot;, today&#x27;s date, &quot;prototype only: synthetic, not production data&quot;, and an ASSUMPTIONS block that lists every number below with its provenance (the warehouse check that proved it).
+2. Runs DROP TABLE IF EXISTS analytics.synthetic_japan_zyn_cohort; then CREATE TABLE analytics.synthetic_japan_zyn_cohort with these columns:
+   consumer_id text (SYN-JP-0001 to SYN-JP-0100), market_code text (always &#x27;JP&#x27;), age_band text, registration_date date (between 2024-01-01 and 2025-10-01), adopted boolean, converted boolean, retained_90d boolean, marketing_allowed boolean.
+3. INSERTs exactly 100 literal rows (no random(), no generate_series), so the cohort is reproducible. Write every row out in full: no &quot;...&quot; and no &quot;remaining rows follow the same pattern&quot;.
+   - age_band row counts: 18-24: 13, 25-34: 30, 35-44: 30, 45-54: 15, 55+: 12  (provenance: ref.age_bands and the real Japan ZYN age mix)
+   - adopted = true on 83 rows  (provenance: Japan ZYN funnel, 83.3% adopted)
+   - converted = true on 45 rows, every one of them also adopted  (provenance: 45.3% converted)
+   - retained_90d = true on 29 rows, every one of them also converted  (provenance: 64.9% of converters retained)
+   - marketing_allowed = true on 70 rows, about 70% inside EVERY age band, 18-24 included  (provenance: Japan consent records ~70% allowed in every band; 18-24 = 73.1%)
+   - no device, session, usage or telemetry columns: ZYN is a pouch  (provenance: 0 ZYN rows in det.device_telemetry; ref.products has_device = false)
+4. After the script, print a small Markdown table computed from the rows you wrote: rows per age_band and the % marketing_allowed in each.
+
+Respond in Markdown only — do not create a Word document or any file.</pre></div>
+  <h3>How to read that prompt</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>Why it's there</th></tr></thead><tbody>
+    <tr><td>"Follow this proved blueprint exactly. Do not change any number."</td><td>The executor's job is to copy faithfully, not to be creative. The judgment already happened (Opus + the warehouse).</td></tr>
+    <tr><td>Header: grain, owner, date, "prototype only", ASSUMPTIONS with provenance</td><td>The header <i>is</i> the documentation. Anyone can re-run the check behind each number. A table with no owner is a table nobody can question.</td></tr>
+    <tr><td>DROP TABLE IF EXISTS … then CREATE TABLE …</td><td>Re-runnable: running it twice gives the same table, no "already exists" error.</td></tr>
+    <tr><td>Exact counts (13 · 30 · 30 · 15 · 12; 83; 45; 29; 70)</td><td>Models are bad at turning percentages into counts in their heads. Exact counts leave nothing to interpret. (29 = 64.9% of 45, rounded.)</td></tr>
+    <tr><td>"every one of them also adopted / also converted"</td><td>Keeps the funnel logical: nobody converts without trying first.</td></tr>
+    <tr><td>"literal rows (no random(), no generate_series)" · "no '...'"</td><td>Reproducible, and blocks the model's habit of abbreviating long output.</td></tr>
+    <tr><td>"no device, session, usage or telemetry columns: ZYN is a pouch"</td><td>Check D written as a rule.</td></tr>
+    <tr><td>4 · print a profile table "from the rows you wrote"</td><td>So students can compare what the model <i>says</i> it made with what it <i>actually</i> made.</td></tr>
+  </tbody></table></div>
+  <div class="lanes">
+    <div class="lane do"><span class="k">Students do</span><div><p>Copy the whole script into a new SQLTools tab. <b>Select all (<kbd>Ctrl+A</kbd>)</b>, then <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd>.</p></div></div>
+    <div class="lane see"><span class="k">They see</span><div><p><code>INSERT 0 100</code> (100 rows went in). Plus a profile table Claude printed under the script.</p></div></div>
+    <div class="lane watch"><span class="k">Watch for</span><div><p>If the INSERT has a "…" or the reply was cut off: reply <code>Continue the INSERT from the next row, in full, then finish the script.</code> and paste the rest in. A model that abbreviates its own output is one more reason to count.</p></div></div>
+  </div>
+  <p class="said">Predict: "Will these counts match the profile table Claude printed? match or no match"</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">The produce check · target 13·30·30·15·12 · 83 · 45 · ~70 everywhere</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">SELECT</span> <span class="f">coalesce</span>(age_band, <span class="s">&#x27;ALL&#x27;</span>)                     <span class="k">AS</span> age_band,
+       <span class="f">count</span>(*)                                      <span class="k">AS</span> consumers,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(adopted::int), <span class="n">1</span>)           <span class="k">AS</span> pct_adopted,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(converted::int), <span class="n">1</span>)         <span class="k">AS</span> pct_converted,
+       <span class="f">round</span>(<span class="n">100.0</span> * <span class="f">avg</span>(marketing_allowed::int), <span class="n">1</span>) <span class="k">AS</span> pct_marketing_allowed
+<span class="k">FROM</span> analytics.synthetic_japan_zyn_cohort
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="k">ROLLUP</span> (age_band)
+<span class="k">ORDER</span> <span class="k">BY</span> age_band;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>FROM analytics.synthetic_japan_zyn_cohort</code></td><td>The fake table Haiku's script just made.</td></tr>
+    <tr><td><code>count(*)</code> per band · the three <code>avg(…::int)</code></td><td>Rows per band, and the share adopted, converted and marketing-allowed: the database's own count.</td></tr>
+    <tr><td><code>GROUP BY ROLLUP (age_band)</code></td><td>Per band plus an ALL line.</td></tr>
+  </tbody></table></div>
+  <p>What a perfect cohort looks like (this is the instructor fallback cohort, built exactly to the plan):</p>
+  <div class="tbl-wrap"><table class="res"><thead><tr><th>age_band</th><th class="num">consumers</th><th class="num">pct_adopted</th><th class="num">pct_converted</th><th class="num">pct_marketing_allowed</th></tr></thead><tbody>
+    <tr><td>18-24</td><td class="num">13</td><td class="num">84.6</td><td class="num">38.5</td><td class="num">69.2</td></tr>
+    <tr><td>25-34</td><td class="num">30</td><td class="num">83.3</td><td class="num">46.7</td><td class="num">70.0</td></tr>
+    <tr><td>35-44</td><td class="num">30</td><td class="num">86.7</td><td class="num">43.3</td><td class="num">70.0</td></tr>
+    <tr><td>45-54</td><td class="num">15</td><td class="num">80.0</td><td class="num">40.0</td><td class="num">73.3</td></tr>
+    <tr><td>55+</td><td class="num">12</td><td class="num">75.0</td><td class="num">58.3</td><td class="num">66.7</td></tr>
+    <tr class="total"><td>ALL</td><td class="num">100</td><td class="num">83.0</td><td class="num">45.0</td><td class="num">70.0</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>13·30·30·15·12 · 83 · 45 · 70</b><span>Matches the plan. Every band about 70% marketing-allowed, 18-24 included.</span></div>
+    <div class="warn"><b>off by a row or two</b><span>Common. E.g. 18-24 has 12, or 82 adopted. The model predicted its counts, it didn't count. "Tokens, not tallies."</span></div>
+    <div class="warn"><b>profile ≠ table</b><span>Claude's printed profile says one thing, the database another. The printed profile is just another claim.</span></div>
+    <div class="bad"><b>18-24 at 0% allowed</b><span>The executor ignored the proved rule. Regenerate with the rule repeated.</span></div>
+    <div class="bad"><b>relation … does not exist</b><span>The script didn't run (no Ctrl+A, or an error earlier in it). Run the whole script again, or use the fallback.</span></div>
+  </div>
+  <p>Two more checks before calling it done:</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">Expect no rows, then 0 · 0</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="c">-- Did it sneak in a telemetry-style column? Expected: no rows</span>
+<span class="k">SELECT</span> column_name
+<span class="k">FROM</span> information_schema.columns
+<span class="k">WHERE</span> table_schema = <span class="s">&#x27;analytics&#x27;</span>
+  <span class="k">AND</span> table_name = <span class="s">&#x27;synthetic_japan_zyn_cohort&#x27;</span>
+  <span class="k">AND</span> column_name ~* <span class="s">&#x27;(session|device|telemetry|usage|minutes|firmware)&#x27;</span>;
+
+<span class="c">-- Logic check: nobody converted without adopting, nobody retained without converting. Expected: 0 · 0</span>
+<span class="k">SELECT</span> <span class="f">count</span>(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> converted <span class="k">AND</span> <span class="k">NOT</span> adopted)    <span class="k">AS</span> converted_not_adopted,
+       <span class="f">count</span>(*) <span class="k">FILTER</span> (<span class="k">WHERE</span> retained_90d <span class="k">AND</span> <span class="k">NOT</span> converted) <span class="k">AS</span> retained_not_converted
+<span class="k">FROM</span> analytics.synthetic_japan_zyn_cohort;</pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>information_schema.columns … column_name ~* '(session|device|…)'</code></td><td>List the fake table's columns whose names contain any of those words (<code>~*</code> means "matches, ignoring capitals"). No rows = no phantom device column.</td></tr>
+    <tr><td><code>FILTER (WHERE converted AND NOT adopted)</code></td><td>Count impossible people: converted but never tried. Should be 0. Same for retained but never converted.</td></tr>
+  </tbody></table></div>
+  <aside class="lesson rise">
+    <span class="box-lbl">If the counts are off</span>
+    <p>Correct the <em>generator</em>, not the output.</p>
+    <p>Don't fix rows by hand. Tell the executor what's wrong ("18-24 has 12 rows, it must have 13; regenerate") and re-run. The deliverable is the script: a table anyone can rebuild, with its grain, every assumption, the check behind each one, and a name on it.</p>
+  </aside>
+  <div class="point rise"><span class="k">Back to the point</span><p>The cheap model did the long job for pennies, and the database counted it, because the model can't. <b>Realistic is not real, not even when it's your own fake</b>: you prove the plan before, and count the output after.</p></div>
+</section>
+
+<section class="part" id="debrief" data-toc="Debrief">
+  <div class="part-h">
+    <span class="eyebrow">Debrief · 9 min · class time 1:46 · slides 41 to 43</span>
+    <h2>What just <span>happened</span></h2>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>What students did</th><th>What it taught</th></tr></thead><tbody>
+    <tr><td>01 · Planned on Opus</td><td>A polished plan is still a stack of guesses. The best model in the picker couldn't see the data.</td></tr>
+    <tr><td>02 · Proved the plan</td><td>Four free queries caught invented bands, a wrong under-25 rule, launch-market rates and (maybe) a phantom device signal.</td></tr>
+    <tr><td>03 · Produced on Haiku</td><td>The cheap model typed 100 rows from a proved plan for about one sixth of the price. Then they counted, because it can't.</td></tr>
+  </tbody></table></div>
+  <p><b>Slide 41, the cost math, in one line:</b> "Same result, about one sixth of the price, and faster. And the step that actually saved you was free."</p>
+  <div class="chatbox rise"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg></span><span class="box-lbl">Discussion</span><p>Which divergence would have hurt most if it had reached a dashboard? Who would have noticed, and when?</p></div>
+  <div class="unmute rise"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></span><span class="box-lbl">Unmute moment</span><p>"What's the long, boring typing job in your week you'd give the thrifty model, and the one judgment call you'd never give it?"</p></div>
+  <p>Then <b>Takeaways #2 and #3</b> (slide 43): <i>"Realistic is not real"</i> and <i>"Premium planning, thrifty execution"</i>. Monday move: find one long, mechanical AI task, plan it on the best model, check it against one real number, run it on the cheap model, count the result.</p>
+  <div class="point rise"><span class="k">Back to the point</span><p>Two takeaways from one lab: <b>realistic is not real</b> (prove generated data against the warehouse), and <b>plan premium, run thrifty</b> (judgment on the expensive model, typing on the cheap one, counting by the database).</p></div>
+</section>
+
+<div class="zone" id="z-class"><b>In class</b><span>Your script and your safety net. Not part of the 18 minutes: skim it once, keep it open while you teach.</span><i>reference</i></div>
+
+<section class="part" id="ros" data-toc="Run of show, with script" data-toc-grp="In class · keep open">
+  <div class="part-h">
+    <span class="eyebrow">1:05 to 1:55 · deck slides 29 to 44</span>
+    <h2>Run of show, <span>with script</span></h2>
+    <p class="dek">Times match the playbook. Each block: what you do, what you say, and what the room should see.</p>
+  </div>
+  <div class="ros">
+    <div><span class="t">1:05<small>4 min</small></span><div><h4>Which face is real? <span class="sl">slides 29 and 30</span></h4><p class="d">whichfaceisreal.com, three fresh rounds, chat votes, score the room's majority. Reveal the stats (≈70% on the site · 48.2% in the 2022 study · fakes rated 7.7% more trustworthy). Keep your saved pair for the last slide of the day.</p><p class="s">In ten minutes Claude will hand you a synthetic table of Japanese consumers. It will look exactly this real.</p></div></div>
+    <div><span class="t">1:09<small>5 min</small></span><div><h4>Mindset, scenario, challenge <span class="sl">slides 31 to 33</span></h4><p class="d">Chat: "Last AI-generated data or scenario you used: what did you check it against?" Then the Japan Markets Lead's request. On the governance-rule card ask the question that is the whole lab.</p><p class="s">Could the same assumption be right in one market and wrong in another?</p></div></div>
+    <div><span class="t">1:14<small>3 min</small></span><div><h4>Concepts and the Datasaurus <span class="sl">slides 34 and 35</span></h4><p class="d">Open Same Stats, Different Graphs for 60 seconds. Chat: "Which dashboard at work would look fine on averages and wrong on shape?"</p><p class="s">Convincing is not correct.</p></div></div>
+    <div><span class="t">1:17<small>3 min</small></span><div><h4>Premium planning, thrifty execution <span class="sl">slide 36</span></h4><p class="d">The price table, 5× and 40×, the catch. Debate: "wrong plan executed perfectly, or right plan executed sloppily?" Draw sketch 3. Everyone switches their picker to Opus now.</p><p class="s">Would you have your most senior analyst type 100 rows of a spreadsheet?</p></div></div>
+    <div class="key"><span class="t">1:20<small>7 min</small></span><div><h4>Step 1 · Plan on Opus <span class="sl">slides 37 and 38</span></h4><p class="d">Everyone pastes the planner prompt. While Opus writes, walk "how to read that prompt". Chat: "which number would you bet is wrong?"</p><p class="x">A finished-looking blueprint with "guess" everywhere.</p></div></div>
+    <div class="key"><span class="t">1:27<small>10 min</small></span><div><h4>Step 2 · Prove <span class="sl">slide 39</span></h4><p class="d">Four predictions, four queries, press R after each. Fill the divergence table aloud with two or three volunteers' blueprints.</p><p class="x">5 bands / 55+ · 73.1% · 83.3 / 45.3 / 64.9 · no ZYN row.</p><p class="s">The 73 is the big one: Italy and Indonesia are zero.</p></div></div>
+    <div class="key"><span class="t">1:37<small>9 min</small></span><div><h4>Step 3 · Produce on Haiku <span class="sl">slide 40</span></h4><p class="d">Everyone switches to Haiku. Paste the executor prompt, run the script (Ctrl+A, Ctrl+E Ctrl+E), predict "match?", then the produce check and the two extra checks.</p><p class="x">INSERT 0 100 · counts close to 13·30·30·15·12, often a row off.</p><p class="s">Tokens, not tallies. The warehouse counted. You signed.</p></div></div>
+    <div><span class="t">1:46<small>9 min</small></span><div><h4>Cost math, debrief, takeaways <span class="sl">slides 41 to 43</span></h4><p class="d">One sixth of the price; the step that saved you was free. Discussion question, the unmute (the boring typing job), Takeaways #2 and #3.</p></div></div>
+    <div><span class="t">1:55<small>12 min</small></span><div><h4>Break <span class="sl">slide 44</span></h4><p class="d">"Back at 2:07. When you're back, an AI will tell you VEEV is 20% ahead of plan. Your only question will be: compared to what?"</p></div></div>
+  </div>
+</section>
+
+<section class="part" id="chat" data-toc="Chat questions and answers">
+  <div class="part-h">
+    <span class="eyebrow">Cheat sheet</span>
+    <h2>Chat questions, <span>and the answers</span></h2>
+    <p class="dek">Read three answers aloud, with names, within ten seconds of asking.</p>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>When · question</th><th>What you're hoping to see</th></tr></thead><tbody>
+    <tr><td>1:06 · Left or right: which face is real? (three rounds)</td><td>A split room. Then the stats.</td></tr>
+    <tr><td>1:09 · Last AI-generated data you used: what did you check it against?</td><td>totals · rates · history · consent · segments · nothing ("nothing" is the honest majority)</td></tr>
+    <tr><td>1:16 · Which dashboard would look fine on averages and wrong on shape?</td><td>Real examples from their work. Read two.</td></tr>
+    <tr><td>1:19 · Wrong plan executed perfectly, or right plan executed sloppily?</td><td>The insight: a cheap executor makes a wrong plan wrong at scale. That's why Step 2 proves the plan first.</td></tr>
+    <tr><td>1:26 · Which number in your blueprint would you bet is wrong?</td><td>bands · under-25 · adoption · engagement · all of them</td></tr>
+    <tr><td>1:28–1:36 · the four predictions</td><td>5 bands, top 55+ · 73% · 83% · 0. The 73% is the big Ground Truth point.</td></tr>
+    <tr><td>1:42 · Will the counts match the profile Claude printed?</td><td>Often not: tokens, not tallies.</td></tr>
+    <tr><td>1:50 · Unmute: the boring typing job vs the judgment call</td><td>A story. Pick a person who typed earlier.</td></tr>
+  </tbody></table></div>
+  <p class="fig-s">Spare if the chat goes quiet: "Should synthetic data ever appear in a deck that goes to leadership? Yes · only if labelled · never."</p>
+</section>
+
+<section class="part" id="rescue" data-toc="When something breaks">
+  <div class="part-h">
+    <span class="eyebrow">Rescue it</span>
+    <h2>When something <span>breaks</span></h2>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Symptom</th><th>Cause → fix</th></tr></thead><tbody>
+    <tr><td>No Opus in the picker</td><td>Plan or org setting. Check under "More models"; otherwise plan on the strongest model available and say so once.</td></tr>
+    <tr><td>Only one model offered</td><td>Do both halves on it. Plan, prove, produce is still the lesson; the price idea becomes a sentence.</td></tr>
+    <tr><td>No Haiku</td><td>Use Sonnet for Step 3. Still cheaper than Opus.</td></tr>
+    <tr><td>The blueprint already says "no device signal for a pouch"</td><td>Praise it: "Good plan. It still needed the warehouse to sign it." Run Check D anyway.</td></tr>
+    <tr><td>Claude flags Japan's legal age (20)</td><td>Great catch. HORIZON uses one 18-24 band everywhere as a simplification. Note it as a caveat.</td></tr>
+    <tr><td>The INSERT has "…" or the reply stops mid-row</td><td>Reply: "Continue the INSERT from the next row, in full, then finish the script." Paste the rest under the first part.</td></tr>
+    <tr><td>The script lands in a side panel (artifact)</td><td>Copy from the panel's Copy button. Same text.</td></tr>
+    <tr><td>Only the DROP ran / "relation … does not exist" in the produce check</td><td>They didn't select all. <kbd>Ctrl+A</kbd>, then <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd>.</td></tr>
+    <tr><td>Syntax error near "…" or a stray Markdown line</td><td>They copied the explanation too. Copy only the code block.</td></tr>
+    <tr><td>INSERT 0 98 (or any number but 100)</td><td>It miscounted its own rows. Exactly the lesson. Ask Claude to regenerate with exactly 100.</td></tr>
+    <tr><td>permission denied for schema analytics</td><td>The VM user can't create tables there. Use the fallback: show the produce check from your Mac (<code>make s2-fallback</code>).</td></tr>
+    <tr><td>A student's script simply won't run</td><td>Pair them with a neighbour, or show your fallback result on screen so the counting step still works for everyone.</td></tr>
+  </tbody></table></div>
+  <h3>If you're behind</h3>
+  <p><b>Cut first:</b> the Datasaurus and the cost-math slide (say it in one line: "about one sixth of the price"). <b>Cut second:</b> the two extra checks after the produce count. <b>Never cut:</b> Check B (Japan's 73%) and the produce count.</p>
+</section>
+
+<div class="zone" id="z-ready"><b>Be ready</b><span>Ten minutes before class, the dry run, the likely questions, and the 60-second version.</span><i>+15 min</i></div>
+
+<section class="part" id="before" data-toc="Before class" data-toc-grp="Be ready">
+  <div class="part-h">
+    <span class="eyebrow">10 minutes before 1:05</span>
+    <h2>Before <span>class</span></h2>
+  </div>
+  <ul class="checks">
+    <li><label><input type="checkbox" data-k="i2-b1"><span>On the VM: click the model picker once. Note whether <b>Opus</b> and <b>Haiku</b> are offered (under "More models" too). If not, decide your substitute now and say it at 1:17.</span></label></li>
+    <li><label><input type="checkbox" data-k="i2-b2"><span>On the VM: the <b>analytics</b> schema exists in SQLTools (expand HORIZON). The fake table is created there.</span></label></li>
+    <li><label><input type="checkbox" data-k="i2-b3"><span>On your Mac: <code>make s2-reset</code> so no fake table is left over from rehearsal.</span></label></li>
+    <li><label><input type="checkbox" data-k="i2-b4"><span>Browser tabs: <a href="https://www.whichfaceisreal.com" target="_blank" rel="noopener">whichfaceisreal.com</a> (with your saved closing pair), <a href="https://www.research.autodesk.com/publications/same-stats-different-graphs/" target="_blank" rel="noopener">Same Stats, Different Graphs</a>, and the <a href="session2.html">student page</a>.</span></label></li>
+    <li><label><input type="checkbox" data-k="i2-b5"><span>draw.io on sketch 3 (Plan → Prove → Produce, price bars, the fidelity trap).</span></label></li>
+    <li><label><input type="checkbox" data-k="i2-b6"><span>A Terminal ready with <code>make s2-fallback</code> typed, in case nobody's script runs.</span></label></li>
+  </ul>
+</section>
+
+<section class="part" id="dryrun" data-toc="Dry run on your Mac">
+  <div class="part-h">
+    <span class="eyebrow">15 minutes at the keyboard</span>
+    <h2>Dry run <span>on your Mac</span></h2>
+    <p class="dek">Do the lab once, exactly as a student would. Every expected result below is real output from 25 October 2026.</p>
+  </div>
+  <div class="callout note"><span class="box-lbl">Which warehouse?</span><p>The <code>make</code> targets talk to this class's own warehouse container (<code>horizon-analyst-db</code>). If <code>make status</code> shows the Data Engineer warehouse holding port 5432, run <code>make takeover</code> first, and <code>make handback</code> when you're done. SQLTools and Claude work against either: the data is identical.</p></div>
+  <h3>Fast lane (3 minutes, no Claude)</h3>
+  <ol class="run">
+    <li><b>Start clean</b><span class="where-tag">Terminal</span><div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>cd ~/pmidataanalyst/horizon-warehouse
+make status
+make s2-reset</pre></div></li>
+    <li><b>The four checks</b><div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>make s2</pre></div><p class="exp">5 bands · 73.1 69.5 71.1 70.2 69.7 · ALL 609 83.3 45.3 64.9 · IQOS 13052 VEEV 7411 · ZYN has_device f</p><p>It ends with "(no analytics.synthetic_japan_zyn_cohort yet …)": normal, there is no fake table yet.</p></li>
+    <li><b>Load the reference cohort and count it</b><div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>make s2-fallback</pre></div><p class="exp">INSERT 0 100 · 13 · 30 · 30 · 15 · 12 · ALL 100 83.0 45.0 70.0 · no telemetry columns</p></li>
+    <li><b>Reset for class</b><div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>make s2-reset</pre></div></li>
+  </ol>
+  <h3>Student lane (15 minutes, with Claude Desktop)</h3>
+  <ol class="run">
+    <li><b>Step 1</b><span class="where-tag">Claude Desktop</span><p>New chat, Opus, the planner prompt. Note its bands, its 18-24 marketing figure, its rates and whether it added a ZYN usage column.</p></li>
+    <li><b>Step 2</b><span class="where-tag">SQLTools</span><p>Checks A to D. Write your own divergence table.</p><p class="exp">5 bands · 73.1% · 83.3 / 45.3 / 64.9 · no ZYN row</p></li>
+    <li><b>Step 3</b><span class="where-tag">Claude + SQLTools</span><p>Switch to Haiku, the executor prompt, copy the script, Ctrl+A, Ctrl+E Ctrl+E. Then the produce check and the two extra checks.</p><p class="exp">INSERT 0 100 · close to 13·30·30·15·12 · no rows · 0 · 0</p></li>
+    <li><b>Reset</b><span class="where-tag">Terminal</span><p><code>make s2-reset</code>. Unlike Session 1, this session creates a table, so always reset afterwards.</p></li>
+  </ol>
+</section>
+
+<section class="part" id="asks" data-toc="If a student asks…">
+  <div class="part-h">
+    <span class="eyebrow">3 minutes</span>
+    <h2>If a student <span>asks…</span></h2>
+    <p class="dek">The questions that actually come up, with answers you can say out loud.</p>
+  </div>
+  <details class="qa"><summary>"Why not just ask Opus for the rows too? It's the best model."</summary><div><p>It would work, at about six times the price and slower. Every model types rows equally well; what you pay Opus for is judgment, and typing rows needs none. Plan premium, run thrifty.</p></div></details>
+  <details class="qa"><summary>"Why did Opus get things wrong if it's the best?"</summary><div><p>Because it has never seen HORIZON. Being clever doesn't help you guess a company's age bands or a country's marketing rule. That's why "guess" was written next to every number, and why Step 2 exists.</p></div></details>
+  <details class="qa"><summary>"Is 73% a share of people or of permission slips?"</summary><div><p>Slips: 675 of Japan's 924 under-25 consent records say yes. Counted as people, 319 of 359 Japan under-25s have at least one yes. The lab uses the slip share as the chance a fake consumer is allowed, and writes that down as an assumption.</p></div></details>
+  <details class="qa"><summary>"Japan's legal age is 20. Why is there an 18-24 band?"</summary><div><p>Correct, and well spotted. HORIZON is fictional training data with one 18-24 band in every market. In a real Japan cohort the band would be 20-24. Write it as a caveat.</p></div></details>
+  <details class="qa"><summary>"Why literal rows instead of random()?"</summary><div><p>random() makes a different table every time the script runs, so nobody could reproduce it or check a number in it. A documented asset has to be the same every time.</p></div></details>
+  <details class="qa"><summary>"Why not just fix the wrong rows by hand?"</summary><div><p>Because the deliverable is the script. Hand-fixed rows disappear the next time someone runs it. Fix the instructions, regenerate, count again.</p></div></details>
+  <details class="qa"><summary>"Why 29 retained, not 65?"</summary><div><p>Retention is measured among converters: 64.9% of 45 converters is 29. Of everyone, it would be 29%. It's the same kind of "out of how many?" question Session 4 is all about.</p></div></details>
+  <details class="qa"><summary>"Does any of this matter if the data is fake anyway?"</summary><div><p>Yes: the dashboard, filters and rules built on the fake carry over to the real data. If the fake has the wrong bands or the wrong consent rule, the real dashboard inherits the mistake. A crash-test dummy has to be built like a body.</p></div></details>
+  <details class="qa"><summary>"Can models be trained on synthetic data?"</summary><div><p>They can, and it has a cost: a 2024 Nature paper showed models trained repeatedly on their own generated data gradually lose the rare cases ("model collapse"). Optional link in the student guide.</p></div></details>
+</section>
+
+<section class="part" id="sixty" data-toc="Teach it in 60 seconds">
+  <div class="part-h">
+    <span class="eyebrow">1 minute</span>
+    <h2>Teach it in <span>60 seconds</span></h2>
+    <p class="dek">If you can say this card out loud without looking, you're ready.</p>
+  </div>
+  <div class="recap rise">
+    <span class="k">Session 2 · Deepfake data</span>
+    <p class="big">Realistic is not real. Plan on the expensive model, prove the plan in the warehouse, type on the cheap one, then count.</p>
+    <ol>
+      <li><b>Plan (Opus):</b> a one-page blueprint of 100 fake Japan ZYN consumers. It looks finished; every number is a guess.</li>
+      <li><b>Prove (free):</b> 5 bands, top 55+ · Japan under-25s 73% allowed (not 0%) · 83% adopted, 45% converted · 0 ZYN telemetry rows.</li>
+      <li><b>Produce (Haiku):</b> 100 literal rows with an owner and provenance, then the database counts them: tokens, not tallies.</li>
+    </ol>
+    <div class="nums"><span><b>5</b> bands</span><span><b>73.1%</b> JP 18-24</span><span><b>83 · 45 · 65%</b> real funnel</span><span><b>0</b> ZYN telemetry</span><span><b>13·30·30·15·12</b> rows</span><span><b>40×</b> / <b>6.3×</b> cheaper</span></div>
+    <p class="line">The rule: <b>AI answers. Data decides. You sign.</b></p>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Previous and next guide"><a class="pv" href="instructor-s1.html"><span class="k">← Previous</span><b>Session 1 guide</b></a><a class="nx" href="instructor-s3.html"><span class="k">Next →</span><b>Session 3 guide</b></a></nav>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <p class="rule-big"><span>AI answers.</span> <span>Data decides.</span> <span>You sign.</span></p>
+      <p>Instructor guides for the PMI DI&amp;A Future Skills Data Analyst class: WA3899 · WA3900 · WA3901 · WA3902. Not linked from the student pages and hidden from search engines, but public to anyone who has the link. Project HORIZON is a fictional, training-only data estate.</p>
+    </div>
+    <nav aria-label="All instructor guides">
+      <a href="instructor.html">Instructor hub</a><a href="instructor-s1.html">Session 1 instructor guide · Mind-reader not included</a><a href="instructor-s2.html">Session 2 instructor guide · Deepfake data</a><a href="instructor-s3.html">Session 3 instructor guide · Compared to what?</a><a href="instructor-s4.html">Session 4 instructor guide · The dog that didn&#x27;t bark</a>
+      <a href="index.html">Student site</a>
+    </nav>
+  </div>
+</footer>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

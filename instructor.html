@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en" class="no-js hue-s0 guide" data-page="i0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Instructor hub · HORIZON analyst labs</title>
+<meta name="description" content="Instructor guides for the PMI Data Analyst Future Skills class: the basics from zero, then one guide per session.">
+<meta name="robots" content="noindex">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0C2040">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Project HORIZON · Data Analyst instructor guides">
+<meta property="og:title" content="Instructor hub">
+<meta property="og:description" content="Instructor guides for the PMI Data Analyst Future Skills class: the basics from zero, then one guide per session.">
+<meta property="og:image" content="https://varoonsahgal.github.io/pmidataanalyst-labs/images/og-s0.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<script>try{var t=localStorage.getItem('pmi-da-theme');if(/[?&]dark/.test(location.search))t='dark';if(t)document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Mono:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="stylesheet" href="assets/guide.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230C2040'/%3E%3Ccircle cx='16' cy='19' r='8' fill='%23FF4A00'/%3E%3Crect x='4' y='19' width='24' height='9' fill='%230C2040'/%3E%3Crect x='6' y='20' width='20' height='2' rx='1' fill='%2300C9A7'/%3E%3C/svg%3E">
+</head>
+<body>
+<a class="skip" href="#main">Skip to the guide</a>
+<div id="readbar" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="topbar-in">
+    <a class="brand" href="instructor.html"><svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8" fill="#FF4A00" fill-opacity=".14"/><circle cx="16" cy="19" r="8" fill="#FF4A00"/><rect x="4" y="19" width="24" height="9" fill="#0C2040"/><rect x="6" y="20" width="20" height="2" rx="1" fill="#00C9A7"/></svg>Project HORIZON <span>· instructor</span></a>
+    <nav class="nav" aria-label="Instructor guides">
+      <a href="instructor.html" aria-current="page">Instructor hub</a>
+      <a href="instructor-s1.html" style="--d:#FF4A00"><span class="dot"></span>S1<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s2.html" style="--d:#00C9A7"><span class="dot"></span>S2<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s3.html" style="--d:#E8A320"><span class="dot"></span>S3<span class="lbl-long"> guide</span></a>
+      <a href="instructor-s4.html" style="--d:#5B86F0"><span class="dot"></span>S4<span class="lbl-long"> guide</span></a>
+      <a href="index.html" class="stu">Student page ↗</a>
+    </nav>
+    <div class="tools">
+      <button class="iconbtn" id="theme" type="button" aria-label="Switch theme"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+      <button class="iconbtn menu-btn" type="button" aria-label="Menu" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<section class="mast">
+  <canvas class="mast-fx" data-fx="embers" aria-hidden="true"></canvas>
+  <div class="mast-in">
+
+<div class="mast-grid">
+  <div class="mast-copy">
+    <div class="kicker"><span class="pill">Instructor hub</span> PMI · DI&amp;A Future Skills · Data Analyst track · 4 hours</div>
+    <h1 class="title">Teach it <em>from zero</em><small>Everything you need to run the half-day without knowing SQL, PMI or marketing language beforehand. Start here, then read one session guide per lab.</small></h1>
+    <p class="lede">This page gives you the basics once: the business words, the warehouse, SQL, the AI ideas and the tools on the class VMs. Each session guide then teaches its own lab from scratch in about <b>18 minutes</b> of reading, with a dry run and a timed script. <strong>Every number on these pages was run against the HORIZON warehouse on 25 October 2026.</strong></p>
+    <div class="chips"><span>This page · <b>15 min</b></span><span>Each session guide · <b>18 min</b> + 15 min dry run</span><span>Class · <b>4 hours</b></span></div>
+    <nav class="guides" aria-label="Instructor guides"><a href="instructor.html" aria-current="page">Instructor hub</a><a href="instructor-s1.html">Session 1 guide</a><a href="instructor-s2.html">Session 2 guide</a><a href="instructor-s3.html">Session 3 guide</a><a href="instructor-s4.html">Session 4 guide</a><a href="index.html" class="stu">Student page ↗</a></nav>
+  </div>
+  <aside class="console" aria-label="The half-day at a glance">
+    <p class="pt">AI answers. Data decides. <b>You sign.</b></p>
+    <div class="hd"><span>The half-day</span><span>the number</span></div>
+    <div class="row"><span class="lbl">0:00 Opening<small>the rule, HORIZON, the prediction game</small></span><span class="v">15,597</span></div>
+    <div class="row"><span class="lbl">0:12 S1 · Mind-reader not included<small>WA3899 · Indonesia · VEEV</small></span><span class="v hot">9</span></div>
+    <div class="row"><span class="lbl">1:05 S2 · Deepfake data<small>WA3900 · Japan · ZYN</small></span><span class="v hot">73%</span></div>
+    <div class="row"><span class="lbl">2:07 S3 · Compared to what?<small>WA3901 · Indonesia · VEEV</small></span><span class="v hot">0 / 116</span></div>
+    <div class="row"><span class="lbl">3:00 S4 · The dog that didn't bark<small>WA3902 · Japan · all products</small></span><span class="v hot">79.7%</span></div>
+    <div class="row"><span class="lbl">3:48 Close<small>the score, five numbers, one Monday move each</small></span><span class="v">4:00</span></div>
+    <p class="ft">Breaks: a 5-minute stretch at <b>1:00</b> and <b>2:55</b>, a 12-minute break at <b>1:55</b>.</p>
+  </aside>
+</div>
+
+
+  </div>
+  <a class="scroll-cue" href="#main">Scroll</a>
+</section>
+
+<div class="frame">
+  <details class="toc" id="toc" open>
+    <summary>On this page</summary>
+    <div class="pin"><b>The point</b>AI answers. Data decides. You sign. Every guide on this site serves that one sentence.</div>
+    <ol>
+<li class="grp">Start here</li>
+<li><a href="#how"><span>How to use these guides</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#day"><span>The four sessions</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#rule"><span>The rule and the game</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li class="grp">The basics · 12 min</li>
+<li><a href="#biz"><span>PMI and marketing words</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#horizon"><span>HORIZON, drawn</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#sql"><span>SQL in five minutes</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#ai"><span>AI in four minutes</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#tools"><span>The tools on the VM</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li class="grp">Be ready</li>
+<li><a href="#mac"><span>Your Mac&#x27;s warehouse</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#morning"><span>The morning of class</span><span class="ok" aria-hidden="true">✓</span></a></li>
+<li><a href="#files"><span>Where everything lives</span><span class="ok" aria-hidden="true">✓</span></a></li>
+    </ol>
+  </details>
+  <main id="main" tabindex="-1">
+
+<div class="zone" id="z-start"><b>Start here</b><span>How to use these guides, the day, and the one rule.</span><i>3 min</i></div>
+
+<section class="part" id="how" data-toc="How to use these guides" data-toc-grp="Start here">
+  <div class="part-h">
+    <span class="eyebrow">1 minute</span>
+    <h2>How to use <span>these guides</span></h2>
+    <p class="dek">Five pages: this hub and one guide per session. They're for you, not the students. They aren't linked from the student site and search engines are told to ignore them, but anyone with the link can open them.</p>
+  </div>
+  <ol class="run">
+    <li><b>Once: read this hub</b><p>Fifteen minutes. The business words, the warehouse, SQL and AI basics that every session leans on. After this, nothing in a session guide should be a new word without an explanation next to it.</p></li>
+    <li><b>The night before: read each session guide top to bottom</b><p>About 18 minutes each. Every guide has the same shape: <i>Understand it</i> (the point, the words, the data drawn with real rows, the traps), <i>Walk the lab</i> (every step: what students do, what they see, what it means, what you say), <i>In class</i> (the minute-by-minute script and the fixes) and <i>Be ready</i> (the dry run, likely questions and a 60-second summary).</p></li>
+    <li><b>At the keyboard: the dry run</b><p>About 15 minutes per session. Do the lab exactly as a student would. Every command and its expected output is written down.</p></li>
+    <li><b>In class: keep the guide open on a second screen</b><p>The <i>In class</i> half of each guide is your script: times, slide numbers, what to say, what the room should see, and what to do when something breaks.</p></li>
+  </ol>
+  <div class="callout tip"><span class="box-lbl">The pattern you'll see on every page</span><p>Each section ends with a <b>Back to the point</b> box. Every session has one sentence at its centre, and the guide keeps coming back to it, so you can always answer the question students care about most: <i>why are we doing this?</i></p></div>
+</section>
+
+<section class="part wide" id="day" data-toc="The four sessions">
+  <div class="part-h">
+    <span class="eyebrow">1 minute</span>
+    <h2>The four <span>sessions</span></h2>
+    <p class="dek">Four one-hour vendor courses merged into one half-day. Each session has one follow-along lab (you drive, students do every step on their own VM), one theme and one number that carries it.</p>
+  </div>
+  <div class="sessions">
+    <a class="scard rise" href="instructor-s1.html" style="--sc:#FF6A2A">
+      <span class="art"><svg class="art art-s1" viewBox="0 0 640 560" role="img" aria-labelledby="h1-s1-art-t">
+<title id="h1-s1-art-t">A large language model sold in a box. A sticker on it reads "Mind-reader not included". The side of the box says "What you don't say, it makes up", a tag says "Assumptions sold separately", and question bubbles float around it: timeframe? adoption = ? consent rule? which table?</title>
+<style>
+.art-s1 .s1-float { animation: s1f 6s ease-in-out infinite; }
+.art-s1 .s1-float.b2 { animation-delay: -1.5s; animation-duration: 7s; }
+.art-s1 .s1-float.b3 { animation-delay: -3s; animation-duration: 6.5s; }
+.art-s1 .s1-float.b4 { animation-delay: -4.2s; animation-duration: 7.5s; }
+@keyframes s1f { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+.art-s1 .s1-sticker { transform-box: fill-box; transform-origin: center; animation: s1w 4.5s ease-in-out infinite; }
+@keyframes s1w { 0%,100% { transform: rotate(-14deg) scale(1); } 50% { transform: rotate(-9deg) scale(1.04); } }
+.art-s1 .s1-cur { animation: s1b 1s steps(1) infinite; }
+@keyframes s1b { 50% { opacity: 0; } }
+.art-s1 .s1-tag { transform-box: view-box; transform-origin: 131px 200px; animation: s1t 5s ease-in-out infinite; }
+@keyframes s1t { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(4deg); } }
+.art-s1 .s1-skel { animation: s1s 2.4s ease-in-out infinite; }
+@keyframes s1s { 0%,100% { opacity: .35; } 50% { opacity: .8; } }
+</style>
+<defs>
+  <linearGradient id="h1-s1-front" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1A4278"/><stop offset="1" stop-color="#0E2A52"/></linearGradient>
+  <linearGradient id="h1-s1-top" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2B5A9A"/><stop offset="1" stop-color="#3A6DB0"/></linearGradient>
+  <linearGradient id="h1-s1-side" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0D2648"/><stop offset="1" stop-color="#071A33"/></linearGradient>
+  <linearGradient id="h1-s1-win" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#061226"/><stop offset="1" stop-color="#11284C"/></linearGradient>
+  <linearGradient id="h1-s1-band" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FF4A00"/><stop offset="1" stop-color="#FF7A2A"/></linearGradient>
+  <radialGradient id="h1-s1-glow" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FF4A00" stop-opacity=".42"/><stop offset=".6" stop-color="#FF4A00" stop-opacity=".1"/><stop offset="1" stop-color="#FF4A00" stop-opacity="0"/></radialGradient>
+  <radialGradient id="h1-s1-stk" cx="40%" cy="35%" r="70%"><stop offset="0" stop-color="#FF8A4C"/><stop offset="1" stop-color="#E03C00"/></radialGradient>
+  <linearGradient id="h1-s1-shine" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity="0"/></linearGradient>
+  <filter id="h1-s1-blur" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="h1-s1-shadow" x="-20%" y="-20%" width="140%" height="150%"><feDropShadow dx="0" dy="8" stdDeviation="8" flood-color="#000" flood-opacity=".45"/></filter>
+</defs>
+<ellipse cx="330" cy="300" rx="300" ry="250" fill="url(#h1-s1-glow)"/>
+<ellipse cx="330" cy="512" rx="240" ry="20" fill="#000" opacity=".5" filter="url(#h1-s1-blur)"/>
+
+<g class="s1-tag">
+  <path d="M131,200 C98,214 52,248 22,292" fill="none" stroke="#C5CEDC" stroke-width="1.5"/>
+  <g transform="translate(2,262) rotate(-8)">
+    <path d="M0,10 L14,0 L118,0 Q124,0 124,6 L124,58 Q124,64 118,64 L14,64 L0,54 Z" fill="#F4F6FA"/>
+    <circle cx="14" cy="32" r="4" fill="#0C2040"/>
+    <text x="26" y="26" font-family="DM Mono, ui-monospace, monospace" font-size="10" letter-spacing="1" fill="#5A6B80">PRICE TAG</text>
+    <text x="26" y="42" font-family="Space Grotesk, system-ui, sans-serif" font-size="12.5" font-weight="700" fill="#0C2040">Assumptions</text>
+    <text x="26" y="56" font-family="Space Grotesk, system-ui, sans-serif" font-size="12.5" font-weight="700" fill="#FF4A00">sold separately</text>
+  </g>
+</g>
+
+<g filter="url(#h1-s1-shadow)">
+  <polygon points="130,160 430,160 516,104 216,104" fill="url(#h1-s1-top)"/>
+  <polygon points="430,160 516,104 516,444 430,500" fill="url(#h1-s1-side)"/>
+  <rect x="130" y="160" width="300" height="340" fill="url(#h1-s1-front)"/>
+</g>
+<path d="M130,160 L216,104 L516,104 L516,444 M430,160 L516,104" stroke="#fff" stroke-opacity=".22" fill="none"/>
+<rect x="130.5" y="160.5" width="299" height="339" fill="none" stroke="#fff" stroke-opacity=".16"/>
+<polygon points="216,104 516,104 430,160 130,160" fill="url(#h1-s1-shine)"/>
+<g transform="matrix(1,-0.651,0,1,430,160)">
+  <text transform="translate(50,70) rotate(90)" font-family="DM Mono, ui-monospace, monospace" font-size="11.5" letter-spacing="2" fill="#8FA6C8">WHAT YOU DON'T SAY, IT MAKES UP</text>
+</g>
+
+<rect x="130" y="160" width="300" height="34" fill="url(#h1-s1-band)"/>
+<text x="148" y="182" font-family="DM Mono, ui-monospace, monospace" font-size="11.5" letter-spacing="2.6" fill="#fff">LARGE LANGUAGE MODEL</text>
+<text x="146" y="250" font-family="Space Grotesk, system-ui, sans-serif" font-size="58" font-weight="700" letter-spacing="-2" fill="#fff">LLM</text>
+<text x="268" y="226" font-family="Space Grotesk, system-ui, sans-serif" font-size="13" font-weight="600" fill="#DCE6F5">Writes SQL in seconds.</text>
+<text x="268" y="244" font-family="Space Grotesk, system-ui, sans-serif" font-size="13" font-weight="600" fill="#DCE6F5">Sounds sure of everything.</text>
+
+<rect x="148" y="266" width="264" height="132" rx="12" fill="url(#h1-s1-win)" stroke="#fff" stroke-opacity=".18"/>
+<rect x="210" y="280" width="190" height="44" rx="12" fill="#FF4A00"/>
+<text x="222" y="298" font-family="Space Grotesk, system-ui, sans-serif" font-size="12" fill="#fff">What's our early VEEV</text>
+<text x="222" y="314" font-family="Space Grotesk, system-ui, sans-serif" font-size="12" fill="#fff">adoption looking like?</text>
+<rect x="160" y="334" width="196" height="52" rx="12" fill="#fff" fill-opacity=".09"/>
+<g class="s1-skel">
+  <rect x="172" y="346" width="150" height="7" rx="3.5" fill="#DCE6F5" opacity=".7"/>
+  <rect x="172" y="359" width="118" height="7" rx="3.5" fill="#DCE6F5" opacity=".55"/>
+  <rect x="172" y="372" width="86" height="7" rx="3.5" fill="#DCE6F5" opacity=".4"/>
+</g>
+<rect x="262" y="370" width="7" height="11" fill="#FF8A4C" class="s1-cur"/>
+<circle cx="340" cy="360" r="9" fill="#00C9A7"/>
+<path d="M335.5,360 l3,3 l5.5,-6" fill="none" stroke="#052" stroke-width="2"/>
+
+<text x="148" y="422" font-family="DM Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#8FA6C8">CONTENTS</text>
+<text x="148" y="437" font-family="Space Grotesk, system-ui, sans-serif" font-size="12" fill="#DCE6F5">1 × next-token predictor · fluency · confidence</text>
+<rect x="150" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="153" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="157" y="448" width="3" height="30" fill="#DCE6F5" opacity=".75"/><rect x="162" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="164" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="168" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="171" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="174" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="178" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="181" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="183" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="187" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="190" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="194" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="197" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="202" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="205" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="209" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="212" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="215" y="448" width="2" height="30" fill="#DCE6F5" opacity=".75"/><rect x="219" y="448" width="1" height="30" fill="#DCE6F5" opacity=".75"/><rect x="223" y="448" width="3" height="30" fill="#DCE6F5" opacity=".75"/><rect x="228" y="448" width="3" height="30" fill="#DCE6F5" opacity=".75"/>
+<text x="246" y="456" font-family="DM Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.2" fill="#FF8A4C">DOES NOT INCLUDE</text>
+<text x="246" y="470" font-family="Space Grotesk, system-ui, sans-serif" font-size="11" fill="#9BAAC2">your timeframe · your definitions</text>
+<text x="246" y="484" font-family="Space Grotesk, system-ui, sans-serif" font-size="11" fill="#9BAAC2">your consent rules · your tables</text>
+
+<g class="s1-sticker">
+  <polygon points="474.0,34.0 485.1,49.0 500.7,38.7 506.0,56.6 524.1,52.2 523.0,70.9 541.5,73.0 534.1,90.1 550.8,98.5 538.0,112.0 550.8,125.5 534.1,133.9 541.5,151.0 523.0,153.1 524.1,171.8 506.0,167.4 500.7,185.3 485.1,175.0 474.0,190.0 462.9,175.0 447.3,185.3 442.0,167.4 423.9,171.8 425.0,153.1 406.5,151.0 413.9,133.9 397.2,125.5 410.0,112.0 397.2,98.5 413.9,90.1 406.5,73.0 425.0,70.9 423.9,52.2 442.0,56.6 447.3,38.7 462.9,49.0" fill="url(#h1-s1-stk)" stroke="#fff" stroke-width="3"/>
+  <text x="474" y="95" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff" letter-spacing=".5">MIND-READER</text>
+  <text x="474" y="123" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="27" font-weight="700" fill="#fff" letter-spacing="1">NOT</text>
+  <text x="474" y="145" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="15" font-weight="700" fill="#fff" letter-spacing="1">INCLUDED</text>
+</g>
+
+<g class="s1-float b1"><circle cx="150" cy="118" r="4" fill="rgba(255,138,76,.55)"/><circle cx="160" cy="132" r="3" fill="rgba(255,138,76,.55)"/><rect x="36" y="70" width="128" height="34" rx="17" fill="rgba(8,26,53,.82)" stroke="#FF8A4C" stroke-opacity=".7" stroke-dasharray="4 4"/><text x="100.0" y="92" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="13" fill="#FFD0B8">timeframe?</text></g>
+<g class="s1-float b2"><circle cx="318" cy="70" r="4" fill="rgba(255,138,76,.55)"/><circle cx="326" cy="84" r="3" fill="rgba(255,138,76,.55)"/><rect x="250" y="22" width="132" height="34" rx="17" fill="rgba(8,26,53,.82)" stroke="#FF8A4C" stroke-opacity=".7" stroke-dasharray="4 4"/><text x="316.0" y="44" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="13" fill="#FFD0B8">adoption = ?</text></g>
+<g class="s1-float b3"><circle cx="526" cy="330" r="4" fill="rgba(255,138,76,.55)"/><circle cx="520" cy="342" r="3" fill="rgba(255,138,76,.55)"/><rect x="528" y="286" width="108" height="34" rx="17" fill="rgba(8,26,53,.82)" stroke="#FF8A4C" stroke-opacity=".7" stroke-dasharray="4 4"/><text x="582.0" y="308" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="13" fill="#FFD0B8">consent?</text></g>
+<g class="s1-float b4"><circle cx="126" cy="444" r="4" fill="rgba(255,138,76,.55)"/><circle cx="134" cy="456" r="3" fill="rgba(255,138,76,.55)"/><rect x="10" y="400" width="122" height="34" rx="17" fill="rgba(8,26,53,.82)" stroke="#FF8A4C" stroke-opacity=".7" stroke-dasharray="4 4"/><text x="71.0" y="422" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="13" fill="#FFD0B8">which table?</text></g>
+</svg></span>
+      <span class="n">Session 1 · WA3899 · 0:12 · Ask</span>
+      <h3>Mind-reader not included</h3>
+      <p class="one">What you don't say, it makes up.</p>
+      <p class="tease">A six-word question about VEEV in Indonesia. Students add the missing pieces one at a time: real tables, dates, a definition, two business rules. One harmless line returns zero rows.</p>
+      <span class="foot2"><span>Prompt Engineering for Analytics</span><span class="go">Open the guide →</span></span>
+    </a>
+    <a class="scard rise" href="instructor-s2.html" style="--sc:#00C9A7">
+      <span class="art"><img src="images/faces.svg" alt="Two faces in profile, nose to nose: the left one drawn in teal dots (real), the right one its mirror image in orange pixels (synthetic)." width="680" height="620" loading="lazy"></span>
+      <span class="n">Session 2 · WA3900 · 1:05 · Generate</span>
+      <h3>Deepfake data</h3>
+      <p class="one">Realistic is not real.</p>
+      <p class="tease">Plan a fake ("synthetic") Japan customer list on the expensive model, check the plan against the warehouse, have the cheap model type 100 rows, then count what it really made.</p>
+      <span class="foot2"><span>Generative Analytics Engineering</span><span class="go">Open the guide →</span></span>
+    </a>
+    <a class="scard rise" href="instructor-s3.html" style="--sc:#E8A320">
+      <span class="art"><svg class="art art-s3" viewBox="0 0 640 560" role="img" aria-labelledby="h3-s3-art-t">
+<title id="h3-s3-art-t">A brass balance scale. The left pan holds a glowing block that reads +20% ahead of plan. The right pan is empty except for a question mark. On the floor beside it sit three weights nobody put on the scale: baseline, window, population.</title>
+<style>
+.art-s3 .s3-q { transform-box: fill-box; transform-origin: center; animation: s3q 2.8s ease-in-out infinite; }
+@keyframes s3q { 0%,100% { opacity: .65; transform: scale(1); } 50% { opacity: 1; transform: scale(1.08); } }
+.art-s3 .s3-glow { animation: s3g 3.2s ease-in-out infinite; }
+@keyframes s3g { 0%,100% { opacity: .55; } 50% { opacity: .95; } }
+</style>
+<defs>
+  <radialGradient id="h3-s3-bg" cx="50%" cy="45%" r="48%"><stop offset="0" stop-color="#E8A320" stop-opacity=".32"/><stop offset="1" stop-color="#E8A320" stop-opacity="0"/></radialGradient>
+  <linearGradient id="h3-s3-brass" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9A6400"/><stop offset=".45" stop-color="#FFD27A"/><stop offset=".6" stop-color="#E8A320"/><stop offset="1" stop-color="#8A5A00"/></linearGradient>
+  <linearGradient id="h3-s3-brass-v" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE2A8"/><stop offset="1" stop-color="#B07A10"/></linearGradient>
+  <linearGradient id="h3-s3-iron" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27466F"/><stop offset="1" stop-color="#132A4B"/></linearGradient>
+  <linearGradient id="h3-s3-claim" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A4C"/><stop offset="1" stop-color="#FF4A00"/></linearGradient>
+  <filter id="h3-s3-blur" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="14"/></filter>
+  <filter id="h3-s3-sh" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="6" stdDeviation="6" flood-color="#000" flood-opacity=".45"/></filter>
+</defs>
+<ellipse cx="320" cy="280" rx="320" ry="250" fill="url(#h3-s3-bg)"/>
+<ellipse cx="330" cy="512" rx="250" ry="16" fill="#000" opacity=".5" filter="url(#h3-s3-blur)"/>
+
+<g filter="url(#h3-s3-sh)">
+  <path d="M242,506 L398,506 L380,478 L260,478 Z" fill="url(#h3-s3-brass)"/>
+  <rect x="300" y="470" width="40" height="10" rx="3" fill="url(#h3-s3-brass)"/>
+  <rect x="312" y="186" width="16" height="288" fill="url(#h3-s3-brass)"/>
+  <rect x="306" y="300" width="28" height="8" rx="3" fill="url(#h3-s3-brass)"/>
+  <rect x="306" y="420" width="28" height="8" rx="3" fill="url(#h3-s3-brass)"/>
+  <path d="M320,136 L332,162 L308,162 Z" fill="url(#h3-s3-brass-v)"/>
+</g>
+
+<g>
+  <animateTransform attributeName="transform" type="rotate" values="-8 320 176;-5.5 320 176;-8 320 176" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" dur="5.5s" repeatCount="indefinite"/>
+  <rect x="104" y="171" width="432" height="10" rx="5" fill="url(#h3-s3-brass-v)"/>
+  <circle cx="112" cy="176" r="8" fill="url(#h3-s3-brass-v)"/>
+  <circle cx="528" cy="176" r="8" fill="url(#h3-s3-brass-v)"/>
+
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="8 112 176;5.5 112 176;8 112 176" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" dur="5.5s" repeatCount="indefinite"/>
+    <path d="M112,176 L50,338 M112,176 L174,338" stroke="#FFD27A" stroke-opacity=".7" stroke-width="1.5"/>
+    <ellipse class="s3-glow" cx="112" cy="300" rx="70" ry="44" fill="#FF4A00" opacity=".6" filter="url(#h3-s3-blur)"/>
+    <rect x="68" y="262" width="88" height="68" rx="10" fill="url(#h3-s3-claim)" stroke="#FFD0B8" stroke-opacity=".7"/>
+    <text x="112" y="304" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="29" font-weight="700" fill="#fff">+20%</text>
+    <text x="112" y="322" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="9" letter-spacing=".8" fill="#FFE8DC">AHEAD OF PLAN</text>
+    <path d="M38,338 L186,338 Q112,384 38,338 Z" fill="url(#h3-s3-brass-v)"/>
+    <text x="112" y="250" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.6" fill="#FFD0B8">THE CLAIM</text>
+  </g>
+
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="8 528 176;5.5 528 176;8 528 176" keyTimes="0;.5;1" calcMode="spline" keySplines=".45 0 .55 1;.45 0 .55 1" dur="5.5s" repeatCount="indefinite"/>
+    <path d="M528,176 L466,338 M528,176 L590,338" stroke="#FFD27A" stroke-opacity=".7" stroke-width="1.5"/>
+    <rect x="484" y="262" width="88" height="68" rx="10" fill="#00C9A7" fill-opacity=".07" stroke="#00C9A7" stroke-width="2" stroke-dasharray="6 5"/>
+    <text class="s3-q" x="528" y="312" text-anchor="middle" font-family="Space Grotesk, system-ui, sans-serif" font-size="46" font-weight="700" fill="#00C9A7">?</text>
+    <path d="M454,338 L602,338 Q528,384 454,338 Z" fill="url(#h3-s3-brass-v)"/>
+    <text x="528" y="250" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.6" fill="#7EE7D2">COMPARED TO…</text>
+  </g>
+</g>
+
+<g><path d="M394,506 L462,506 L455,470 L401,470 Z" fill="url(#h3-s3-iron)" stroke="#FFD27A" stroke-opacity=".5"/><path d="M416,470 C416,452 440,452 440,470" fill="none" stroke="#FFD27A" stroke-opacity=".55" stroke-width="4"/><text x="428" y="494" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="8.6" letter-spacing=".2" fill="#FFE2A8">BASELINE</text></g>
+<g><path d="M471,506 L539,506 L532,470 L478,470 Z" fill="url(#h3-s3-iron)" stroke="#FFD27A" stroke-opacity=".5"/><path d="M493,470 C493,452 517,452 517,470" fill="none" stroke="#FFD27A" stroke-opacity=".55" stroke-width="4"/><text x="505" y="494" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="8.6" letter-spacing=".2" fill="#FFE2A8">WINDOW</text></g>
+<g><path d="M548,506 L616,506 L609,470 L555,470 Z" fill="url(#h3-s3-iron)" stroke="#FFD27A" stroke-opacity=".5"/><path d="M570,470 C570,452 594,452 594,470" fill="none" stroke="#FFD27A" stroke-opacity=".55" stroke-width="4"/><text x="582" y="494" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="8.6" letter-spacing=".2" fill="#FFE2A8">POPULATION</text></g>
+<text x="510" y="530" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="10.5" fill="#C9B48A">never put on the scale</text>
+<path d="M436,446 C 470,420 505,400 528,392" fill="none" stroke="#FFD27A" stroke-opacity=".45" stroke-dasharray="3 5"/>
+<path d="M524,388 l6,3 l-6,5" fill="none" stroke="#FFD27A" stroke-opacity=".6"/>
+</svg></span>
+      <span class="n">Session 3 · WA3901 · 2:07 · Prove</span>
+      <h3>Compared to what?</h3>
+      <p class="one">No baseline, no claim.</p>
+      <p class="tease">A dashboard says VEEV is "20% ahead of plan". There is no plan in the warehouse, and no conversion is tagged to a campaign. "Not testable yet" is the finding.</p>
+      <span class="foot2"><span>Evidence-Based Reasoning</span><span class="go">Open the guide →</span></span>
+    </a>
+    <a class="scard rise" href="instructor-s4.html" style="--sc:#7FA2FF">
+      <span class="art"><svg class="art art-s4" viewBox="0 0 640 560" role="img" aria-labelledby="h4-s4-art-t">
+<title id="h4-s4-art-t">A moonlit night. A dog sits silently in front of a stable with one lit window; the speech bubble above it is empty. In the stars, a constellation chart shows two bars, IQOS and VEEV, and a third outlined bar with nothing in it, under a magnifying glass.</title>
+<style>
+.art-s4 .s4-tw { animation: s4t 3.6s ease-in-out infinite; }
+@keyframes s4t { 0%,100% { opacity: .25; } 50% { opacity: 1; } }
+.art-s4 .s4-dot { animation: s4d 2.4s ease-in-out infinite; }
+.art-s4 .s4-dot.d2 { animation-delay: .3s; } .art-s4 .s4-dot.d3 { animation-delay: .6s; }
+@keyframes s4d { 0%,100% { opacity: .15; } 40% { opacity: .7; } }
+.art-s4 .s4-lens { animation: s4l 9s ease-in-out infinite; }
+@keyframes s4l { 0%,100% { transform: translate(0,0); } 50% { transform: translate(-8px,6px); } }
+.art-s4 .s4-win { animation: s4w 4s ease-in-out infinite; }
+@keyframes s4w { 0%,100% { opacity: .85; } 50% { opacity: 1; } 70% { opacity: .7; } }
+</style>
+<defs>
+  <radialGradient id="h4-s4-moon" cx="40%" cy="38%" r="65%"><stop offset="0" stop-color="#FFFDF4"/><stop offset=".7" stop-color="#E4E8F2"/><stop offset="1" stop-color="#B9C4DC"/></radialGradient>
+  <radialGradient id="h4-s4-halo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#C9D6FF" stop-opacity=".38"/><stop offset="1" stop-color="#C9D6FF" stop-opacity="0"/></radialGradient>
+  <radialGradient id="h4-s4-lamp" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#FFB347" stop-opacity=".75"/><stop offset="1" stop-color="#FFB347" stop-opacity="0"/></radialGradient>
+  <linearGradient id="h4-s4-hill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#132B52"/><stop offset="1" stop-color="#0A1A33"/></linearGradient>
+  <linearGradient id="h4-s4-ground" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#081A35"/><stop offset="1" stop-color="#040D1C"/></linearGradient>
+  <linearGradient id="h4-s4-rim" x1="1" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B4C8FF" stop-opacity=".7"/><stop offset=".5" stop-color="#B4C8FF" stop-opacity="0"/></linearGradient>
+</defs>
+<circle class="s4-tw" cx="623" cy="106" r="0.7" fill="#E6EEFF" style="animation-delay:-1.7s"/><circle class="s4-tw" cx="172" cy="203" r="0.7" fill="#E6EEFF" style="animation-delay:-3.2s"/><circle class="s4-tw" cx="560" cy="290" r="0.9" fill="#E6EEFF" style="animation-delay:-3.2s"/><circle class="s4-tw" cx="332" cy="286" r="1.8" fill="#E6EEFF" style="animation-delay:-3.0s"/><circle class="s4-tw" cx="252" cy="146" r="0.7" fill="#E6EEFF" style="animation-delay:-2.9s"/><circle class="s4-tw" cx="61" cy="243" r="0.7" fill="#E6EEFF" style="animation-delay:-3.0s"/><circle class="s4-tw" cx="274" cy="94" r="1.8" fill="#E6EEFF" style="animation-delay:-3.4s"/><circle class="s4-tw" cx="351" cy="15" r="1.4" fill="#E6EEFF" style="animation-delay:-1.7s"/><circle class="s4-tw" cx="71" cy="197" r="0.7" fill="#E6EEFF" style="animation-delay:-2.4s"/><circle class="s4-tw" cx="101" cy="99" r="0.9" fill="#E6EEFF" style="animation-delay:-1.6s"/><circle class="s4-tw" cx="25" cy="280" r="0.9" fill="#E6EEFF" style="animation-delay:-0.1s"/><circle class="s4-tw" cx="156" cy="97" r="1.8" fill="#E6EEFF" style="animation-delay:-2.3s"/><circle class="s4-tw" cx="203" cy="79" r="0.7" fill="#E6EEFF" style="animation-delay:-1.4s"/><circle class="s4-tw" cx="248" cy="10" r="0.7" fill="#E6EEFF" style="animation-delay:-3.4s"/><circle class="s4-tw" cx="363" cy="104" r="0.9" fill="#E6EEFF" style="animation-delay:-2.1s"/><circle class="s4-tw" cx="360" cy="22" r="0.9" fill="#E6EEFF" style="animation-delay:-3.9s"/><circle class="s4-tw" cx="161" cy="211" r="1.4" fill="#E6EEFF" style="animation-delay:-1.3s"/><circle class="s4-tw" cx="329" cy="265" r="0.9" fill="#E6EEFF" style="animation-delay:-2.5s"/><circle class="s4-tw" cx="437" cy="276" r="1.1" fill="#E6EEFF" style="animation-delay:-2.0s"/><circle class="s4-tw" cx="106" cy="30" r="0.9" fill="#E6EEFF" style="animation-delay:-1.0s"/><circle class="s4-tw" cx="292" cy="89" r="0.9" fill="#E6EEFF" style="animation-delay:-3.1s"/><circle class="s4-tw" cx="166" cy="126" r="0.9" fill="#E6EEFF" style="animation-delay:-3.5s"/><circle class="s4-tw" cx="228" cy="26" r="0.9" fill="#E6EEFF" style="animation-delay:-2.4s"/><circle class="s4-tw" cx="624" cy="320" r="0.7" fill="#E6EEFF" style="animation-delay:-2.9s"/><circle class="s4-tw" cx="70" cy="305" r="1.4" fill="#E6EEFF" style="animation-delay:-2.4s"/><circle class="s4-tw" cx="293" cy="98" r="0.9" fill="#E6EEFF" style="animation-delay:-0.4s"/><circle class="s4-tw" cx="376" cy="266" r="1.4" fill="#E6EEFF" style="animation-delay:-3.3s"/><circle class="s4-tw" cx="311" cy="138" r="1.8" fill="#E6EEFF" style="animation-delay:-2.3s"/><circle class="s4-tw" cx="289" cy="66" r="0.9" fill="#E6EEFF" style="animation-delay:-0.1s"/><circle class="s4-tw" cx="590" cy="183" r="0.9" fill="#E6EEFF" style="animation-delay:-0.9s"/><circle class="s4-tw" cx="632" cy="288" r="0.7" fill="#E6EEFF" style="animation-delay:-2.9s"/><circle class="s4-tw" cx="233" cy="111" r="1.8" fill="#E6EEFF" style="animation-delay:-3.4s"/><circle class="s4-tw" cx="220" cy="329" r="0.9" fill="#E6EEFF" style="animation-delay:-2.9s"/><circle class="s4-tw" cx="245" cy="89" r="1.1" fill="#E6EEFF" style="animation-delay:-1.8s"/><circle class="s4-tw" cx="627" cy="206" r="0.7" fill="#E6EEFF" style="animation-delay:-2.6s"/><circle class="s4-tw" cx="536" cy="47" r="1.1" fill="#E6EEFF" style="animation-delay:-1.1s"/><circle class="s4-tw" cx="364" cy="251" r="0.9" fill="#E6EEFF" style="animation-delay:-3.5s"/><circle class="s4-tw" cx="279" cy="290" r="1.1" fill="#E6EEFF" style="animation-delay:-1.3s"/><circle class="s4-tw" cx="229" cy="167" r="0.9" fill="#E6EEFF" style="animation-delay:-1.3s"/><circle class="s4-tw" cx="501" cy="39" r="0.9" fill="#E6EEFF" style="animation-delay:-3.7s"/><circle class="s4-tw" cx="270" cy="166" r="0.7" fill="#E6EEFF" style="animation-delay:-2.5s"/><circle class="s4-tw" cx="123" cy="73" r="0.9" fill="#E6EEFF" style="animation-delay:-3.8s"/><circle class="s4-tw" cx="309" cy="274" r="1.1" fill="#E6EEFF" style="animation-delay:-2.5s"/><circle class="s4-tw" cx="182" cy="311" r="1.8" fill="#E6EEFF" style="animation-delay:-1.9s"/><circle class="s4-tw" cx="293" cy="145" r="1.4" fill="#E6EEFF" style="animation-delay:-3.9s"/><circle class="s4-tw" cx="292" cy="279" r="1.8" fill="#E6EEFF" style="animation-delay:-3.7s"/><circle class="s4-tw" cx="60" cy="66" r="1.4" fill="#E6EEFF" style="animation-delay:-0.2s"/><circle class="s4-tw" cx="390" cy="215" r="0.9" fill="#E6EEFF" style="animation-delay:-3.3s"/><circle class="s4-tw" cx="314" cy="213" r="0.7" fill="#E6EEFF" style="animation-delay:-2.8s"/><circle class="s4-tw" cx="470" cy="303" r="1.1" fill="#E6EEFF" style="animation-delay:-3.2s"/><circle class="s4-tw" cx="504" cy="266" r="1.8" fill="#E6EEFF" style="animation-delay:-2.7s"/><circle class="s4-tw" cx="275" cy="232" r="0.9" fill="#E6EEFF" style="animation-delay:-0.9s"/><circle class="s4-tw" cx="313" cy="249" r="1.8" fill="#E6EEFF" style="animation-delay:-1.0s"/><circle class="s4-tw" cx="540" cy="282" r="1.8" fill="#E6EEFF" style="animation-delay:-2.6s"/><circle class="s4-tw" cx="518" cy="23" r="0.9" fill="#E6EEFF" style="animation-delay:-3.4s"/><circle class="s4-tw" cx="386" cy="258" r="0.7" fill="#E6EEFF" style="animation-delay:-2.9s"/><circle class="s4-tw" cx="633" cy="290" r="0.9" fill="#E6EEFF" style="animation-delay:-1.8s"/>
+<circle cx="468" cy="128" r="150" fill="url(#h4-s4-halo)"/>
+<circle cx="468" cy="128" r="62" fill="url(#h4-s4-moon)"/>
+<circle cx="448" cy="112" r="9" fill="#C7CFE0" opacity=".6"/>
+<circle cx="484" cy="146" r="13" fill="#C7CFE0" opacity=".45"/>
+<circle cx="492" cy="104" r="6" fill="#C7CFE0" opacity=".5"/>
+
+<g>
+  <text x="56" y="44" font-family="DM Mono, ui-monospace, monospace" font-size="10.5" letter-spacing="1.6" fill="#8FA6C8">DEVICE SESSIONS · JAPAN</text>
+  <line x1="56" y1="252" x2="300" y2="252" stroke="#B4C8FF" stroke-opacity=".35"/>
+  <polyline points="90,246 102,221 90,196 102,171 90,147 102,122 90,97 102,72" fill="none" stroke="#B4C8FF" stroke-opacity=".55" stroke-width="1"/><circle cx="90" cy="246" r="2" fill="#fff"/><circle cx="102" cy="221" r="2" fill="#fff"/><circle cx="90" cy="196" r="2" fill="#fff"/><circle cx="102" cy="171" r="2" fill="#fff"/><circle cx="90" cy="147" r="2" fill="#fff"/><circle cx="102" cy="122" r="2" fill="#fff"/><circle cx="90" cy="97" r="2" fill="#fff"/><circle cx="102" cy="72" r="2.6" fill="#fff"/>
+  <polyline points="170,246 182,222 170,198 182,174 170,150" fill="none" stroke="#B4C8FF" stroke-opacity=".55" stroke-width="1"/><circle cx="170" cy="246" r="2" fill="#fff"/><circle cx="182" cy="222" r="2" fill="#fff"/><circle cx="170" cy="198" r="2" fill="#fff"/><circle cx="182" cy="174" r="2" fill="#fff"/><circle cx="170" cy="150" r="2.6" fill="#fff"/>
+  <rect x="236" y="110" width="40" height="142" fill="none" stroke="#B4C8FF" stroke-opacity=".55" stroke-dasharray="4 5"/>
+  <text x="96" y="272" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="11" fill="#B4C8FF">IQOS</text>
+  <text x="176" y="272" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="11" fill="#B4C8FF">VEEV</text>
+  <text x="256" y="272" text-anchor="middle" font-family="DM Mono, ui-monospace, monospace" font-size="12" font-weight="500" fill="#fff">?</text>
+  <g class="s4-lens">
+    <circle cx="256" cy="170" r="44" fill="#B4C8FF" fill-opacity=".06" stroke="#DCE6FF" stroke-width="3"/>
+    <circle cx="256" cy="170" r="44" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="1" stroke-dasharray="40 240" transform="rotate(-140 256 170)"/>
+    <path d="M287,201 L314,228" stroke="#DCE6FF" stroke-width="9" stroke-linecap="round"/>
+    <path d="M287,201 L314,228" stroke="#0C2040" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+  </g>
+</g>
+
+<path d="M0,392 C90,360 170,352 260,366 C350,380 420,350 500,338 C560,330 610,336 640,344 L640,560 L0,560 Z" fill="url(#h4-s4-hill)"/>
+<g>
+  <circle class="s4-win" cx="500" cy="318" r="40" fill="url(#h4-s4-lamp)"/>
+  <path d="M430,350 L430,296 L478,262 L526,262 L574,296 L574,350 Z" fill="#061226"/>
+  <path d="M478,262 L526,262 L526,250 L478,250 Z" fill="#061226"/>
+  <path d="M502,250 L502,226" stroke="#061226" stroke-width="2.5"/>
+  <path d="M494,232 L512,232 M502,226 l7,4 l-7,3" stroke="#061226" stroke-width="2" fill="none"/>
+  <rect class="s4-win" x="491" y="306" width="22" height="18" rx="1" fill="#FFB347"/>
+  <path d="M502,306 L502,324 M491,315 L513,315" stroke="#061226" stroke-width="1.5"/>
+  <path d="M452,350 L452,322 L470,322 L470,350" fill="#0C1C36"/>
+</g>
+<g stroke="#061226" stroke-width="4">
+  <path d="M318,378 L318,352 M352,374 L352,348 M386,368 L386,342 M420,362 L420,336"/>
+  <path d="M312,362 L426,346 M312,372 L426,356" stroke-width="2.5"/>
+</g>
+<path d="M0,470 C120,450 260,446 380,458 C470,466 560,462 640,452 L640,560 L0,560 Z" fill="url(#h4-s4-ground)"/>
+
+<g transform="translate(104,256)">
+  <path d="M44,214 C30,214 14,216 8,208 C4,202 10,198 18,202 C26,206 36,206 44,200 C36,184 34,156 46,132 C56,112 72,96 86,80 C92,72 96,62 98,50 L100,16 C101,10 106,10 108,14 L120,36 C126,34 134,36 140,40 C150,44 162,46 172,50 C178,52 180,58 176,62 C172,66 162,68 152,70 C146,72 142,76 140,82 C144,98 146,118 142,140 L144,206 C150,207 154,211 150,214 L126,214 C128,198 128,176 124,160 C118,174 110,184 98,190 C102,198 106,206 112,214 Z" fill="#02081A"/>
+  <path d="M44,214 C30,214 14,216 8,208 C4,202 10,198 18,202 C26,206 36,206 44,200 C36,184 34,156 46,132 C56,112 72,96 86,80 C92,72 96,62 98,50 L100,16 C101,10 106,10 108,14 L120,36 C126,34 134,36 140,40 C150,44 162,46 172,50 C178,52 180,58 176,62 C172,66 162,68 152,70 C146,72 142,76 140,82 C144,98 146,118 142,140 L144,206 C150,207 154,211 150,214 L126,214 C128,198 128,176 124,160 C118,174 110,184 98,190 C102,198 106,206 112,214 Z" fill="none" stroke="url(#h4-s4-rim)" stroke-width="2"/>
+  <circle cx="146" cy="47" r="2" fill="#B4C8FF" opacity=".8"/>
+</g>
+<g transform="translate(318,236)">
+  <path d="M0,16 Q0,0 16,0 L84,0 Q100,0 100,16 L100,46 Q100,62 84,62 L40,62 L16,84 L22,62 L16,62 Q0,62 0,46 Z" fill="rgba(8,26,53,.55)" stroke="#B4C8FF" stroke-opacity=".7" stroke-width="1.5" stroke-dasharray="5 5"/>
+  <circle class="s4-dot" cx="30" cy="31" r="5" fill="#DCE6FF"/>
+  <circle class="s4-dot d2" cx="50" cy="31" r="5" fill="#DCE6FF"/>
+  <circle class="s4-dot d3" cx="70" cy="31" r="5" fill="#DCE6FF"/>
+</g>
+</svg></span>
+      <span class="n">Session 4 · WA3902 · 3:00 · Judge</span>
+      <h3>The dog that didn't bark</h3>
+      <p class="one">Read for what's missing.</p>
+      <p class="tease">A polished AI analysis claims engagement numbers for a product with no device, and "94%" of a population where at most 79.7% could qualify. Validate, caveat or escalate. Then the MCP demo.</p>
+      <span class="foot2"><span>AI Judgment &amp; Bias Awareness</span><span class="go">Open the guide →</span></span>
+    </a>
+  </div>
+  <div class="callout echo rise" style="max-width:var(--col)"><span class="box-lbl">Why this order</span><p>It's the life of one AI-assisted answer: you <b>ask</b> for it (1), you <b>generate</b> with it (2), you <b>prove</b> what it claims (3), and you <b>judge</b> what it left out (4). Sessions 1 and 4 are mirror images: in Session 1 the model fills <i>your</i> silences; in Session 4 you find <i>its</i> silences. Say that at 3:00 and the day feels like one story.</p></div>
+</section>
+
+<section class="part" id="rule" data-toc="The rule and the game">
+  <div class="part-h">
+    <span class="eyebrow">1 minute</span>
+    <h2>The rule and <span>the game</span></h2>
+  </div>
+  <div class="rule-hero rise">
+    <div><span>AI</span> answers.</div>
+    <div><span>Data</span> decides.</div>
+    <div><span>You</span> sign.</div>
+  </div>
+  <p><b>What it means, in plain words:</b> the AI model writes fast and sounds confident. The warehouse (the database with the real data) is the only thing in the room that knows what's true. And when a number goes to a manager, the analyst's name is on it, not the model's. Say it at 0:09, at every takeaway, and as the last line of the day.</p>
+  <h3>Gut vs Ground Truth, the running game</h3>
+  <p>Before almost every query, students predict the answer in the class chat. Then you run it. If most of the room called it, <b>Gut</b> gets a point. If the data surprised the room, <b>Ground Truth</b> gets a point. Keep score on slide 11 (it remembers between reloads, so reset it before class). About 18 predictions across the day. A wrong public guess is the most memorable thing that happens all day, and it costs nobody anything.</p>
+  <h3>The five takeaways, each welded to one number</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Takeaway</th><th>The number students saw with their own eyes</th></tr></thead><tbody>
+    <tr><td>1 · The model only knows what you tell it.</td><td><b>9</b> under-25s hid inside a believable count of 63 until the rules were in the prompt (S1).</td></tr>
+    <tr><td>2 · Realistic is not real.</td><td><b>73%</b> of Japan's under-25 consent records allow marketing; a plan that copied Italy's rule erased them (S2).</td></tr>
+    <tr><td>3 · Premium planning, thrifty execution.</td><td><b>40×</b>: the cheap model's output costs a fortieth of the expensive one's. Plan on the best, type on the cheapest, then count (S2).</td></tr>
+    <tr><td>4 · Compared to what?</td><td><b>0 of 116</b> conversions tagged to a campaign, and no plan table: "20% ahead of plan" can't be tested (S3).</td></tr>
+    <tr><td>5 · Read for what's missing.</td><td><b>79.7%</b> is the most of Japan's consumers who could even own a device. The claim said 94% (S4).</td></tr>
+  </tbody></table></div>
+</section>
+
+<div class="zone" id="z-basics"><b>The basics, from zero</b><span>Words, data, SQL, AI and the tools: once, here, so the session guides can move fast.</span><i>12 min</i></div>
+
+<section class="part" id="biz" data-toc="PMI and marketing words" data-toc-grp="The basics · 12 min">
+  <div class="part-h">
+    <span class="eyebrow">3 minutes</span>
+    <h2>PMI and <span>marketing words</span></h2>
+    <p class="dek">Students use these words without thinking. You'll hear them all day. Each one with a picture and where it shows up.</p>
+  </div>
+  <h3 class="cards-h" style="--k:var(--gold)">The company</h3>
+  <div class="wcards">
+    <div class="wcard biz"><h4>PMI · smoke-free <small>who and why</small></h4><p>Philip Morris International, the tobacco company. Its stated strategy is to move adult smokers from cigarettes to "smoke-free" products; in 2025 those made up about 41.5% of its revenue. Your students are PMI data analysts.</p><p class="here">Background only. All class data is fictional ("Project HORIZON").</p></div>
+    <div class="wcard biz"><h4>IQOS · VEEV · ZYN <small>the three products</small></h4><p><b>IQOS</b>: heats tobacco instead of burning it; a device. <b>VEEV</b>: an e-cigarette ("vape"); a device. <b>ZYN</b>: a nicotine pouch held under the lip; <b>no device</b>.</p><p class="here">"ZYN is a pouch" matters in Sessions 2 and 4: a pouch can't send device data.</p></div>
+    <div class="wcard biz"><h4>Market · market code <small>a country</small></h4><p>PMI calls each country a market. HORIZON has three: <code>JP</code> Japan (mature: the products are well established), <code>IT</code> Italy (mid-adoption), <code>ID</code> Indonesia (early-stage: new, small numbers).</p><p class="here">A "Markets Lead" is the manager for one country. They send the requests in Sessions 1 and 2.</p></div>
+    <div class="wcard biz"><h4>Regulator <small>the rule-maker</small></h4><p>The government body that oversees nicotine products in a country: <b>MHLW</b> (Japan), <b>AAMS / EU</b> rules (Italy), <b>BPOM</b> (Indonesia).</p><p class="here">Explains why marketing rules differ by country. HORIZON's regulatory filings live in <code>rfr.filings</code>.</p></div>
+    <div class="wcard biz"><h4>DI&amp;A · Future Skills · CoP · IDP <small>the programme</small></h4><p>DI&amp;A is PMI's data, insights and analytics function. "Future Skills" is the training programme this class belongs to; CoP leads (communities of practice) chose the four courses. IDP is a person's individual development plan.</p><p class="here">Slide 2. The Monday moves are meant to go into each person's IDP.</p></div>
+    <div class="wcard biz"><h4>DCA · REEV · DUSI · VAIR… <small>PMI tool names</small></h4><p>Names of PMI internal tools and dashboards that students may mention (Session 3's discussion question lists some). You don't need to know what each does: ask the student, "what does it output, and what's it compared to?"</p><p class="here">Session 3 debrief. Turn their answer back into the session's question.</p></div>
+  </div>
+  <h3 class="cards-h" style="--k:var(--gold)">The customer journey</h3>
+  <p>Every consumer in HORIZON moves through the same five stages. Marketers call it a <b>funnel</b> because fewer people reach each stage:</p>
+  <ul class="flow">
+    <li><b>Stage 1</b><strong>registration</strong><span>signs up</span></li>
+    <li><b>Stage 2</b><strong>trial</strong><span>tries the product</span></li>
+    <li class="on"><b>Stage 3</b><strong>conversion</strong><span>switches for real</span></li>
+    <li><b>Stage 4a</b><strong>retention</strong><span>keeps using it</span></li>
+    <li class="off"><b>Stage 4b</b><strong>churn</strong><span>gives up</span></li>
+  </ul>
+  <div class="wcards">
+    <div class="wcard biz"><h4>Consumer · cohort · segment <small>groups of people</small></h4><p>A <b>consumer</b> is one adult customer. A <b>cohort</b> is a group defined by when or how they started (e.g. "everyone who registered in 2025"). A <b>segment</b> is a slice by some trait (e.g. "18-24 year olds").</p><p class="here">S2 builds a fake cohort; S4's Italy case is about a segment.</p></div>
+    <div class="wcard biz"><h4>Adoption <small>a loose word</small></h4><p>"People starting to use the product." Teams disagree whether that means trying it, buying it or buying it twice. The labs define it as reaching <b>trial or conversion</b>.</p><p class="like">ask the room "adoption means trial, conversion or repeat purchase?" and watch it split.</p></div>
+    <div class="wcard biz"><h4>Conversion · conversion rate <small>the moment that matters</small></h4><p>A <b>conversion</b> is when a smoker switches to the product. A <b>conversion rate</b> is conversions divided by some group of people or events: 13.5% means 13.5 conversions per 100.</p><p class="like">a gym's free-trial visitors who buy a membership.</p></div>
+    <div class="wcard biz"><h4>Retention · churn <small>stay or leave</small></h4><p><b>Retention</b>: still using the product later (HORIZON: 90 days after converting). <b>Churn</b>: stopped. "Retained 65%" means 65 of every 100 converters stayed.</p><p class="here">Session 2's real Japan ZYN numbers.</p></div>
+    <div class="wcard biz"><h4>Campaign · attribution <small>did marketing cause it?</small></h4><p>A <b>campaign</b> is a marketing push with a start and end date. An event is <b>attributed</b> when it's tagged with the campaign that caused it (<code>campaign_id</code> filled in). <b>Unattributed</b> = no tag (blank).</p><p class="here">Session 1's silent zero and Session 3's "0 of 116" are both about blank campaign ids.</p></div>
+    <div class="wcard biz"><h4>Baseline · lift <small>compared to what?</small></h4><p>A <b>baseline</b> is what you compare against: a plan, last quarter, or people the campaign didn't reach. <b>Lift</b> is how much better the campaign group did than the baseline. No baseline, no lift.</p><p class="here">The whole of Session 3.</p></div>
+    <div class="wcard biz"><h4>Percent vs percentage points <small>two different "ups"</small></h4><p>From 13.5% to 21.4% is <b>+7.9 percentage points</b> (subtract) or <b>+59% relative</b> (divide: 21.4 ÷ 13.5 = 1.59). Same data, very different headline. The sin is not saying which.</p><p class="here">Session 3's Italy case file.</p></div>
+    <div class="wcard biz"><h4>Consent · marketing permission <small>may we contact them?</small></h4><p>A person's yes or no to marketing, recorded per channel (email, SMS, push, post). In HORIZON it's the column <code>marketing_allowed</code> in <code>mpl.consent_records</code>, about 2.5 rows per person.</p><p class="like">a drawer of signed permission slips, one per channel.</p></div>
+    <div class="wcard biz"><h4>Age-gate · under-25 rule <small>differs by country</small></h4><p>In HORIZON, nobody under 25 (age band <code>18-24</code>) may be marketed to in Italy or Indonesia: 0% of their under-25 consent records allow it. In Japan, 73% do.</p><p class="here">All four sessions. The same rule is right in one market and wrong in another: Session 4's "over-correction" trap.</p></div>
+    <div class="wcard biz"><h4>Sell-through · distributor <small>retail sales</small></h4><p><b>Sell-through</b> is how many units shops actually sold to consumers (as opposed to how many PMI shipped to shops, "sell-in"). A <b>distributor</b> is the wholesaler or retailer in between.</p><p class="here">HORIZON's <code>rst.sell_through</code> feed exists, but no lab uses it. Slide 18 warns it's never a source for consent.</p></div>
+    <div class="wcard biz"><h4>Telemetry · engagement <small>device data</small></h4><p><b>Telemetry</b> is data a connected device sends home: sessions, minutes used, firmware version. <b>Engagement</b> is a loose word for "how much people use it". A pouch has no device, so no telemetry.</p><p class="here">Sessions 2 and 4: zero ZYN telemetry rows.</p></div>
+    <div class="wcard biz"><h4>KPI · dashboard · insight <small>numbers for managers</small></h4><p>A <b>KPI</b> (key performance indicator) is a number a team is judged on. A <b>dashboard</b> shows KPIs. An AI-generated "<b>insight</b>" is a sentence a tool writes about a KPI, like "20% ahead of plan".</p><p class="here">Session 3 starts from one of those sentences.</p></div>
+  </div>
+  <div class="point rise"><span class="k">Back to the point</span><p>Most of the day's traps hide in these words: "adoption" has no single meaning, "exclude a campaign" forgets the blanks, "ahead of plan" has no plan, "engagement" for a pouch is impossible. <b>The words sound finished; the data says otherwise.</b></p></div>
+</section>
+
+<section class="part wide" id="horizon" data-toc="HORIZON, drawn">
+  <div class="part-h">
+    <span class="eyebrow">2 minutes</span>
+    <h2>HORIZON, <span>drawn</span></h2>
+    <p class="dek">One fictional PostgreSQL database called <code>horizon</code>, identical on every student VM and on your Mac. Five "data assets" (sources), three markets, data from 1 January 2024 to 31 December 2025.</p>
+  </div>
+  <div class="estate">
+    <div class="asset rise" style="--ac:#FF4A00"><div class="ab">CLR</div><div class="an">Consumer Lifecycle Records</div><code>clr.consumers</code><code>clr.lifecycle_events</code><div class="af">6,000 people · 15,597 events</div></div>
+    <div class="asset rise" style="--ac:#00C9A7"><div class="ab">MPL</div><div class="an">Marketing Permission Ledger</div><code>mpl.consent_records</code><div class="af">15,052 permission slips</div></div>
+    <div class="asset rise" style="--ac:#E8A320"><div class="ab">RST</div><div class="an">Retail Sell-Through Feed</div><code>rst.sell_through</code><code>rst.distributors</code><div class="af">2,730 weekly rows · 12 distributors</div></div>
+    <div class="asset rise" style="--ac:#5B86F0"><div class="ab">DET</div><div class="an">Device Experience Telemetry</div><code>det.device_telemetry</code><div class="af">35,113 rows · IQOS and VEEV only</div></div>
+    <div class="asset rise" style="--ac:#8B5CF6"><div class="ab">RFR</div><div class="an">Regulatory Filing Repository</div><code>rfr.filings</code><div class="af">112 filings</div></div>
+  </div>
+  <p>Plus four small reference lists in <code>ref</code> (age bands, campaigns, markets, products) and an empty sandbox folder, <code>analytics</code>, where Session 2 creates its fake table.</p>
+  <div class="tbl-wrap"><table><thead><tr><th>Table</th><th>One row =</th><th class="num">rows</th><th>Used in</th></tr></thead><tbody>
+    <tr><td><code>clr.consumers</code></td><td>one person (market, age band, main product)</td><td class="num">6,000</td><td>S1 · S2 · S3 · S4</td></tr>
+    <tr><td><code>clr.lifecycle_events</code></td><td>one thing one person did on one day (stage, product, campaign)</td><td class="num">15,597</td><td>S1 · S2 · S3</td></tr>
+    <tr><td><code>mpl.consent_records</code></td><td>one yes/no to marketing, for one channel</td><td class="num">15,052</td><td>S1 · S2 · S3 · S4</td></tr>
+    <tr><td><code>det.device_telemetry</code></td><td>one device's usage on one day (sessions, minutes)</td><td class="num">35,113</td><td>S2 · S4</td></tr>
+    <tr><td><code>ref.age_bands</code></td><td>one age band: 18-24 · 25-34 · 35-44 · 45-54 · 55+</td><td class="num">5</td><td>S2</td></tr>
+    <tr><td><code>ref.campaigns</code></td><td>one marketing campaign with its dates</td><td class="num">5</td><td>S3</td></tr>
+    <tr><td><code>ref.products</code></td><td>one product, and whether it has a device</td><td class="num">3</td><td>S2</td></tr>
+    <tr><td><code>ref.markets</code></td><td>one country and its stage</td><td class="num">3</td><td>background</td></tr>
+    <tr><td><code>rfr.filings</code></td><td>one regulatory filing and its status</td><td class="num">112</td><td>S2 stretch</td></tr>
+    <tr><td><code>rst.sell_through</code> · <code>rst.distributors</code></td><td>one week of one product's sales at one distributor · one distributor</td><td class="num">2,730 · 12</td><td>not used</td></tr>
+  </tbody></table></div>
+  <h3>Five facts that bite all day</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Fact</th><th>Where it bites</th></tr></thead><tbody>
+    <tr><td><b>People by market:</b> Japan 3,000 · Italy 2,000 · Indonesia 1,000.</td><td>Indonesia's numbers are small (dozens a month); Japan's are big.</td></tr>
+    <tr><td><b>Under-25 marketing:</b> 0% allowed in Italy and Indonesia, 73% in Japan.</td><td>S1 (the age-gate), S2 (Japan isn't Italy), S3 (the population), S4 (don't over-correct).</td></tr>
+    <tr><td><b>Blank campaign ids:</b> 15,523 of 15,597 events have none. Only campaign 1 (Italy IQOS, 74 events) is tagged. Every Indonesia event is blank.</td><td>S1's silent zero, S3's "0 of 116".</td></tr>
+    <tr><td><b>Telemetry is IQOS and VEEV only.</b> About 20% of rows have a blank consumer id on purpose (anonymised).</td><td>S2's check D, S4's hallucination and coverage checks.</td></tr>
+    <tr><td><b>There is no plan or target table.</b></td><td>S3: "ahead of plan" compared to nothing.</td></tr>
+  </tbody></table></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The warehouse is the "Data decides" part of the rule. Students never paste its rows into Claude; they paste only table and column names, then bring Claude's SQL back here to get the real number.</p></div>
+</section>
+
+<section class="part" id="sql" data-toc="SQL in five minutes">
+  <div class="part-h">
+    <span class="eyebrow">4 minutes</span>
+    <h2>SQL in <span>five minutes</span></h2>
+    <p class="dek">You won't write SQL in class: Claude does. But you need to read it out loud and spot the one line that matters. Here's every piece the labs use.</p>
+  </div>
+  <h3>The shape of every query</h3>
+  <p>A query is a question to the database. It always reads in this order, and each line has one job:</p>
+  <div class="code sql"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5.5" rx="7.5" ry="2.8"/><path d="M4.5 5.5v13c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8v-13M4.5 12c0 1.5 3.4 2.8 7.5 2.8s7.5-1.3 7.5-2.8"/></svg>SQLTools · HORIZON</span><span class="sp"></span><span class="hint">A typical lab query, annotated</span><button type="button" class="copy" aria-label="Copy this block"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg><span>Copy</span></button></div><pre><span class="k">SELECT</span> <span class="f">date_trunc</span>(<span class="s">&#x27;month&#x27;</span>, le.event_date)::date <span class="k">AS</span> month,     <span class="c">-- 5 · what to show</span>
+       <span class="f">count</span>(<span class="k">DISTINCT</span> le.consumer_id)          <span class="k">AS</span> adopters    <span class="c">--     (one line per month)</span>
+<span class="k">FROM</span> clr.lifecycle_events le                                  <span class="c">-- 1 · start from this table</span>
+<span class="k">JOIN</span> clr.consumers c <span class="k">ON</span> c.consumer_id = le.consumer_id        <span class="c">-- 2 · glue on another table</span>
+<span class="k">WHERE</span> le.market_code = <span class="s">&#x27;ID&#x27;</span>                                   <span class="c">-- 3 · keep only these rows</span>
+  <span class="k">AND</span> le.lifecycle_stage <span class="k">IN</span> (<span class="s">&#x27;trial&#x27;</span>, <span class="s">&#x27;conversion&#x27;</span>)
+<span class="k">GROUP</span> <span class="k">BY</span> <span class="n">1</span>                                                    <span class="c">-- 4 · one result line per month</span>
+<span class="k">ORDER</span> <span class="k">BY</span> <span class="n">1</span>;                                                   <span class="c">-- 6 · sort the result</span></pre></div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Piece</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>FROM clr.lifecycle_events le</code></td><td>"Start from this table." <code>le</code> is a nickname so later lines can write <code>le.event_date</code> instead of the full name.</td></tr>
+    <tr><td><code>JOIN … ON …</code></td><td>"Glue another table on, matching rows where this column equals that one." Explained below: it can copy rows.</td></tr>
+    <tr><td><code>WHERE …</code></td><td>"Keep only rows where every condition is true." <code>IN ('trial','conversion')</code> means "is one of these".</td></tr>
+    <tr><td><code>GROUP BY 1</code></td><td>"Squash the rows into one line per value of the first column" (here, per month).</td></tr>
+    <tr><td><code>SELECT …</code></td><td>"Show these columns." <code>AS month</code> just names the column in the result.</td></tr>
+    <tr><td><code>ORDER BY 1</code></td><td>"Sort by the first column."</td></tr>
+    <tr><td><code>-- comment</code></td><td>Anything after two dashes is a note for humans; the database ignores it. The labs ask Claude to write its assumptions as comments.</td></tr>
+  </tbody></table></div>
+
+  <h3>Counting: rows vs different people</h3>
+  <div class="wcards">
+    <div class="wcard tech"><h4>count(*) <small>how many rows</small></h4><p>Counts every row that survived the WHERE.</p></div>
+    <div class="wcard tech"><h4>count(DISTINCT consumer_id) <small>how many different people</small></h4><p>Counts each person once, however many rows they have. Almost every lab number is this.</p></div>
+    <div class="wcard tech"><h4>count(*) FILTER (WHERE …) <small>count some of them</small></h4><p>Counts only rows that also meet an extra condition, so one query can show "all" and "after the rule" side by side.</p></div>
+    <div class="wcard tech"><h4>avg(x::int) · round(…, 1) <small>a percentage trick</small></h4><p><code>::int</code> turns true/false into 1/0. The average of 1s and 0s is the share that's true: 0.731 → ×100 → 73.1%. <code>round(…, 1)</code> keeps one decimal.</p></div>
+  </div>
+
+  <h3>The join trap: one row becomes several</h3>
+  <p>A join glues a row to <b>every</b> matching row in the other table. One person with three permission slips becomes three rows:</p>
+  <div class="drawn-pair">
+    <div class="drawn small">
+      <div class="drawn-tab">left: one event</div>
+      <div class="drawn-box"><table><thead><tr><th>consumer_id</th><th>stage</th></tr></thead><tbody><tr class="hi"><td>5855</td><td>trial</td></tr></tbody></table></div>
+    </div>
+    <div class="drawn small">
+      <div class="drawn-tab">after JOIN to their slips</div>
+      <div class="drawn-box"><table><thead><tr><th>consumer_id</th><th>stage</th><th>slip</th></tr></thead><tbody><tr class="hi"><td>5855</td><td>trial</td><td>push</td></tr><tr class="hi"><td>5855</td><td>trial</td><td>postal</td></tr><tr class="hi"><td>5855</td><td>trial</td><td>email</td></tr></tbody></table></div>
+    </div>
+  </div>
+  <p class="drawn-cap"><code>count(*)</code> now says 3; <code>count(DISTINCT consumer_id)</code> still says 1. A <b>LEFT JOIN</b> is the same glue, except rows with no match are kept (with blanks) instead of dropped. Session 3 uses it to keep campaigns that have zero events.</p>
+
+  <h3>NULL: the blank that isn't false</h3>
+  <p>A blank cell is called <b>NULL</b> and means "unknown". Any comparison with a blank answers "unknown", and <code>WHERE</code> only keeps <b>true</b>. That one rule causes Session 1's silent zero:</p>
+  <div class="tbl-wrap"><table><thead><tr><th>campaign_id</th><th><code>campaign_id &lt;&gt; 4</code></th><th>kept by WHERE?</th></tr></thead><tbody>
+    <tr><td>4</td><td>false</td><td>no</td></tr>
+    <tr class="good"><td>1</td><td>true</td><td>yes</td></tr>
+    <tr class="bad"><td>NULL</td><td>unknown</td><td><b>no</b> (surprise)</td></tr>
+  </tbody></table></div>
+  <p>The fixes: <code>campaign_id IS DISTINCT FROM 4</code> (treats blank as an ordinary value), or say it explicitly: <code>campaign_id IS NULL OR campaign_id &lt;&gt; 4</code>. To find blanks, write <code>IS NULL</code>; <code>= NULL</code> never matches anything.</p>
+
+  <h3>Small pieces you'll see</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Piece</th><th>Meaning</th></tr></thead><tbody>
+    <tr><td><code>date_trunc('month', event_date)</code> · <code>'quarter'</code></td><td>Round a date down to the start of its month (or quarter), so rows group by month.</td></tr>
+    <tr><td><code>event_date &gt;= '2025-07-01' AND event_date &lt; '2025-10-01'</code></td><td>A "half-open" range: on or after the first date, strictly before the second. Exactly Q3.</td></tr>
+    <tr><td><code>::date</code> · <code>::int</code> · <code>::numeric</code></td><td>"Treat this as a date / whole number / decimal." Just a conversion.</td></tr>
+    <tr><td><code>WITH name AS ( … )</code></td><td>Build a temporary mini-table first, then query it. Lets a long query read as steps.</td></tr>
+    <tr><td><code>bool_or(…)</code></td><td>"True if any of this person's rows matches." Used to flag "ever reached conversion".</td></tr>
+    <tr><td><code>GROUP BY ROLLUP (age_band)</code></td><td>One line per age band, plus a grand-total line (shown as ALL).</td></tr>
+    <tr><td><code>coalesce(x, 'ALL')</code> · <code>nullif(x, 0)</code></td><td>"Use x, or 'ALL' if it's blank." · "Treat 0 as blank" (avoids dividing by zero).</td></tr>
+    <tr><td><code>information_schema.tables</code> · <code>.columns</code></td><td>The database's own list of its tables and columns. S1 uses it to show the real tables; S3 to search for a plan table.</td></tr>
+    <tr><td><code>~* '(plan|target)'</code></td><td>"Contains plan or target, ignoring capitals" (a text pattern match).</td></tr>
+    <tr><td><code>CREATE TABLE</code> · <code>INSERT</code> · <code>DROP TABLE IF EXISTS</code></td><td>Make a new table · put rows in it · delete the table if it's there. Only Session 2 does this, in the <code>analytics</code> sandbox.</td></tr>
+    <tr><td><code>relation "…" does not exist</code></td><td>The error for a table that isn't there ("relation" = table). Session 1, Step 1.</td></tr>
+  </tbody></table></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>You'll never need to write these, only read them aloud and point at the line that decides the number. In every session that's one line: the filter on blanks, the rule that removes a group, the denominator. <b>Data decides; you find the line that decided it.</b></p></div>
+</section>
+
+<section class="part" id="ai" data-toc="AI in four minutes">
+  <div class="part-h">
+    <span class="eyebrow">3 minutes</span>
+    <h2>AI in <span>four minutes</span></h2>
+    <p class="dek">The ideas from the deck, in the order they come up. Each with the line to say.</p>
+  </div>
+  <div class="wcards">
+    <div class="wcard ai"><h4>LLM · next token <small>S1 · 0:12</small></h4><p>A large language model writes by predicting the next piece of text (a <b>token</b>, about ¾ of a word) and repeating. It continues text; it doesn't look things up.</p><p class="like">"It doesn't look things up. It continues text."</p></div>
+    <div class="wcard ai"><h4>Context window <small>S1</small></h4><p>Everything the model can see right now: your prompt plus the chat so far. It has never seen HORIZON.</p><p class="like">"If it isn't in the prompt, it's a guess."</p></div>
+    <div class="wcard ai"><h4>Temperature · sampling <small>S1</small></h4><p>The model picks its next word from a spread of options with some randomness, so the same prompt gives different answers to different people.</p><p class="like">"Judge the logic; prove it with a count."</p></div>
+    <div class="wcard ai"><h4>Hallucination <small>S1 · S4</small></h4><p>A confident, specific statement that isn't true. Models are trained in a way that rewards guessing over "I don't know".</p><p class="like">"Give it a polite way to say 'I'm not sure'."</p></div>
+    <div class="wcard ai"><h4>Grounding · lost in the middle <small>S1</small></h4><p>Put the real facts (tables, rules, definitions) in the prompt. Models attend best to the start and the end of a long prompt, so rules go on top and the question goes last.</p><p class="like">"Rules on top. Question at the bottom."</p></div>
+    <div class="wcard ai"><h4>Template · chain-of-thought · few-shot <small>S1 · Step 4</small></h4><p>Fill-in-the-blank prompts; asking for the plan before the SQL; showing one finished example.</p><p class="like">"Do the thinking once. Template it."</p></div>
+    <div class="wcard ai"><h4>Model tiers · prices <small>S2</small></h4><p>Anthropic sells three sizes: <b>Opus</b> (premium) $4 in / $20 out per million tokens, <b>Sonnet</b> $2 / $10, <b>Haiku</b> (thrifty) $0.10 / $0.50. Output costs five times input; Haiku's output is 40× cheaper than Opus's.</p><p class="like">"Pay for judgment where it's short. Pay pennies for typing where it's long."</p></div>
+    <div class="wcard ai"><h4>Tokens, not tallies <small>S2</small></h4><p>When a model prints a summary of the rows it just wrote, that summary is more generated text, not a count. It's often slightly off.</p><p class="like">"The warehouse counts. You sign."</p></div>
+    <div class="wcard ai"><h4>Sycophancy <small>S3</small></h4><p>Models tend to agree with the user, including abandoning a correct answer when you just say "are you sure?" (Sharma et al., 2024).</p><p class="like">"Agreement is not confirmation."</p></div>
+    <div class="wcard ai"><h4>Explanations aren't evidence <small>S3</small></h4><p>Anthropic's research found Claude's description of how it solved a sum differs from what it actually computed. A fluent explanation proves nothing.</p><p class="like">"An explanation is not evidence."</p></div>
+    <div class="wcard ai"><h4>Context rot <small>S4</small></h4><p>Models get less reliable as their input grows (Chroma tested 18 models in 2025; all degraded). Long chats full of old guesses make worse reviewers.</p><p class="like">"New task, new chat."</p></div>
+    <div class="wcard ai"><h4>MCP <small>S4 demo</small></h4><p>Model Context Protocol: an open standard for plugging tools and data into an AI app, "a USB-C port for AI". In the demo, Claude gets a read-only door into HORIZON.</p><p class="like">"MCP gives it eyes. It doesn't give it judgment."</p></div>
+  </div>
+  <div class="point rise"><span class="k">Back to the point</span><p>Every AI idea in the day explains one half of the rule: <b>AI answers</b> (fluently, from whatever it was given). The labs supply the other two halves.</p></div>
+</section>
+
+<section class="part" id="tools" data-toc="The tools on the VM">
+  <div class="part-h">
+    <span class="eyebrow">2 minutes</span>
+    <h2>The tools <span>on the VM</span></h2>
+    <p class="dek">Students use two apps all day on a Windows virtual machine (VM). Everything is installed; shortcuts are on the taskbar. There is no Claude Code: just the Claude Desktop chat app.</p>
+  </div>
+  <figure class="fig"><img src="images/vm-taskbar.png" alt="The VM taskbar: the orange Claude icon opens Claude Desktop, the yellow icon is Power BI, the blue icon is VS Code." width="880" height="344" loading="lazy"><figcaption>The orange icon opens <b>Claude Desktop</b> (its label says "Claude Code", but it's the Desktop chat app). Blue is VS Code. Yellow (Power BI) isn't used.</figcaption></figure>
+  <div class="shots">
+    <figure class="vmshot"><a href="images/vm-claude-desktop.png" target="_blank" rel="noopener"><img src="images/vm-claude-desktop.png" alt="Claude Desktop with a new chat open and the model picker next to the send button." loading="lazy" width="1616" height="869"></a><figcaption><b>Claude Desktop.</b> The model picker sits next to the send button.</figcaption></figure>
+    <figure class="vmshot"><a href="images/vm-sqltools.png" target="_blank" rel="noopener"><img src="images/vm-sqltools.png" alt="VS Code with the SQLTools sidebar open and the HORIZON connection connected." loading="lazy" width="1629" height="869"></a><figcaption><b>SQLTools</b> in VS Code, connected to HORIZON.</figcaption></figure>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>How do I…</th><th>Do this</th></tr></thead><tbody>
+    <tr><td>start a clean conversation</td><td>Claude Desktop → <b>New chat</b>. Do it whenever a guide says "new chat": old guesses in the window leak into new answers.</td></tr>
+    <tr><td>switch model (Opus, Sonnet, Haiku)</td><td>Click the model name next to the send button and pick one. It applies from the next message. The VM may show older versions (e.g. Sonnet 4.6); the lesson is the same.</td></tr>
+    <tr><td>copy Claude's SQL</td><td>Hover the code block → <b>Copy</b>. If it opened a side panel ("artifact"), use the panel's Copy, or reply "Put it in a code block in the chat."</td></tr>
+    <tr><td>stop Claude making a Word file</td><td>Every prompt ends with "Respond in Markdown only — do not create a Word document or any file."</td></tr>
+    <tr><td>connect to the warehouse</td><td>VS Code → SQLTools sidebar (database icon) → right-click <b>HORIZON</b> → Connect. Missing? Add a PostgreSQL connection: localhost · 5432 · horizon · postgres · <code>Horizon!Lab2026</code>.</td></tr>
+    <tr><td>get somewhere to paste SQL</td><td>Right-click HORIZON → <b>New SQL File</b>.</td></tr>
+    <tr><td>run a query</td><td>Click inside it and press <kbd>Ctrl+E</kbd> <kbd>Ctrl+E</kbd> (or "Run on active connection" above it). For a multi-statement script (Session 2), select all with <kbd>Ctrl+A</kbd> first.</td></tr>
+    <tr><td>know the setup works</td><td>Run <code>SELECT count(*) FROM clr.lifecycle_events;</code> → <b>15597</b>. Everyone types it in the chat at 0:02.</td></tr>
+  </tbody></table></div>
+  <div class="callout note"><span class="box-lbl">Prompt hygiene · say it once, at the start</span><p>Everything pasted into an AI tool leaves the company's data boundary. <b>Table names, column names, rules and definitions: yes. Real consumer rows, passwords, connection strings: never.</b> No prompt in the labs pastes a data row.</p></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The tools are deliberately separate: Claude can't touch the data, so students carry every query across by hand and read every number themselves. That's "you sign", built into the setup. Session 4's MCP demo shows what happens when the model gets its own door.</p></div>
+</section>
+
+<div class="zone" id="z-ready"><b>Be ready</b><span>Your Mac, the morning of class, and where everything lives.</span><i>reference</i></div>
+
+<section class="part" id="mac" data-toc="Your Mac's warehouse" data-toc-grp="Be ready">
+  <div class="part-h">
+    <span class="eyebrow">Reference</span>
+    <h2>Your Mac's <span>warehouse</span></h2>
+    <p class="dek">Your Mac runs the same warehouse as the VMs, in Docker. Students never see it. You use it to rehearse, to show results if a VM misbehaves, and for the Session 4 MCP demo.</p>
+  </div>
+  <div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>cd ~/pmidataanalyst/horizon-warehouse
+make help          # every command
+make status        # which warehouse is running, on which port
+make up            # start it (first start loads the data, about 20 seconds)
+make verify        # print every number quoted in the labs and slides
+make before-class  # the morning of class: fresh rebuild + every number checked
+make s1            # run a session&#x27;s queries with expected results (s1 … s4)
+make s2-reset      # drop Session 2&#x27;s fake tables (between runs)
+make s2-fallback   # load a ready-made Session 2 table if Claude&#x27;s script won&#x27;t run
+make demo-prep     # Session 4: numbers, MCP check, on-stage checklist
+make psql          # a SQL prompt in Terminal (\q to leave)</pre></div>
+  <div class="callout note"><span class="box-lbl">Port 5432 is shared</span><p>Your Data Engineer warehouse (<code>~/pmidataeng</code>, container <code>horizon-db</code>) holds identical data on the same port, so SQLTools, <code>psql</code> and the MCP demo give the same numbers on either. But the <code>make</code> commands above only talk to this class's container, <code>horizon-analyst-db</code>. If <code>make status</code> shows <code>horizon-db</code> on 5432, run <code>make takeover</code> first (it stops the other one and keeps its data); <code>make handback</code> switches back afterwards.</p></div>
+</section>
+
+<section class="part" id="morning" data-toc="The morning of class">
+  <div class="part-h">
+    <span class="eyebrow">Reference · 15 minutes</span>
+    <h2>The morning <span>of class</span></h2>
+  </div>
+  <ul class="checks">
+    <li><label><input type="checkbox" data-k="i0-m1"><span><code>make before-class</code> on your Mac: fresh warehouse, every number verified.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m2"><span>One VM checked: Claude Desktop signed in; note which models the picker offers (Opus? Haiku?); is web search on?</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m3"><span>On that VM: copy a code block from Claude, paste into a SQLTools tab, run the pre-flight count → <b>15597</b>. Select a two-statement script and check Ctrl+E Ctrl+E runs both.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m4"><span>Deck open (<code>deck/PMI_DataAnalyst_FutureSkills_Full_Deck.html</code>), notes hidden, <b>scoreboard on slide 11 reset</b>. Keys: ← → move · R reveal · N notes · URL <code>#24</code> jumps to slide 24.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m5"><span>Browser tabs: Transformer Explainer, Tiktokenizer, Which Face Is Real?, Datasaurus, the student site, these guides.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m6"><span>draw.io file open with the six sketches (playbook → Six draw.io sketches).</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m7"><span>Session 4: <code>make demo-prep</code>; Claude Desktop on your Mac shows the <code>horizon</code> connector.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m8"><span>Paper and pen for the two opening numbers ("asked an AI" vs "checked against data"); you read them back at 3:51.</span></label></li>
+  </ul>
+</section>
+
+<section class="part" id="files" data-toc="Where everything lives">
+  <div class="part-h">
+    <span class="eyebrow">Reference</span>
+    <h2>Where everything <span>lives</span></h2>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>You want</th><th>Open</th></tr></thead><tbody>
+    <tr><td>The student lab guides (what students follow)</td><td><a href="index.html">the student site</a> · <a href="session1.html">S1</a> · <a href="session2.html">S2</a> · <a href="session3.html">S3</a> · <a href="session4.html">S4</a> · <a href="glossary.html">glossary</a></td></tr>
+    <tr><td>The deck you present (85 slides)</td><td><code>~/pmidataanalyst/deck/PMI_DataAnalyst_FutureSkills_Full_Deck.html</code></td></tr>
+    <tr><td>The playbook: question bank, links with timing, draw.io sketches</td><td><code>~/pmidataanalyst/playbook/PMI_DataAnalyst_4hr_Instructor_Playbook.html</code></td></tr>
+    <tr><td>Every query with its expected number</td><td><code>~/pmidataanalyst/horizon-warehouse/sql/</code></td></tr>
+    <tr><td>The Session 4 MCP demo runbook</td><td><code>~/pmidataanalyst/horizon-warehouse/mcp/DEMO_session4_mcp.md</code> (and the Session 4 guide)</td></tr>
+  </tbody></table></div>
+  <h3>Every number, one card</h3>
+  <div class="recap rise">
+    <span class="k">The numbers, session by session</span>
+    <p class="big">Know these and you can answer almost any "is that right?" in the room.</p>
+    <div class="nums"><span><b>15,597</b> pre-flight</span><span><b>S1</b> 17 · 16 · 25</span><span><b>S1</b> 63 → 54 (9 under-25s)</span><span><b>S1</b> 0 rows · 2,343 blank</span><span><b>S1</b> Japan 69 · 77 · 75</span></div>
+    <div class="nums"><span><b>S2</b> 5 bands, top 55+</span><span><b>S2</b> JP 18-24 consent 73.1%</span><span><b>S2</b> ZYN 609 · 83.3 / 45.3 / 64.9%</span><span><b>S2</b> 0 ZYN telemetry</span><span><b>S2</b> 13 · 30 · 30 · 15 · 12</span></div>
+    <div class="nums"><span><b>S3</b> 0 of 462</span><span><b>S3</b> no plan table</span><span><b>S3</b> 116, 0 attributed</span><span><b>S3</b> Italy 74</span><span><b>S3</b> 3 → 29 ramp</span><span><b>S3</b> 13.5 → 21.4%</span></div>
+    <div class="nums"><span><b>S4</b> Italy 249 / 0</span><span><b>S4</b> 0 ZYN rows</span><span><b>S4</b> 2,391 of 3,000 = 79.7%</span><span><b>S4</b> 20.2% anonymised</span><span><b>S4</b> JP 73.05%</span><span><b>S4</b> Q4 −19%</span></div>
+    <p class="line">And the last line of the day: <b>"Earlier today, a generated face fooled some of you. Just now, a generated number didn't."</b></p>
+  </div>
+</section>
+
+<nav class="pager" aria-label="Previous and next guide"><span></span><a class="nx" href="instructor-s1.html"><span class="k">Next →</span><b>Session 1 guide</b></a></nav>
+  </main>
+</div>
+
+<footer class="foot">
+  <div class="foot-in">
+    <div>
+      <p class="rule-big"><span>AI answers.</span> <span>Data decides.</span> <span>You sign.</span></p>
+      <p>Instructor guides for the PMI DI&amp;A Future Skills Data Analyst class: WA3899 · WA3900 · WA3901 · WA3902. Not linked from the student pages and hidden from search engines, but public to anyone who has the link. Project HORIZON is a fictional, training-only data estate.</p>
+    </div>
+    <nav aria-label="All instructor guides">
+      <a href="instructor.html">Instructor hub</a><a href="instructor-s1.html">Session 1 instructor guide · Mind-reader not included</a><a href="instructor-s2.html">Session 2 instructor guide · Deepfake data</a><a href="instructor-s3.html">Session 3 instructor guide · Compared to what?</a><a href="instructor-s4.html">Session 4 instructor guide · The dog that didn&#x27;t bark</a>
+      <a href="index.html">Student site</a>
+    </nav>
+  </div>
+</footer>
+<div id="tip" role="tooltip" aria-hidden="true"></div>
+<script src="assets/site.js" defer></script>
+</body>
+</html>

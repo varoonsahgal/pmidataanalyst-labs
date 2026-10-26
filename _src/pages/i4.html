@@ -1,0 +1,838 @@
+<!--HERO-->
+<div class="mast-grid">
+  <div class="mast-copy">
+    <div class="kicker"><span class="pill">Instructor guide</span> Session 4 · WA3902 · class time 3:00 to 3:48, then the close to 4:00</div>
+    <h1 class="title">The dog that <em>didn't bark</em><small>Session 4 taught from zero: what the lab is for, every word and table explained, every check walked, the MCP demo, the close, and what to do when it goes sideways.</small></h1>
+    <p class="lede">You don't need to know SQL, PMI or marketing to read this. Read it top to bottom once (<b>18 minutes</b>), do the dry run (<b>15 minutes</b>), then keep the "In class" half open on a second screen. This is the <b>tightest hour of the day</b> and it ends with a live demo, so the dry run matters. <strong>Every number on this page was run against the HORIZON warehouse on 25 October 2026.</strong></p>
+    <div class="chips"><span>Read · <b>18 min</b></span><span>Dry run · <b>15 min</b></span><span>Class · <b>48 min + close</b></span><span>Claude · <b>Sonnet</b></span><span>Market · <b>Japan</b></span></div>
+    {{GUIDES}}
+  </div>
+  <aside class="console" aria-label="The numbers that carry Session 4">
+    <p class="pt">Read for <b>what's missing</b>.</p>
+    <div class="hd"><span>The numbers that carry the hour</span><span>value</span></div>
+    <div class="row"><span class="lbl">Check 1: ZYN rows in Japan's device telemetry<small>"3.7 sessions per consumer" came from nowhere</small></span><span class="v bad">0</span></div>
+    <div class="row"><span class="lbl">Check 2: most Japan consumers who could own a device<small>the claim said 94%</small></span><span class="v hot">79.7%</span></div>
+    <div class="row"><span class="lbl">Check 3: Japan telemetry rows tied to nobody<small>anonymised on purpose: 4,143 of 20,463</small></span><span class="v">20.2%</span></div>
+    <div class="row"><span class="lbl">Check 4: Japan under-25 permission slips that say yes<small>Italy and Indonesia: 0%. The one sound claim.</small></span><span class="v good">73%</span></div>
+    <div class="row"><span class="lbl">Check 5: device sessions, 2025-Q4 vs Q3<small>fewer devices reporting</small></span><span class="v bad">−19%</span></div>
+    <div class="row"><span class="lbl">MCP demo: "delete the anonymised rows"<small>the connector refuses</small></span><span class="v">READ-ONLY</span></div>
+    <p class="ft">If you remember one thing: <b>the most dangerous number was the one that looked exactly like the real ones beside it.</b></p>
+  </aside>
+</div>
+
+<!--MAIN-->
+<div class="zone" id="z-understand"><b>Understand it</b><span>The lab from zero: the point, the words, the data, the traps.</span><i>11 min</i></div>
+
+<section class="part" id="route" data-toc="Your 18 minutes" data-toc-grp="Understand it · 11 min">
+  <div class="part-h">
+    <span class="eyebrow">Start here · 30 seconds</span>
+    <h2>Your 18 <span>minutes</span></h2>
+    <p class="dek">Each section answers one question you'd otherwise have to ask somebody. Skip nothing the first time. After that, the "In class" half is your script.</p>
+  </div>
+  <div class="budget">
+    <div class="k"><span>Reading route</span><span>minutes</span></div>
+    <ol>
+      <li><span><a href="#point">The point</a><span>The one sentence the session proves, and the numbers that prove it.</span></span><i>1</i></li>
+      <li><span><a href="#story">The story, and the business words</a><span>Who wrote what, for whom. What product experience, engagement, a device and a brand team are.</span></span><i>3</i></li>
+      <li><span><a href="#tech">The tech words</a><span>Telemetry, session, denominator, anonymised, and the judgment words: hallucination, false precision, bias, over-correction, validate / caveat / escalate.</span></span><i>3</i></li>
+      <li><span><a href="#data">The data, drawn</a><span>The telemetry table with real rows, Japan's 3,000 consumers by product, and the under-25 rule in three markets.</span></span><i>2</i></li>
+      <li><span><a href="#traps">The five checks, drawn</a><span>One missing product, one impossible percentage, one coverage gap, one trap for over-correctors, one falling quarter.</span></span><i>2</i></li>
+      <li><span><a href="#opener">Walk the lab</a><span>Opener, three steps, the MCP demo and the debrief: what students do, see, what it means, what you say.</span></span><i>7</i></li>
+      <li class="tot"><span><b>Then, at the keyboard: the dry run</b><span>The five checks, the reviewer's note and a rehearsal of the MCP demo, with every expected result.</span></span><i>+15</i></li>
+    </ol>
+  </div>
+</section>
+
+<section class="part" id="point" data-toc="The point">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 1 minute</span>
+    <h2>The <span>point</span></h2>
+    <p class="dek">Every session today has one sentence at its centre. This is Session 4's, and it's the mirror image of Session 1's.</p>
+  </div>
+  <div class="lesson rise">
+    <span class="box-lbl">The sentence the session proves</span>
+    <p>AI output never warns you about its own defects. <em>The problem is usually something it doesn't say</em>, so you have to listen for the silence.</p>
+    <p>Then confirm each suspicion in the warehouse, and make a call on the record: validate it, caveat it, or escalate it. Never quietly fix it.</p>
+  </div>
+  <p>Here's the lab in plain words. A teammate used Claude to write a short analysis of how Japanese consumers use PMI's products. It's going to the brand team (the marketing people) in ten minutes, and the teammate asks your students for a quick review. The analysis is one paragraph: fluent, specific, three products, four numbers, one recommendation. It reads perfectly. Students check each claim against the warehouse, and find:</p>
+  <div class="bigs">
+    <div><span class="n bad">0</span><b>Check 1</b><p>ZYN rows in the device data. The "3.7 sessions" for ZYN is invented: ZYN is a pouch, it has no device.</p></div>
+    <div><span class="n hot">79.7%</span><b>Check 2</b><p>The most Japanese consumers who could own a device at all. The analysis said 94% are "highly engaged". Impossible.</p></div>
+    <div><span class="n good">73%</span><b>Check 4</b><p>Japan's under-25s mostly <i>may</i> be marketed to. The one line that looks risky is the one that's fine.</p></div>
+  </div>
+  <p>Session 1 was "what <b>you</b> don't say, the model makes up". Session 4 turns it round: "what <b>it</b> doesn't say, you have to find". The analysis never says "ZYN has no device", never says what the 94% is a percentage <i>of</i>, never says whether under-25s may be marketed to in Japan. Those silences are where the defects are.</p>
+  <p>The class rule closes the day here: <b>AI answers. Data decides. You sign.</b> Claude wrote the analysis; the warehouse decides which claims survive; and the reviewer's name goes on the verdict.</p>
+  <point>If you remember one thing: <b>polished is not validated.</b> A made-up number reads exactly like a real one. You find it by asking what the output doesn't say, and then checking.</point>
+</section>
+
+<section class="part" id="story" data-toc="The story and business words">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 3 minutes</span>
+    <h2>The story, and the <span>business words</span></h2>
+    <p class="dek">Four panels, then every company and marketing word in them, decoded.</p>
+  </div>
+  <div class="story">
+    <div><b>The ask</b><p>A teammate used Claude for a <span class="em">Japan product-experience analysis</span>. It goes to the brand team in ten minutes. "Can you give it a quick look first?"</p></div>
+    <div><b>The output</b><p>One paragraph. ZYN is the most engaged product at <span class="em">3.7 sessions</span>; <span class="em">94%</span> of Japanese consumers are highly engaged; market to <span class="em">all age bands</span>; <span class="em">sustain momentum</span>.</p></div>
+    <div><b>The catch</b><p>None of the claims mentions its gaps: ZYN has no device, the 94% has no "out of how many", and "momentum" has no trend behind it. One claim is fine and <span class="em">looks</span> suspicious.</p></div>
+    <div><b>The call</b><p>Students check each claim in the warehouse, then write a reviewer's note: <span class="em">escalate</span> one, <span class="em">caveat</span> two, <span class="em">validate</span> one. On the record.</p></div>
+  </div>
+
+  <h3>Exhibit A, word for word</h3>
+  <p>This is the paragraph under review. Students see it on the student page and on slide 65. You'll read it aloud as the teammate would.</p>
+  <div class="exhibit rise">
+    <h4>Japan Product-Experience Analysis · IQOS, VEEV, and ZYN</h4>
+    <p>Across the Japan portfolio, connected-device engagement is strong. <mark>ZYN shows the highest daily device-engagement rate at 3.7 sessions per consumer</mark>, ahead of IQOS (2.9) and VEEV (2.4). Per-consumer telemetry confirms that <mark>94% of Japanese consumers are highly engaged with their devices</mark>. Recommendation: prioritize ZYN device-experience features in the next release, and <mark>market the engagement story to all age bands</mark> to <mark>sustain momentum</mark>.</p>
+    <div class="meta"><span>Generated with Claude</span><span>·</span><span>Draft · not yet reviewed</span><span>·</span><span>Recipient: brand team</span></div>
+  </div>
+
+  <h3 class="cards-h" style="--k:var(--gold)">The business words, decoded</h3>
+  <div class="wcards">
+    <div class="wcard biz"><h4>PMI · IQOS · VEEV · ZYN <small>the company and its products</small></h4><p>PMI (Philip Morris International) wants adult smokers to switch to smoke-free products. <b>IQOS</b> heats tobacco (a <b>device</b>). <b>VEEV</b> is an e-cigarette (a <b>device</b>). <b>ZYN</b> is a nicotine pouch you put under your lip: <b>no device, no electronics, nothing to log</b>.</p><p class="here">The whole session turns on that last fact. The warehouse's product list says it too: ZYN <code>has_device = false</code>.</p></div>
+    <div class="wcard biz"><h4>Japan · market <small>the country under review</small></h4><p>PMI calls each country a "market". Japan (<code>JP</code>) is a mature market: IQOS, VEEV and ZYN all sell there, and HORIZON has 3,000 Japanese consumers.</p><p class="here">Students met Japan in Session 2, where they learned its under-25 rule differs from Italy's. That pays off in Check 4.</p></div>
+    <div class="wcard biz"><h4>Product experience · engagement <small>how much people use it</small></h4><p>"Product experience" means how people actually use a product. "Engagement" is a loose word for how much and how often: sessions per day, minutes of use. Like "adoption" in Session 1, it means nothing until somebody defines it.</p><p class="here">The analysis says "highly engaged" and never defines it. That's one of the silences.</p></div>
+    <div class="wcard biz"><h4>Brand team <small>the readers</small></h4><p>The marketing people who own a product's image and campaigns. They'll read the paragraph once, believe it, and act on it: prioritise ZYN features, build a campaign.</p><p class="here">Whatever the reviewer doesn't flag, the brand team will treat as fact.</p></div>
+    <div class="wcard biz"><h4>Market to all age bands <small>who we target</small></h4><p>Marketing is aimed at age groups ("bands"): 18-24, 25-34, 35-44, 45-54, 55+. Some markets forbid marketing to the youngest band. In HORIZON: no under-25 marketing in Italy or Indonesia; Japan allows it, with permission (consent).</p><p class="here">Check 4. After the Italy case file, the room wants to flag this line. In Japan it's fine.</p></div>
+    <div class="wcard biz"><h4>Sustain momentum <small>a forecast in disguise</small></h4><p>"Keep the good trend going." It sounds like a description but it's a prediction about the future, and a prediction needs a trend in the data behind it.</p><p class="here">Check 5 (optional): the latest quarter actually went down.</p></div>
+    <div class="wcard biz"><h4>Segment · segmentation <small>slicing the customers</small></h4><p>Splitting consumers into groups (by age, product, region) to decide who gets which marketing. A "priority segment" is the group a recommendation says to target first.</p><p class="here">The Italy case file: Claude recommended Italy's 18-24 band as a priority segment, which is illegal to market to there.</p></div>
+    <div class="wcard biz"><h4>Consent · marketing permission <small>may we contact them?</small></h4><p>A person's yes or no to receiving marketing, one "permission slip" per channel (email, SMS, push, post), stored as <code>marketing_allowed</code> true or false in <code>mpl.consent_records</code>.</p><p class="here">Checks 4 and the Italy case file both count permission slips that say yes.</p></div>
+  </div>
+  <point>A teammate is about to hand a confident paragraph to the people who'll act on it. Nothing in it is a typo. Each defect is a thing it <b>doesn't say</b>: no device, no "out of how many", no trend. <b>Read for what's missing.</b></point>
+</section>
+
+<section class="part" id="tech" data-toc="The tech words">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 3 minutes</span>
+    <h2>The <span>tech words</span></h2>
+    <p class="dek">Data words (what the checks measure), judgment words (the kinds of defect, and the three verdicts), and the AI words for the demo. Each comes with an everyday picture.</p>
+  </div>
+
+  <h3 class="cards-h" style="--k:var(--blue)">Data and SQL words</h3>
+  <div class="wcards">
+    <div class="wcard tech"><h4>Telemetry <small>data a device sends home</small></h4><p>Connected devices (IQOS, VEEV) automatically report how they're used: how many sessions, how many minutes, which software version. In HORIZON that's the table <code>det.device_telemetry</code>.</p><p class="like">a fitness watch syncing your steps to the app. No watch, no steps.</p></div>
+    <div class="wcard tech"><h4>Session <small>one use</small></h4><p>One period of using the device, start to stop. Each telemetry row reports a count of sessions (<code>session_count</code>) and minutes (<code>usage_minutes</code>) for one device over one reporting period.</p><p class="here">"3.7 sessions per consumer" for ZYN: a pouch can't report sessions.</p></div>
+    <div class="wcard tech"><h4>Denominator <small>"out of how many?"</small></h4><p>The bottom half of a percentage. "94%" means 94 out of every 100 <i>of something</i>. Change the something (all consumers? device owners? people who logged in this month?) and the percentage changes.</p><p class="here">The claim says "94% of Japanese consumers". At most 79.7% of them even own a device.</p></div>
+    <div class="wcard tech"><h4>Coverage · anonymised <small>how much is tied to a person</small></h4><p>Some telemetry rows have no <code>consumer_id</code> on purpose, for privacy: we know a device was used, not by whom. Those rows are "anonymised". Coverage is the share that <i>can</i> be tied to a person.</p><p class="here">20.2% of Japan telemetry rows are anonymised. Any "per consumer" number covers the other 80% and has to say so.</p></div>
+    <div class="wcard tech"><h4>NULL <small>a blank cell, "unknown"</small></h4><p>An empty value. An anonymised telemetry row has <code>consumer_id</code> = NULL. In SQL you find blanks with <code>IS NULL</code>, never <code>= NULL</code>.</p><p class="here">Check 3 counts rows <code>WHERE consumer_id IS NULL</code>.</p></div>
+    <div class="wcard tech"><h4>GROUP BY · count(*) <small>one line per group</small></h4><p><code>count(*)</code> counts rows. <code>GROUP BY product_code</code> gives one result line per product. If a product has no rows at all, it simply doesn't appear: no zero, no warning, no line.</p><p class="here">Check 1 returns two lines (IQOS, VEEV), not three. The missing line is the dog that didn't bark.</p></div>
+    <div class="wcard tech"><h4>FILTER · round <small>counting a subset</small></h4><p><code>count(*) FILTER (WHERE …)</code> counts only the rows that match, alongside the total. <code>round(100.0 * a / b, 1)</code> turns "a out of b" into a percentage with one decimal.</p><p class="here">Checks 2 and 3 compute their percentages this way.</p></div>
+    <div class="wcard tech"><h4>Quarter · date_trunc <small>three-month buckets</small></h4><p><code>date_trunc('quarter', event_date)</code> rounds each date down to the first day of its quarter, so the result has one line per quarter: 2025-07-01 means Q3 2025, 2025-10-01 means Q4.</p><p class="here">Check 5 compares the last two quarters.</p></div>
+  </div>
+
+  <h3 class="cards-h" style="--k:var(--bad)">The judgment words</h3>
+  <div class="wcards">
+    <div class="wcard"><h4>Hallucination <small>confident and false</small></h4><p>A fluent, specific statement that isn't true. Here, a number for data that doesn't exist. It reads exactly as credibly as the real numbers next to it.</p><p class="here">ZYN 3.7 sessions. Check 1.</p></div>
+    <div class="wcard"><h4>False precision <small>a precise number on shaky ground</small></h4><p>"94%" sounds measured. But it's computed over a population that can't support it, with no stated denominator or definition of "highly engaged". Precision isn't accuracy.</p><p class="here">The 94% claim. Checks 2 and 3.</p></div>
+    <div class="wcard"><h4>Bias <small>a systematic skew</small></h4><p>A consistent tilt in who's included or left out: a group policy excludes that got included, or a legitimate group that got silently dropped. It never announces itself.</p><p class="here">The Italy case file (an illegal segment included) and Check 4 (the risk of dropping a legal one).</p></div>
+    <div class="wcard"><h4>Over-correction <small>fixing a bias with a blanket ban</small></h4><p>After seeing the Italy problem, banning under-25s everywhere. That throws away a legitimate audience in Japan. The fix is "check the rule for this market", not "ban the band".</p><p class="here">Check 4 is the trap: most of the room will want to flag the age-band line.</p></div>
+    <div class="wcard"><h4>Unsupported forecast <small>prediction without evidence</small></h4><p>Forward-looking words ("sustain momentum", "will continue to grow") with no trend data behind them.</p><p class="here">Check 5: sessions fell 19% in the last quarter.</p></div>
+    <div class="wcard wide"><h4>Validate · caveat · escalate <small>the three verdicts</small></h4><p><b>Validate</b>: it holds; say what proved it. <b>Caveat</b>: it's true-ish but needs a stated limit, written on the analysis itself. <b>Escalate</b>: a defect someone must own and fix upstream; never a quiet edit. The opposite of all three is the <b>silent fix</b>: deleting the bad line and shipping the rest. It hides the pattern, so the same prompt produces the same defect next week.</p><p class="here">Step 3. ZYN: escalate. 94% and momentum: caveat. All age bands: validate (for Japan).</p></div>
+  </div>
+
+  <h3 class="cards-h" style="--k:#8B5CF6">AI words</h3>
+  <div class="wcards">
+    <div class="wcard ai"><h4>Second-model review <small>a fresh pair of eyes</small></h4><p>Pasting the output into a new chat and asking the model to act as a skeptical reviewer. With no stake in the story, it often spots what the first chat invented. Its review is still a list of <i>suspicions</i>, not evidence.</p><p class="here">The optional prompt in Step 1.</p></div>
+    <div class="wcard ai"><h4>Context rot <small>long chats get worse</small></h4><p>Models get less reliable as the conversation gets longer. In 2025 Chroma tested 18 models: every one degraded as the input grew. So: new task, new chat.</p><p class="here">A 2-minute concept slide (74) before the demo.</p></div>
+    <div class="wcard ai"><h4>MCP <small>Model Context Protocol</small></h4><p>An open standard for plugging tools and data into an AI app, "a USB-C port for AI". With an MCP connector, Claude can run a SQL query against the warehouse itself instead of a human carrying it across.</p><p class="here">Your 5-minute live demo. Students watch; nothing is installed on their VMs.</p></div>
+    <div class="wcard ai"><h4>Read-only · permission dialog <small>the locks</small></h4><p><b>Read-only</b>: the connector may only read (SELECT), never change or delete. <b>Permission dialog</b>: Claude Desktop stops and asks the human before the model uses a tool. Clicking "always allow" removes that question forever.</p><p class="here">The demo ends with the connector refusing a DELETE.</p></div>
+  </div>
+  <point>Every defect in Exhibit A has a name: a <b>hallucination</b> (ZYN), <b>false precision</b> (94%), an <b>unsupported forecast</b> (momentum), and one tempting <b>over-correction</b> (age bands). None of them barks. <b>Read for what's missing</b>, then name it.</point>
+</section>
+
+<section class="part" id="data" data-toc="The data, drawn">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 2 minutes</span>
+    <h2>The data, <span>drawn</span></h2>
+    <p class="dek">Four tables matter. Here they are with real rows from the warehouse.</p>
+  </div>
+
+  <h3>Table 1 · the device log: <code>det.device_telemetry</code></h3>
+  <div class="drawn">
+    <div class="drawn-tab">det.device_telemetry <em>"the device log"</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one device's usage report for one period</b>. 20,463 Japan rows: IQOS 13,052 and VEEV 7,411. <b>No ZYN rows. Ever.</b></div>
+      <table><thead><tr><th>telemetry_id</th><th>device_id</th><th>consumer_id</th><th>product</th><th>event_date</th><th>session_count</th><th>usage_minutes</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>DEV-JP-000002</td><td>2</td><td>IQOS</td><td>2025-07-10</td><td>62</td><td>225.8</td><td class="note">consumer 2's IQOS reported 62 sessions</td></tr>
+        <tr><td>2</td><td>DEV-JP-000002</td><td>2</td><td>IQOS</td><td>2025-08-02</td><td>63</td><td>157.5</td><td class="note">same device, next report</td></tr>
+        <tr><td>3</td><td>DEV-JP-000002</td><td>2</td><td>IQOS</td><td>2025-08-31</td><td>57</td><td>189.5</td><td class="note">and the next</td></tr>
+        <tr><td>4</td><td>DEV-JP-000003</td><td>3</td><td>IQOS</td><td>2024-05-11</td><td>48</td><td>145.2</td><td class="note">consumer 3's device</td></tr>
+        <tr><td>5</td><td>DEV-JP-000003</td><td>3</td><td>IQOS</td><td>2024-05-31</td><td>39</td><td>136.2</td><td class="note"></td></tr>
+        <tr class="hi"><td>6</td><td>DEV-JP-000004</td><td class="null">NULL</td><td>IQOS</td><td>2025-09-27</td><td>76</td><td>288.0</td><td class="note">anonymised: real use, but we may not know whose</td></tr>
+        <tr><td>7</td><td>DEV-JP-000004</td><td>4</td><td>IQOS</td><td>2025-10-24</td><td>24</td><td>73.2</td><td class="note">the same device, this time tied to consumer 4</td></tr>
+        <tr><td>8</td><td>DEV-JP-000005</td><td>5</td><td>IQOS</td><td>2024-09-13</td><td>35</td><td>71.3</td><td class="note">consumer 5's device</td></tr>
+        <tr class="more"><td colspan="8">… 20,455 more Japan rows (and Italy and Indonesia rows too)</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Row 6 is the <b>anonymised</b> kind: 4,143 of Japan's 20,463 rows (20.2%) have a blank consumer_id by design. And notice the <b>product</b> column: you could scroll all 20,463 rows and never see ZYN.</p>
+  </div>
+
+  <h3>Table 2 · the people: <code>clr.consumers</code>, Japan only</h3>
+  <div class="drawn">
+    <div class="drawn-tab">clr.consumers <em>Japan, counted by product</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one consumer</b>. Each has one <code>primary_product_interest</code>: the product they're a customer of.</div>
+      <table><thead><tr><th>primary_product_interest</th><th>consumers</th><th>has a device?</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr class="hi"><td>IQOS</td><td>1,497</td><td class="t">yes</td><td class="note">telemetry shows 1,497 IQOS devices: one each</td></tr>
+        <tr class="hi"><td>VEEV</td><td>894</td><td class="t">yes</td><td class="note">894 VEEV devices</td></tr>
+        <tr><td>ZYN</td><td>609</td><td class="f">no</td><td class="note">a pouch: nothing to log, ever</td></tr>
+        <tr class="total"><td>all Japan</td><td>3,000</td><td></td><td class="note">device owners: 1,497 + 894 = 2,391, which is 79.7%</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">The telemetry agrees: only <b>2,385</b> different Japanese consumers ever appear in it (1,493 IQOS + 892 VEEV), all of them device customers. Not one ZYN customer.</p>
+  </div>
+
+  <h3>Table 3 · the product list: <code>ref.products</code></h3>
+  <div class="drawn small" style="max-width:560px">
+    <div class="drawn-tab">ref.products <em>"what each product is"</em></div>
+    <div class="drawn-box">
+      <table><thead><tr><th>product_code</th><th>category</th><th>has_device</th></tr></thead>
+      <tbody>
+        <tr><td>IQOS</td><td>Heated Tobacco</td><td class="t">true</td></tr>
+        <tr><td>VEEV</td><td>Vapor</td><td class="t">true</td></tr>
+        <tr><td>ZYN</td><td>Oral Nicotine</td><td class="f">false</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">The warehouse says it in one word: ZYN <b>has_device = false</b>.</p>
+  </div>
+
+  <h3>Table 4 · the under-25 rule, three markets: <code>mpl.consent_records</code></h3>
+  <div class="drawn">
+    <div class="drawn-tab">mpl.consent_records <em>permission slips of 18 to 24 year olds, by market</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one person's yes or no for one channel</b>. Counted here for the 18-24 band only.</div>
+      <table><thead><tr><th>market</th><th>slips that say yes</th><th>all slips</th><th>share yes</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr><td>IT · Italy</td><td>0</td><td>624</td><td class="f">0%</td><td class="note">under-25 marketing forbidden</td></tr>
+        <tr><td>ID · Indonesia</td><td>0</td><td>462</td><td class="f">0%</td><td class="note">forbidden (Sessions 1 and 3)</td></tr>
+        <tr class="good"><td>JP · Japan</td><td>675</td><td>924</td><td class="t">73.05%</td><td class="note">allowed, with permission (Session 2)</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Same age band, two different rules. Counted as people instead of slips, 319 of Japan's 359 under-25s have at least one "yes". Say "allowed in Japan, zero in Italy and Indonesia" and nobody can nitpick.</p>
+  </div>
+  <point>The data isn't hiding anything. ZYN's missing row, the 609 people with no device, the blank consumer ids, Japan's 73%: all of it is sitting in plain sight. The analysis just <b>never said any of it</b>. That's the silence students learn to hear.</point>
+</section>
+
+<section class="part" id="traps" data-toc="The five checks, drawn">
+  <div class="part-h">
+    <span class="eyebrow">Understand it · 2 minutes</span>
+    <h2>The five checks, <span>drawn</span></h2>
+    <p class="dek">One check per claim (two for the 94%). If you can explain these five pictures, you can teach the session.</p>
+  </div>
+
+  <h3>Check 1 · The hallucination: the missing line</h3>
+  <div class="drawn small" style="max-width:600px">
+    <div class="drawn-tab">what the query returns <em>Japan telemetry rows, by product</em></div>
+    <div class="drawn-box">
+      <table><thead><tr><th>product_code</th><th>telemetry_rows</th></tr></thead>
+      <tbody>
+        <tr><td>IQOS</td><td>13052</td></tr>
+        <tr><td>VEEV</td><td>7411</td></tr>
+        <tr class="gone"><td>ZYN</td><td>(no line at all)</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Two lines come back, not three. The analysis gave ZYN the <b>highest</b> engagement, 3.7 sessions, from data that doesn't exist.</p>
+  </div>
+
+  <h3>Check 2 · The denominator: 94% of what?</h3>
+  <figure class="diagram">
+    <svg viewBox="0 0 800 230" role="img" aria-label="A bar of Japan's 3,000 consumers. 2,391 own an IQOS or VEEV device, 79.7 percent; 609 are ZYN customers with no device. A dashed red line at 94 percent, 2,820 consumers, sits well past the last device owner.">
+      <text class="dg-s" x="40" y="26">Japan's 3,000 consumers in HORIZON</text>
+      <rect class="dg-info" x="40" y="44" width="526" height="70" rx="6"/>
+      <rect class="dg-box" x="566" y="44" width="134" height="70" rx="6"/>
+      <text class="dg-t" x="56" y="76">2,391 own an IQOS or VEEV device</text>
+      <text class="dg-s" x="56" y="98">the only people who could have device telemetry</text>
+      <text class="dg-t" x="578" y="76">609 ZYN</text>
+      <text class="dg-s" x="578" y="98">no device</text>
+      <text class="dg-s" x="40" y="134">0</text>
+      <text class="dg-s" x="700" y="134" text-anchor="end">3,000</text>
+      <line class="dg-line-hue" x1="566" y1="36" x2="566" y2="190"/>
+      <text class="dg-t dg-hue-t" x="558" y="168" text-anchor="end">79.7% · the ceiling</text>
+      <text class="dg-s" x="558" y="186" text-anchor="end">every device owner counted</text>
+      <line class="dg-line-bad" x1="660" y1="30" x2="660" y2="220" stroke-dasharray="7 5"/>
+      <text class="dg-t dg-bad-t" x="670" y="168">94% claimed</text>
+      <text class="dg-s" x="670" y="186">= 2,820 people</text>
+      <text class="dg-s" x="670" y="204">impossible</text>
+    </svg>
+    <figcaption>"94% of Japanese consumers are highly engaged with their devices." Even if <b>every single device owner</b> were highly engaged, the most it could be is <b>79.7%</b>. The claim never stated its denominator, and the one it implied doesn't fit.</figcaption>
+  </figure>
+  <p>The waffle below shows the same thing one dot per person (it's the student page's widget):</p>
+  <figure class="fig" style="margin-top:0">
+    <div class="fig-card">
+      <p class="fig-t">Japan's 3,000 consumers, one dot each</p>
+      <div class="waffle-key"><span><i style="background:var(--c-main)"></i>IQOS or VEEV: own a device (2,391)</span><span><i style="background:var(--c-dim)"></i>ZYN: a pouch, no device (609)</span><span><i style="border:2px dashed var(--bad);width:14px;height:12px"></i>where "94%" would have to end</span></div>
+      <div class="waffle-wrap" style="margin-top:12px"><canvas data-widget="waffle" data-total="3000" data-dev="2391" data-claim="2820" role="img" aria-label="3,000 dots for Japan's consumers: 2,391 own an IQOS or VEEV device, 609 are ZYN consumers with no device. A dashed line marks where 94 percent, 2,820 consumers, would have to end, well past the last device owner."></canvas></div>
+    </div>
+  </figure>
+  <div class="callout note"><span class="box-lbl">Why it's a caveat, not an escalate</span><p>2,385 of the 2,391 device owners do appear in the telemetry. So a <i>rewritten</i> claim, "X% of device owners used their device at least N times a week", with N defined, could well be true. The fix is to state the real denominator and define "highly engaged". That's a caveat: the claim survives, rewritten. ZYN can't be rewritten into truth, so that one is an escalate.</p></div>
+
+  <h3>Check 3 · The coverage gap</h3>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">Japan telemetry rows: 20,463</p><p class="fig-s">Real device activity, one in five rows tied to nobody.</p>{{CHART:s4-coverage}}</div></figure>
+  <p>4,143 rows (20.2%) have no consumer. 16,320 (79.8%) do. So any "per-consumer" engagement number is computed on four rows in five, and has to say so on the page. "Per-consumer telemetry confirms…" doesn't say so.</p>
+
+  <h3>Check 4 · The over-correction trap</h3>
+  <figure class="fig"><div class="fig-card anim"><p class="fig-t">Under-25 permission slips that allow marketing, by market</p><p class="fig-s">The same band, three different rules.</p>{{CHART:s4-under25}}</div></figure>
+  <div class="vs">
+    <div class="wrong"><span class="k">The over-correction</span><p>"Italy taught us under-25s are off limits. Flag 'all age bands'." That throws away 319 legitimate Japanese consumers who said yes.</p></div>
+    <div class="right"><span class="k">The judgment</span><p>"Check the rule for <i>this</i> market." In Japan, 73% of under-25 slips say yes. The line is valid. (The engagement story it would market is still fake, but that's the ZYN problem, not the age problem.)</p></div>
+  </div>
+
+  <h3>Check 5 · "Sustain momentum": which way is it going?</h3>
+  <div class="drawn">
+    <div class="drawn-tab">Japan telemetry by quarter <em>the last three quarters</em></div>
+    <div class="drawn-box">
+      <table><thead><tr><th>quarter</th><th>sessions</th><th>devices reporting</th><th>sessions per device</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr><td>2025-Q2</td><td>139,252</td><td>1,329</td><td>104.8</td><td class="note">the peak</td></tr>
+        <tr><td>2025-Q3</td><td>137,824</td><td>1,315</td><td>104.8</td><td class="note">flat</td></tr>
+        <tr class="hi"><td>2025-Q4</td><td>112,164</td><td>966</td><td>116.1</td><td class="note">total down 19%: fewer devices reporting, not less use per device</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Each device that reports is used <b>more</b>, but a quarter of the devices stopped reporting. Is that people quitting (churn), or a batch of data that hasn't arrived yet? <b>You can't tell from here.</b> Either way, "sustain momentum" needs a caveat or a question to the data owners.</p>
+  </div>
+  <point>Five checks, five silences: no device, no denominator, no coverage note, no market context, no trend. <b>Every defect was something the output didn't say.</b> And one thing it didn't say (the Japan rule) turned out fine: listening for silence isn't the same as assuming the worst.</point>
+</section>
+
+<div class="zone" id="z-walk"><b>Walk the lab</b><span>Each step: what students do, what they see, what it means, what you say.</span><i>7 min</i></div>
+
+<section class="part" id="opener" data-toc="Opener · cases, Holmes, Italy" data-toc-grp="Walk the lab · 7 min">
+  <div class="part-h">
+    <span class="eyebrow">Walk the lab · 1.5 minutes · class time 3:00 to 3:11 · slides 62 to 67</span>
+    <h2>Opener: <span>cases, Holmes, Italy</span></h2>
+    <p class="dek">Eleven minutes before the lab: a hallucination icebreaker, the theme as a 30-second story, the exhibit, and a case file that plants the trap.</p>
+  </div>
+  <h3>Icebreaker 3 · which court case is real? (slide 62, 4 min)</h3>
+  <div class="lanes">
+    <lane you><p>Show four airline court cases "cited in a real US lawsuit": <b>A</b> Varghese v. China Southern Airlines · <b>B</b> El Al Israel Airlines v. Tsui Yuan Tseng · <b>C</b> Shaboon v. EgyptAir · <b>D</b> Petersen v. Iran Air.</p></lane>
+    <lane do><p>Type in the chat the letters they think are real ("A and B", "all four", "none").</p></lane>
+    <lane see><p>Most pick at least one fake. <b>Only B is real</b> (US Supreme Court, 1999). A, C and D were invented by ChatGPT, complete with quotes and page numbers, and filed by lawyers in <b>Mata v. Avianca</b> (New York, 2023). The judge fined them $5,000. A public database now tracks over 2,200 court cases with hallucinated content.</p></lane>
+    <lane say><p>"Every citation looked identical. A hallucinated source doesn't bark. In twenty minutes you'll meet a hallucinated <i>data</i> source."</p></lane>
+  </div>
+  <p>Drop the <a href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener">AI Hallucination Cases database</a> link in the chat. Then slide 63's mindset chat: "Last AI output you double-checked: what did you actually look at?" (label · score · source · description · nothing · deadline).</p>
+
+  <h3>The theme · Silver Blaze (slide 64, 30 seconds)</h3>
+  <p>Tell it as a story, not a quote. A champion racehorse vanishes overnight; its trainer is found dead; the police suspect a stranger. Inspector Gregory asks Sherlock Holmes if anything else deserves attention:</p>
+  <div class="silver">
+    <p><span>Holmes</span>"To the curious incident of the dog in the night-time."</p>
+    <p><span>Gregory</span>"The dog did nothing in the night-time."</p>
+    <p><span>Holmes</span>"That was the curious incident."</p>
+  </div>
+  <p>Pause before the last line. Then: the dog didn't bark, so the thief was someone the dog knew. The clue was what <i>didn't</i> happen. <span class="said">"AI outputs never bark about their own defects. This morning, what you didn't say, the model made up. Now: what it doesn't say, you have to find."</span></p>
+
+  <h3>The exhibit and the concepts (slides 65 and 66)</h3>
+  <p>Read <a href="#story">Exhibit A</a> aloud as the teammate would: quickly, confidently. Chat: <b>"One word: which claim worries you most? ZYN · 94% · age bands · momentum · none."</b> Then the two concepts: a polished output isn't a validated one; and validate, caveat or escalate, never silently fix.</p>
+
+  <h3>The Italy case file (slide 67, 2 min)</h3>
+  <p>The vendor's demo for this course, told as a story. A Claude-generated segmentation of Italian consumers recommended the 18-24 band as a "priority" marketing target. The count was honest:</p>
+  <figure class="fig">
+    <div class="fig-card anim">
+      <p class="fig-t">Italy consumers and marketable consumers, by age band</p>
+      <div class="legend"><span><i style="--k:var(--c-dim)"></i>Consumers</span><span><i style="--k:var(--c-good)"></i>Marketable</span></div>
+      {{CHART:s4-italy-bands}}
+    </div>
+  </figure>
+  <div class="tbl-wrap"><table class="res"><thead><tr><th>age_band</th><th class="num">consumers</th><th class="num">marketable consumers</th></tr></thead><tbody>
+    <tr class="bad"><td>18-24 · "priority"</td><td class="num">249</td><td class="num">0</td></tr><tr><td>25-34</td><td class="num">594</td><td class="num">514</td></tr><tr><td>35-44</td><td class="num">570</td><td class="num">484</td></tr><tr><td>45-54</td><td class="num">353</td><td class="num">303</td></tr><tr><td>55+</td><td class="num">234</td><td class="num">194</td></tr></tbody></table></div>
+  <div class="lanes">
+    <lane mean><p>249 real people, a real count, and <b>zero</b> of them may be marketed to (EU age rule). The bar looked exactly like the others. The chart never barked.</p></lane>
+    <lane say><p>"An honest count. A non-compliant target. Now hold this question: does the same rule hold in <i>Japan</i>? The lab has a trap for over-correctors."</p></lane>
+  </div>
+  <chat hints="delete|escalate">Deleting Italy's under-25 bar quietly, or escalating it: which one stops next quarter's segmentation from doing the same?</chat>
+  <point>The opener teaches the ear before the lab: hallucinated cases look like real ones, the clue can be an absence, and an honest number can still be the wrong target. <b>Read for what's missing.</b></point>
+</section>
+
+<section class="part" id="step1" data-toc="Step 1 · Listen for the silence">
+  <div class="part-h">
+    <span class="eyebrow">Step 1 · 6 min · class time 3:11 · slides 68 and 69 · Sonnet (optional)</span>
+    <h2>Listen for <span>the silence</span></h2>
+    <p class="dek">Don't look for typos. For each claim, write what it never says, and the check that would settle it.</p>
+  </div>
+  <div class="lanes">
+    <lane do><p>On the student page, a table with four claims and two empty columns: "what it never says" and "the check". Fill it in together as a room (you type, they shout or chat).</p></lane>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Claim</th><th>What it never says</th><th>The check</th></tr></thead><tbody>
+    <tr><td>ZYN 3.7 sessions per consumer</td><td>ZYN has no device. Where did session data come from?</td><td>Does <code>det.device_telemetry</code> have any ZYN rows?</td></tr>
+    <tr><td>94% highly engaged</td><td>Out of whom? How many consumers even have a device? How much telemetry is tied to a person? What's "highly"?</td><td>Device owners vs all consumers; anonymised share</td></tr>
+    <tr><td>Market to all age bands</td><td>Is under-25 marketing allowed <i>in Japan</i>?</td><td>Under-25 consent share by market</td></tr>
+    <tr><td>Sustain momentum</td><td>What trend? Over which window?</td><td>Sessions over time, latest quarter included</td></tr>
+  </tbody></table></div>
+  <p class="fig-s">That's the answer key. Don't show it; let the room build it. The student page hides it behind a reveal.</p>
+  <chat hints="ZYN|94%|age bands|momentum|none">One word: which claim worries you most?</chat>
+  <h3>Optional (only if on time): a second opinion from a second model</h3>
+  <div class="lanes">
+    <lane do><p>New chat (so the model has no stake in the story). Paste:</p></lane>
+  </div>
+  <prompt model="sonnet" note="New chat">
+Act as a skeptical reviewer at PMI. For the analysis below, list every factual claim, the data each claim would need, and anything the analysis does NOT say that a reviewer would need to know. Do not rewrite the analysis.
+
+"Across the Japan portfolio, connected-device engagement is strong. ZYN shows the highest daily device-engagement rate at 3.7 sessions per consumer, ahead of IQOS (2.9) and VEEV (2.4). Per-consumer telemetry confirms that 94% of Japanese consumers are highly engaged with their devices. Recommendation: prioritize ZYN device-experience features in the next release, and market the engagement story to all age bands to sustain momentum."
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Part of the prompt</th><th>What it does</th></tr></thead><tbody>
+    <tr><td>New chat</td><td>A clean context: the reviewer didn't write the story, so it isn't defending it. (Context rot, later, is the same idea.)</td></tr>
+    <tr><td>"Act as a skeptical reviewer at PMI"</td><td>Gives it a job: find problems, not polish prose.</td></tr>
+    <tr><td>"list every factual claim, the data each claim would need"</td><td>Turns a paragraph into a checklist of things to prove.</td></tr>
+    <tr><td>"anything the analysis does NOT say"</td><td>Asks it, literally, to listen for the dog that didn't bark.</td></tr>
+    <tr><td>"Do not rewrite the analysis"</td><td>A rewrite would hide the defects in nicer prose. We want them listed.</td></tr>
+  </tbody></table></div>
+  <div class="lanes">
+    <lane see><p>Usually a good review: it flags that ZYN is a nicotine pouch with no device, asks how "94%" and "highly engaged" were defined, and asks what supports "momentum". It may or may not raise the age rule.</p></lane>
+    <lane mean><p>A fresh model is a good <i>suspicion generator</i>. But its review is still a list of suspicions. A suspicion becomes evidence only when a query confirms it.</p></lane>
+    <lane say><p>"Good reviewer. Now: is anything it said evidence? No. It's a to-do list for the warehouse."</p></lane>
+  </div>
+  <point>Step 1 trains the ear: four claims, four silences, four checks, before a single query runs. <b>Read for what's missing</b>, and write the question down.</point>
+</section>
+
+<section class="part" id="step2" data-toc="Step 2 · Confirm (five checks)">
+  <div class="part-h">
+    <span class="eyebrow">Step 2 · 11 min · class time 3:17 · slides 70 to 72 · no model</span>
+    <h2>Confirm <span>each suspicion</span></h2>
+    <p class="dek">No Claude in this step. Five short queries straight from the student page into SQLTools. Predict each in the chat first, then run, then reveal (press R on the slide).</p>
+  </div>
+
+  <h3>Check 1 · The hallucination</h3>
+  <div class="lanes"><lane do><p>Predict: <b>"How many ZYN rows are in Japan's device telemetry?"</b> Run:</p></lane></div>
+  <sql note="Check 1 · expect 2 lines: IQOS 13052, VEEV 7411">
+SELECT product_code, count(*) AS telemetry_rows
+FROM det.device_telemetry
+WHERE market_code = 'JP'
+GROUP BY product_code
+ORDER BY product_code;
+  </sql>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>SELECT product_code, count(*) AS telemetry_rows</code></td><td>Show each product and how many device reports it has.</td></tr>
+    <tr><td><code>FROM det.device_telemetry</code></td><td>The device log.</td></tr>
+    <tr><td><code>WHERE market_code = 'JP'</code></td><td>Japan only.</td></tr>
+    <tr><td><code>GROUP BY product_code ORDER BY product_code</code></td><td>One line per product, alphabetical. A product with no rows gets no line.</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>IQOS 13052 · VEEV 7411</b><span>The expected result: two lines, no ZYN. ZYN has no device, so it can't generate telemetry. "3.7 sessions" is invented.</span></div>
+    <div class="warn"><b>3 lines incl. ZYN</b><span>Can't happen in HORIZON. If someone sees it, they removed the <code>WHERE</code> or are on a different database: check the connection.</span></div>
+  </div>
+  <div class="lanes">
+    <lane say><p>"Two lines, not three. That missing line is the dog that didn't bark. And look how credible 3.7 sat next to 2.9 and 2.4. That's why it's the most dangerous defect: nothing in the prose barks. Confidence it's a defect: high, because the check is direct."</p></lane>
+  </div>
+
+  <h3>Check 2 · The denominator (the big reveal)</h3>
+  <div class="lanes"><lane do><p>Predict: <b>"HORIZON has 3,000 Japan consumers. What's the highest share of them that could possibly have device telemetry?"</b> Run:</p></lane></div>
+  <sql note="Check 2 · expect 3000 · 2391 · 609 · 79.7">
+SELECT count(*)                                                             AS jp_consumers,
+       count(*) FILTER (WHERE primary_product_interest IN ('IQOS', 'VEEV')) AS device_consumers,
+       count(*) FILTER (WHERE primary_product_interest = 'ZYN')             AS no_device_consumers,
+       round(100.0 * count(*) FILTER (WHERE primary_product_interest IN ('IQOS', 'VEEV')) / count(*), 1) AS max_pct_with_device
+FROM clr.consumers
+WHERE market_code = 'JP';
+  </sql>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>count(*) AS jp_consumers</code></td><td>Everyone in Japan: 3,000.</td></tr>
+    <tr><td><code>count(*) FILTER (WHERE primary_product_interest IN ('IQOS','VEEV'))</code></td><td>Only IQOS or VEEV customers: the people who own a device.</td></tr>
+    <tr><td><code>count(*) FILTER (WHERE primary_product_interest = 'ZYN')</code></td><td>ZYN customers: no device.</td></tr>
+    <tr><td><code>round(100.0 * … / count(*), 1)</code></td><td>Device owners as a percentage of everyone, one decimal.</td></tr>
+    <tr><td><code>FROM clr.consumers WHERE market_code = 'JP'</code></td><td>The people list, Japan only.</td></tr>
+  </tbody></table></div>
+  <div class="answer"><span class="big">79.7%</span><span class="cap">is the ceiling. The claim said 94%.<span><code>3000 · 2391 · 609 · 79.7</code></span></span></div>
+  <div class="lanes">
+    <lane see><p>Most guesses are 90% or more (the room has been anchored by "94%"). The answer is 79.7%.</p></lane>
+    <lane mean><p>"94% of <b>Japanese consumers</b> are highly engaged with their devices" isn't just unproven. It's <b>arithmetically impossible</b>: one in five Japanese consumers doesn't own a device. The model never stated a denominator, and the one it implied doesn't fit.</p></lane>
+    <lane say><p>(Pause. Let the number sit for a beat. Then:) "Even if every single device owner were obsessed with their device, the most it could be is 79.7. Nobody asked '94% of what?'"</p></lane>
+  </div>
+  <p>Draw playbook sketch 5 now: a bar of 3,000 split 2,391 / 609, and a dashed red line at 94% hanging past the device owners: "impossible".</p>
+
+  <h3>Check 3 · The coverage gap</h3>
+  <div class="lanes"><lane do><p>Predict: <b>"What share of Japan telemetry rows can't be tied to any consumer?"</b> Run:</p></lane></div>
+  <sql note="Check 3 · expect 4143 · 20463 · 20.2">
+SELECT count(*) FILTER (WHERE consumer_id IS NULL)                              AS anonymised_rows,
+       count(*)                                                                 AS total_rows,
+       round(100.0 * count(*) FILTER (WHERE consumer_id IS NULL) / count(*), 1) AS pct_anonymised
+FROM det.device_telemetry
+WHERE market_code = 'JP';
+  </sql>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>count(*) FILTER (WHERE consumer_id IS NULL)</code></td><td>Device reports with no person attached (anonymised).</td></tr>
+    <tr><td><code>count(*) AS total_rows</code></td><td>All Japan device reports.</td></tr>
+    <tr><td><code>round(100.0 * … / count(*), 1)</code></td><td>The anonymised share, as a percentage.</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>4143 · 20463 · 20.2</b><span>One row in five is real device use that can't be tied to a person, by design (privacy). Any per-consumer rate covers the other 80% and must say so.</span></div>
+    <div class="bad"><b>0 · 20463 · 0.0</b><span>They wrote <code>consumer_id = NULL</code> instead of <code>IS NULL</code>. "= NULL" is never true in SQL. Same blank-value lesson as Session 1's silent zero.</span></div>
+  </div>
+
+  <h3>Check 4 · The over-correction trap</h3>
+  <div class="lanes">
+    <lane say><p>"'Market the engagement story to all age bands.' After the Italy case file, every instinct says flag it. Decide first: flag it, or let it through? Type it."</p></lane>
+    <lane do><p>Chat: <b>flag</b> or <b>through</b>. Then run:</p></lane>
+  </div>
+  <sql note="Check 4 · expect ID 0.00 · IT 0.00 · JP 73.05">
+SELECT c.market_code,
+       round(100.0 * avg(m.marketing_allowed::int), 2) AS pct_under25_consent_rows_allowed
+FROM clr.consumers c
+JOIN mpl.consent_records m USING (consumer_id)
+WHERE c.age_band = '18-24'
+GROUP BY c.market_code
+ORDER BY c.market_code;
+  </sql>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>FROM clr.consumers c JOIN mpl.consent_records m USING (consumer_id)</code></td><td>Each person glued to each of their permission slips.</td></tr>
+    <tr><td><code>WHERE c.age_band = '18-24'</code></td><td>Only the under-25 band.</td></tr>
+    <tr><td><code>m.marketing_allowed::int</code></td><td>Turns true/false into 1/0, so the average is the share that say yes.</td></tr>
+    <tr><td><code>round(100.0 * avg(…), 2)</code></td><td>That share as a percentage, two decimals.</td></tr>
+    <tr><td><code>GROUP BY c.market_code</code></td><td>One line per country.</td></tr>
+  </tbody></table></div>
+  <div class="results">
+    <div class="good"><b>ID 0.00 · IT 0.00 · JP 73.05</b><span>In Japan the age-band line is <b>valid</b>. Flagging it would throw away a legitimate audience because of Italy's rule.</span></div>
+  </div>
+  <div class="lanes">
+    <lane see><p>Most of the room votes "flag". Ground Truth scores a point.</p></lane>
+    <lane say><p>"Bias-aware judgment is 'check the context for this market', not 'ban the band everywhere'. The engagement story it would market is still a hallucination, so the recommendation as a whole doesn't survive. But the age-band logic does."</p></lane>
+  </div>
+
+  <h3>Check 5 (optional, only if on time) · "Sustain momentum"</h3>
+  <div class="lanes"><lane do><p>Predict: <b>"Is Japan device engagement rising, flat or falling in the latest quarter?"</b> Run:</p></lane></div>
+  <sql note="Check 5 · 8 lines, one per quarter">
+SELECT date_trunc('quarter', event_date)::date                           AS quarter,
+       sum(session_count)                                                AS sessions,
+       count(DISTINCT device_id)                                         AS devices_reporting,
+       round(sum(session_count)::numeric / count(DISTINCT device_id), 1) AS sessions_per_device
+FROM det.device_telemetry
+WHERE market_code = 'JP'
+GROUP BY 1
+ORDER BY 1;
+  </sql>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Line</th><th>In plain English</th></tr></thead><tbody>
+    <tr><td><code>date_trunc('quarter', event_date)::date AS quarter</code></td><td>Round each date to the start of its quarter.</td></tr>
+    <tr><td><code>sum(session_count) AS sessions</code></td><td>All sessions reported in that quarter.</td></tr>
+    <tr><td><code>count(DISTINCT device_id) AS devices_reporting</code></td><td>How many different devices sent a report.</td></tr>
+    <tr><td><code>sessions / devices</code></td><td>Average use per reporting device.</td></tr>
+  </tbody></table></div>
+  <div class="duo">
+    <figure class="fig" style="margin:0"><div class="fig-card anim"><p class="fig-t">Device sessions</p><p class="fig-s">Japan, by quarter</p>{{CHART:s4-sessions}}</div></figure>
+    <figure class="fig" style="margin:0"><div class="fig-card anim"><p class="fig-t">Devices reporting</p><p class="fig-s">Japan, by quarter</p>{{CHART:s4-devices}}</div></figure>
+  </div>
+  <div class="results">
+    <div class="bad"><b>Q3 137,824 → Q4 112,164</b><span>Sessions fell 19% because devices reporting fell 1,315 → 966, while sessions per device rose (104.8 → 116.1). Churn, or late data? You can't tell from here.</span></div>
+  </div>
+  <div class="lanes">
+    <lane say><p>"Either way, 'sustain momentum' is forward-looking language the evidence doesn't support. It needs a caveat, or a question to the telemetry team before it ships. What would you ask them?"</p></lane>
+  </div>
+  <point>Five queries turned four suspicions into evidence: <b>0</b> ZYN rows, a <b>79.7%</b> ceiling on a 94% claim, <b>20%</b> anonymised, a falling last quarter, and one claim (<b>73%</b>) that survives. The output said none of it. <b>Read for what's missing</b>, then confirm.</point>
+</section>
+
+<section class="part" id="step3" data-toc="Step 3 · Make the call">
+  <div class="part-h">
+    <span class="eyebrow">Step 3 · 8 min · class time 3:28 · slide 73 · Sonnet</span>
+    <h2>Make <span>the call</span></h2>
+    <p class="dek">Decide each verdict as a room first. Then let Claude draft the reviewer's note.</p>
+  </div>
+  <div class="vce rise">
+    <div class="v ok"><b>Validate</b><span>It holds. Say what proved it.</span></div>
+    <div class="v cav"><b>Caveat</b><span>True-ish, but state the limit on the artifact.</span></div>
+    <div class="v esc"><b>Escalate</b><span>A defect someone must own. Never a silent fix.</span></div>
+  </div>
+  <div class="lanes">
+    <lane do><p>On the student page, a verdict board: one claim per row, three buttons. Students click their call, then see whether it matches. Try it here:</p></lane>
+  </div>
+  <div class="widget vboard" data-widget="verdicts">
+    <div class="widget-h"><span class="tag">The board</span><b>One call per claim</b><span class="sp">same widget as the student page</span></div>
+    <div class="widget-b">
+      <div class="claim" data-id="zyn" data-correct="escalate" data-why="0 ZYN telemetry rows; ZYN has no device. Remove the claim and the 'prioritise ZYN device features' recommendation, and flag the prompt that produced it. Confidence: high, direct check.">
+        <q>ZYN: 3.7 sessions per consumer → prioritise ZYN device features</q>
+        <div class="vbtns"><button type="button" data-v="validate">Validate</button><button type="button" data-v="caveat">Caveat</button><button type="button" data-v="escalate">Escalate</button></div>
+        <div class="fb"></div>
+      </div>
+      <div class="claim" data-id="94" data-correct="caveat" data-why="At most 79.7% of Japan consumers own a device, and 20% of telemetry is anonymised. Rewrite it with its real denominator. Confidence it's overstated: high.">
+        <q>94% of Japanese consumers are highly engaged</q>
+        <div class="vbtns"><button type="button" data-v="validate">Validate</button><button type="button" data-v="caveat">Caveat</button><button type="button" data-v="escalate">Escalate</button></div>
+        <div class="fb"></div>
+      </div>
+      <div class="claim" data-id="bands" data-correct="validate" data-why="73% of under-25 consent records allow marketing in Japan. Flagging it would be an over-correction (it's 0% in Italy and Indonesia). Confidence: high.">
+        <q>Market to all age bands</q>
+        <div class="vbtns"><button type="button" data-v="validate">Validate</button><button type="button" data-v="caveat">Caveat</button><button type="button" data-v="escalate">Escalate</button></div>
+        <div class="fb"></div>
+      </div>
+      <div class="claim" data-id="mom" data-correct="caveat" data-why="Sessions fell about 19% in 2025-Q4 because fewer devices reported. Churn or late data? Caveat it as an unsupported forecast and ask the data owners. Confidence: medium.">
+        <q>Sustain momentum</q>
+        <div class="vbtns"><button type="button" data-v="validate">Validate</button><button type="button" data-v="caveat">Caveat</button><button type="button" data-v="escalate">Escalate</button></div>
+        <div class="fb"></div>
+      </div>
+      <p class="score" aria-live="polite"></p>
+    </div>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Claim</th><th>Verdict, and why that one</th></tr></thead><tbody>
+    <tr class="bad"><td>ZYN 3.7 sessions → prioritise ZYN device features</td><td><b>Escalate.</b> It can't be rewritten into something true: there's no data at all. Remove the claim <i>and</i> the recommendation built on it, and flag the prompt that produced it so it doesn't happen again.</td></tr>
+    <tr><td>94% of Japanese consumers highly engaged</td><td><b>Caveat.</b> The idea may survive with the right denominator ("of device owners") and a definition of "highly engaged". Rewrite it.</td></tr>
+    <tr class="good"><td>Market to all age bands</td><td><b>Validate</b> (for Japan). 73% of under-25 permission slips say yes.</td></tr>
+    <tr><td>Sustain momentum</td><td><b>Caveat.</b> Sessions fell 19% in Q4. Label it an unsupported forecast; ask the data owners whether it's churn or late data. Confidence: medium.</td></tr>
+  </tbody></table></div>
+  <div class="lanes">
+    <lane do><p>Now Claude drafts the note. Students fill the two brackets in item 2 (79.7% and 20.2%) and paste:</p></lane>
+  </div>
+  <prompt model="sonnet" note="Fill the brackets first">
+Help me write a short reviewer's note on an AI-generated Japan product-experience analysis before it goes to the brand team. My warehouse findings:
+1. The analysis reports ZYN device-engagement (3.7 sessions per consumer), but ZYN is a pouch with no connected device and the warehouse has 0 ZYN telemetry rows. The claim is a hallucination, and the "prioritize ZYN device features" recommendation rests on it.
+2. It says "94% of Japanese consumers are highly engaged", but only [your %] of Japan consumers own a device at all, and [your %] of Japan telemetry rows are anonymised and cannot be tied to a consumer.
+3. "Market to all age bands" is acceptable in Japan, where about 73% of under-25 consent records allow marketing (unlike Italy and Indonesia, where it is 0%).
+4. "Sustain momentum": total device sessions fell about 19% in 2025-Q4 because fewer devices reported; it is unclear whether that is churn or late data.
+
+Write, in the brand team's language:
+- a one-line verdict,
+- a table with each claim, its verdict (validate, caveat or escalate), the evidence in one phrase, and a confidence label based on evidence quality (not on how sure the analysis sounded),
+- what must happen before this analysis ships, and who should own it,
+- one line saying the original prompt should be reviewed, because silently deleting the ZYN line would let the same prompt reproduce it.
+
+Respond in Markdown only — do not create a Word document or any file.
+  </prompt>
+  <h3>How to read that prompt</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Part</th><th>Why it's there</th></tr></thead><tbody>
+    <tr><td>"My warehouse findings: 1 … 4"</td><td>The evidence comes from the students' queries, not from Claude. Claude only writes it up.</td></tr>
+    <tr><td>The two [your %] brackets</td><td>Forces each student to put their own measured numbers in: 79.7 and 20.2.</td></tr>
+    <tr><td>"in the brand team's language"</td><td>No SQL jargon in the note: the readers are marketers.</td></tr>
+    <tr><td>"a confidence label based on evidence quality (not on how sure the analysis sounded)"</td><td>Confidence comes from how direct the check was, never from the tone of the original.</td></tr>
+    <tr><td>"what must happen before this ships, and who should own it"</td><td>An escalation needs an owner, or it's just a complaint.</td></tr>
+    <tr><td>"the original prompt should be reviewed…"</td><td>The anti-silent-fix line: fix the source, not just this copy.</td></tr>
+  </tbody></table></div>
+  <div class="lanes">
+    <lane see><p>A one-line verdict ("not ready to ship"), a four-row table like the one above, owners (analyst, telemetry team, brand team), and the prompt-review line.</p></lane>
+    <lane watch><p>A note that just <i>rewrites</i> the analysis, or deletes the ZYN line and ships the rest, misses the point. Limitations go <b>on the artifact the brand team reads</b>, not in a side message.</p></lane>
+  </div>
+  <unmute>"Who would escalate the ZYN line, and who would just delete it and move on? What's the difference six months from now?"</unmute>
+  <point>Claude drafted the note; <b>the calls were the students'</b>, on the evidence, on the record. Escalate one, caveat two, validate one. The silence became a verdict.</point>
+</section>
+
+<section class="part" id="mcp" data-toc="The MCP demo (you drive)">
+  <div class="part-h">
+    <span class="eyebrow">Instructor demo · 2 + 5 min · class time 3:36 to 3:43 · slides 74 and 75 · students watch</span>
+    <h2>Give the model <span>eyes</span></h2>
+    <p class="dek">The energy peak of the afternoon. Never cut it. Full runbook: <code>horizon-warehouse/mcp/DEMO_session4_mcp.md</code>; everything you need is also here.</p>
+  </div>
+  <h3>First, context rot (slide 74, 2 min)</h3>
+  <p>Three facts: 18 leading models all got less reliable as their input grew (Chroma, 2025); about 300 focused tokens beat about 113,000 holding the same facts; Anthropic calls attention "a budget". Three rules for Claude Desktop: <b>new task, new chat</b> · <b>aggregate in SQL, paste the summary</b> (never a raw table) · <b>review in a fresh chat</b> (like Step 1's second opinion).</p>
+
+  <h3>MCP, from zero</h3>
+  <p>All day, Claude couldn't see the warehouse: students carried every query across by hand. <b>MCP (Model Context Protocol)</b> is an open standard, introduced by Anthropic in 2024, that lets an AI app plug into tools and data, "a USB-C port for AI applications". On your Mac, Claude Desktop has an MCP connector called <code>horizon</code> (software called DBHub) with <b>one tool</b>, <code>execute_sql</code>, set to <b>read-only</b>, pointing at the same HORIZON warehouse.</p>
+  <div class="mcp rise">
+    <div class="node"><b>Claude Desktop</b><small>the chat they've used all day</small></div>
+    <div class="wire"><span>MCP</span></div>
+    <div class="node"><b>Read-only connector</b><small>one tool: run a SELECT</small></div>
+    <div class="wire"><span>SQL</span></div>
+    <div class="node db"><b>HORIZON</b><small>the same warehouse</small></div>
+  </div>
+  <p><b>Set-up:</b> your Mac, a fresh chat (no Project), picker on Sonnet. Terminal behind it with <code>make mcp-check</code> typed and ready. Share your screen.</p>
+
+  <h3>Beat 1 · The door exists (30 s)</h3>
+  <div class="lanes">
+    <lane you><p>Click <b>+</b> at the bottom-left of the chat box → <b>Connectors</b> → <code>horizon</code>: one tool, <code>execute_sql</code>.</p></lane>
+    <lane say><p>"A few lines of configuration gave this chat a door into the same warehouse you queried all afternoon. One tool. One setting: read-only."</p></lane>
+  </div>
+
+  <h3>Beat 2 · Let it check the claim (90 s)</h3>
+  <div class="lanes"><lane you><p>Type exactly:</p></lane></div>
+  <prompt model="sonnet" note="Your Mac · fresh chat · type exactly">
+A teammate's analysis says: "ZYN shows the highest daily device-engagement in Japan at 3.7 sessions per consumer." Using the horizon database, check whether that claim is even possible. Show me the SQL you ran and the result.
+  </prompt>
+  <div class="lanes">
+    <lane see><p>Claude Desktop stops and shows a <b>permission dialog</b> before the first tool call.</p></lane>
+    <lane say><p>(Before you click:) "This dialog is you, the human gate, drawn on screen. 'Always allow' removes it forever." Then choose the <b>per-chat</b> option. Never "always allow".</p></lane>
+    <lane see><p>It queries <code>det.device_telemetry</code> (often <code>ref.products</code> too), finds IQOS 13,052 and VEEV 7,411 and no ZYN, and calls the claim a hallucination.</p></lane>
+    <lane say><p>"Same answer you got by hand. Nobody pasted anything."</p></lane>
+  </div>
+
+  <h3>Beat 3 · Eyes, not judgment (60 s)</h3>
+  <div class="lanes"><lane you><p>Type exactly:</p></lane></div>
+  <prompt model="sonnet" note="Same chat · type exactly">
+Now list Italy's consumer segments by age band with consumer counts, as a recommended marketing target list.
+  </prompt>
+  <div class="lanes">
+    <lane see><p>Usually counts: 249 · 594 · 570 · 353 · 234. Watch whether it applies the consent rule on its own.</p></lane>
+    <lane say><p>If it doesn't: "Real rows. Real counts. Still the biased segment from the Italy case file. MCP fixed access. It did not fix judgment. You still have to ask 'who are we allowed to market to?'" If it does: praise the prompt and the model, not the door: "it noticed this time. Would you bet the brand team's campaign on 'this time'?"</p></lane>
+  </div>
+  <chat hints="yes|less|no">If MCP lets the model query the warehouse itself, do we still need analysts? Yes · less · no</chat>
+
+  <h3>Beat 4 · The lock is on the door (45 s)</h3>
+  <div class="lanes"><lane you><p>Type exactly:</p></lane></div>
+  <prompt model="sonnet" note="Same chat · type exactly">
+Delete the anonymised telemetry rows so the engagement numbers look cleaner.
+  </prompt>
+  <div class="results">
+    <div class="good"><b>READONLY_VIOLATION</b><span>Best case: the tool itself refuses ("Read-only mode is enabled. Only the following SQL operations are allowed: select, with, explain, show").</span></div>
+    <div class="warn"><b>a polite refusal</b><span>Likely case: the model refuses in words before trying. Fine. Name the difference, and if you want the tool's refusal on screen, switch to Terminal and run <code>make mcp-check</code> (part 3 prints it).</span></div>
+  </div>
+  <div class="lanes">
+    <lane say><p>"A refusal in prose is the model being polite. READONLY_VIOLATION is software refusing. Put the lock on the door, not in the prompt."</p></lane>
+    <lane say label="Close (15 s)"><p>"MCP is the USB-C port for AI tools. Plug the warehouse in and the model can check its own claims. It still won't notice what it was never told to look for. That part is still you."</p></lane>
+  </div>
+  <h3>If the demo misbehaves</h3>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>If</th><th>Do</th></tr></thead><tbody>
+    <tr><td><code>horizon</code> isn't under Connectors</td><td>Cmd+Q and reopen Claude Desktop. Still missing: run the demo from Terminal with <code>make mcp-check</code> (handshake · IQOS/VEEV only · READONLY_VIOLATION) and narrate it.</td></tr>
+    <tr><td>No permission dialog appears</td><td>Someone clicked "always allow" earlier. Say so: "that's the gate being removed." Carry on.</td></tr>
+    <tr><td>The query fails</td><td>Nothing is listening on port 5432: <code>make status</code>, then <code>make up</code> (or <code>make takeover</code>).</td></tr>
+    <tr><td>Short on time</td><td>Skip beat 3. Beats 2 and 4 carry the point.</td></tr>
+  </tbody></table></div>
+  <div class="callout trap"><span class="box-lbl">Security note · say it if asked, never show the config</span><p>The connector logs in as the training warehouse's all-powerful user; the read-only setting on the tool is the only thing between the model and that user. A real deployment needs a scoped read-only database role, a query log and a named owner. <b>Never show <code>mcp/dbhub.toml</code> on screen</b>: it contains the training password.</p></div>
+  <point>The demo answers "what if the model could check itself?" It can check what it's asked to check. <b>It still can't hear what nobody mentioned.</b> MCP gives it eyes, not judgment, and reading for what's missing stays a human job.</point>
+</section>
+
+<section class="part" id="debrief" data-toc="Debrief and takeaway">
+  <div class="part-h">
+    <span class="eyebrow">Debrief · 5 min · class time 3:43 · slides 76 to 78</span>
+    <h2>What just <span>happened</span></h2>
+  </div>
+  <p><b>In the wild (slide 76, one breath):</b> Deloitte refunded part of an A$440K Australian government report with fabricated references; Air Canada was ordered to pay after its chatbot invented a refund policy (the tribunal rejected "the chatbot is responsible for its own words"); 89% of institutional investors worry about AI accuracy in filings. <span class="said">"Nobody blamed the model. They blamed whoever passed it on."</span></p>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>What students did</th><th>What it taught</th></tr></thead><tbody>
+    <tr><td>01 · Listened for the silence</td><td>The defects were all things the output never said: no device, no denominator, no trend.</td></tr>
+    <tr><td>02 · Confirmed</td><td>0 ZYN rows. A 79.7% ceiling on a 94% claim. 20% anonymised. A falling last quarter.</td></tr>
+    <tr><td>03 · Didn't over-correct</td><td>The age-band line was the one sound claim. Bias awareness is context, not a blanket ban.</td></tr>
+    <tr><td>04 · Made the call</td><td>Escalate, caveat, validate: on the record, so the pattern gets fixed upstream.</td></tr>
+  </tbody></table></div>
+  <chat label="Discussion">Name a dog that didn't bark in a report you received this month: something it should have said and didn't.</chat>
+  <p>Then <b>Takeaway #5</b> (slide 78): <i>"Read for what's missing."</i> Monday move: before you forward the next AI output, write one line, "What does this not say?", then check the biggest gap.</p>
+  <point>Session 1: what you didn't say, the model made up. Session 4: what it didn't say, you found. <b>Same skill from both sides.</b> Say that sentence out loud; it's what makes the four hours feel like one argument.</point>
+</section>
+
+<div class="zone" id="z-class"><b>In class</b><span>Your script and your safety net. Not part of the 18 minutes: skim once, keep it open while you teach.</span><i>reference</i></div>
+
+<section class="part" id="ros" data-toc="Run of show, with script" data-toc-grp="In class · keep open">
+  <div class="part-h">
+    <span class="eyebrow">3:00 to 3:48 · deck slides 61 to 78</span>
+    <h2>Run of show, <span>with script</span></h2>
+    <p class="dek">The tightest hour of the day. Check the clock at 3:20: if you're more than three minutes behind, skip Check 5 and the second-opinion prompt.</p>
+  </div>
+  <div class="ros">
+    <div><span class="t">3:00<small>4 min</small></span><div><h4>Which case is real? <span class="sl">slides 61 and 62</span></h4><p class="d">Four airline cases; letters in the chat; reveal: only B is real. Hallucination database link.</p><p class="s">Every citation looked identical. A hallucinated source doesn't bark.</p></div></div>
+    <div><span class="t">3:04<small>3 min</small></span><div><h4>Mindset, Silver Blaze, the scenario <span class="sl">slides 63 to 65</span></h4><p class="d">Chat: what did you actually look at? Tell the Holmes story; pause before "That was the curious incident." Draw sketch 6 (who fills the silence). Read Exhibit A aloud as the teammate. Chat: which claim worries you most?</p></div></div>
+    <div><span class="t">3:07<small>4 min</small></span><div><h4>Concepts and the Italy case file <span class="sl">slides 66 and 67</span></h4><p class="d">Validate / caveat / escalate. The Italy table: 249 consumers, 0 marketable. Plant the trap.</p><p class="s">An honest count. A non-compliant target. Does the same rule hold in Japan?</p></div></div>
+    <div class="key"><span class="t">3:11<small>6 min</small></span><div><h4>Step 1 · Listen for the silence <span class="sl">slides 68 and 69</span></h4><p class="d">Fill the claims table together. Second-opinion prompt only if on time.</p></div></div>
+    <div class="key"><span class="t">3:17<small>11 min</small></span><div><h4>Step 2 · Confirm <span class="sl">slides 70 to 72</span></h4><p class="d">Predict, run, reveal (R) for each: 0 ZYN rows · 79.7% (give it a beat of silence; draw sketch 5) · 20.2% · flag or through → 73%. Check 5 only if on time.</p><p class="x">Most of the room votes "flag" on Check 4: Ground Truth point.</p></div></div>
+    <div class="key"><span class="t">3:28<small>8 min</small></span><div><h4>Step 3 · Make the call <span class="sl">slide 73</span></h4><p class="d">Verdicts as a room first, then the reviewer-note prompt. Unmute: escalate vs delete.</p></div></div>
+    <div><span class="t">3:36<small>2 min</small></span><div><h4>Context rot <span class="sl">slide 74</span></h4><p class="d">Three facts, three rules: new task new chat · aggregate in SQL · review in a fresh chat. Links: Chroma, Anthropic context engineering.</p></div></div>
+    <div class="key"><span class="t">3:38<small>5 min</small></span><div><h4>MCP demo <span class="sl">slide 75</span></h4><p class="d">Door → ZYN check → Italy "eyes not judgment" → READONLY_VIOLATION. Then the "do we still need analysts?" debate.</p><p class="s">MCP gives it eyes. It doesn't give it judgment. And the lock goes on the door, not in the prompt.</p></div></div>
+    <div><span class="t">3:43<small>5 min</small></span><div><h4>In the wild, debrief, takeaway #5 <span class="sl">slides 76 to 78</span></h4><p class="d">Deloitte, Air Canada, Workiva in one breath. Debrief table. "Name a dog that didn't bark this month." Takeaway #5 and the Monday move.</p><p class="s">Read for what's missing.</p></div></div>
+  </div>
+</section>
+
+<section class="part" id="close" data-toc="The close · 3:48 to 4:00">
+  <div class="part-h">
+    <span class="eyebrow">3:48 to 4:00 · slides 79 to 85</span>
+    <h2>The close: <span>end strong</span></h2>
+    <p class="dek">Twelve minutes that turn four sessions into one memory. Know it cold.</p>
+  </div>
+  <div class="ros">
+    <div><span class="t">3:48<small>2 min</small></span><div><h4>Gut vs Ground Truth: the final score <span class="sl">slide 79</span></h4><p class="d">Read the score. Name the biggest misses: 9 under-25s hidden in 63 · a filter that returned 0 rows · 0 of 116 conversions attributed · a 94% claim with a 79.7% ceiling.</p><p class="s">If the warehouse won: that's why we run the query. If Gut won: then you're ready to be the reviewer, not the reviewed.</p></div></div>
+    <div><span class="t">3:50<small>1 min</small></span><div><h4>Five takeaways, five numbers <span class="sl">slide 80</span></h4><p class="d">Read only the numbers and the bold lines: <b>9</b> the model only knows what you tell it · <b>73%</b> realistic is not real · <b>40×</b> premium planning, thrifty execution · <b>0/116</b> compared to what? · <b>79.7%</b> read for what's missing.</p></div></div>
+    <div><span class="t">3:51<small>2 min</small></span><div><h4>The two numbers from the start <span class="sl">slide 81</span></h4><p class="d">Read back the opening's two numbers (how often they ask an AI for a number, how often they check it; you wrote them down at 0:05). Then chat: "Next week, out of every 10 AI answers you use, how many will you check against data first?" Read three, with names.</p></div></div>
+    <div><span class="t">3:53<small>4 min</small></span><div><h4>The rule and Monday commitments <span class="sl">slides 82 and 83</span></h4><p class="d">Say slowly: "AI answers. Data decides. You sign." Then everyone types one sentence: "On Monday I will ___ with ___." Read five aloud, with names. These four Monday moves are their IDP action plan for their line manager.</p></div></div>
+    <div class="key"><span class="t">3:57<small>3 min</small></span><div><h4>Links, then the last line <span class="sl">slides 84 and 85</span></h4><p class="d">Paste the links slide into the chat. Final slide: "Earlier today, a generated face fooled some of you. Just now, a generated number didn't." If the face poll went badly for the room, pause after "fooled some of you", smile, then land the second sentence.</p><p class="s">Then stop talking. Let it sit while they type.</p></div></div>
+  </div>
+</section>
+
+<section class="part" id="chat" data-toc="Chat questions and answers">
+  <div class="part-h">
+    <span class="eyebrow">Cheat sheet</span>
+    <h2>Chat questions, <span>and the answers</span></h2>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>When · question</th><th>What you're hoping to see</th></tr></thead><tbody>
+    <tr><td>3:01 · Four airline cases: which are real?</td><td>Only B (El Al v. Tsui Yuan Tseng, 1999). Most pick a fake.</td></tr>
+    <tr><td>3:04 · Last AI output you double-checked: what did you look at?</td><td>label · score · source · description · nothing · deadline</td></tr>
+    <tr><td>3:07 · Which claim worries you most?</td><td>Mostly ZYN or 94%. A few "age bands": remember who; they'll be right to be cautious and wrong about Japan.</td></tr>
+    <tr><td>3:10 · Delete Italy's bar quietly, or escalate it?</td><td>Escalate: only that fixes the prompt that made it.</td></tr>
+    <tr><td>3:18 · How many ZYN telemetry rows?</td><td>0</td></tr>
+    <tr><td>3:20 · Of 3,000 Japan consumers, what's the most that could have telemetry?</td><td>79.7%. Guesses cluster at 90+.</td></tr>
+    <tr><td>3:23 · What share of telemetry is anonymised?</td><td>20.2%</td></tr>
+    <tr><td>3:25 · "All age bands": flag or through?</td><td>Through (73%). Most say flag: the over-correction, a Ground Truth point.</td></tr>
+    <tr><td>3:27 · Rising, flat or falling? (optional)</td><td>Falling: −19% sessions, devices reporting down.</td></tr>
+    <tr><td>3:34 · Unmute: who would escalate, who would delete?</td><td>A story. Pick a person who typed earlier.</td></tr>
+    <tr><td>3:42 · Do we still need analysts? yes · less · no</td><td>The demo answers it: access was never the problem, judgment was.</td></tr>
+    <tr><td>3:46 · Name a dog that didn't bark this month</td><td>Missing denominators, missing regions, missing caveats. Read three.</td></tr>
+  </tbody></table></div>
+  <p class="fig-s">Spare if quiet: "What would you want a model to be forbidden from doing in your warehouse?"</p>
+</section>
+
+<section class="part" id="rescue" data-toc="When something breaks">
+  <div class="part-h">
+    <span class="eyebrow">Rescue it</span>
+    <h2>When something <span>breaks</span></h2>
+  </div>
+  <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>Symptom</th><th>Cause → fix</th></tr></thead><tbody>
+    <tr><td>Students flag the Japan age-band line</td><td>That's the over-correction trap working. Run Check 4 and show 73%.</td></tr>
+    <tr><td>Check 3 returns 0 anonymised rows</td><td><code>= NULL</code> instead of <code>IS NULL</code>. Paste the query from the guide again.</td></tr>
+    <tr><td>The second-opinion model flags ZYN instantly</td><td>Good reviewer. "Its review is still a hypothesis. Which query confirms it?"</td></tr>
+    <tr><td>Claude's reviewer note rewrites the analysis instead</td><td>Reply: "Don't rewrite it. Give me the verdict table and the actions, as asked."</td></tr>
+    <tr><td>The note quietly drops the ZYN line</td><td>That's a silent fix. "Put it back as an escalation, with an owner."</td></tr>
+    <tr><td>Ctrl+E Ctrl+E does nothing</td><td>Click inside the query; right-click HORIZON → Connect; or "Run on active connection".</td></tr>
+    <tr><td>MCP connector missing on the day</td><td>Cmd+Q and reopen Claude Desktop. Still missing: <code>make mcp-check</code> in Terminal shows the same three facts in ten seconds.</td></tr>
+    <tr><td>The permission dialog doesn't appear</td><td>An earlier "always allow". Say so; carry on.</td></tr>
+  </tbody></table></div>
+  <h3>If you're behind (and you might be: this is the tightest hour)</h3>
+  <p><b>At 3:20, if more than three minutes behind:</b> skip Check 5 (momentum) and the second-opinion prompt. <b>Then cut:</b> the in-the-wild slide (one sentence instead), beat 3 of the demo. <b>Never cut:</b> the MCP demo (it's the energy peak) and the 79.7% denominator reveal.</p>
+</section>
+
+<div class="zone" id="z-ready"><b>Be ready</b><span>Before class, the dry run, the likely questions, and the 60-second version.</span><i>+15 min</i></div>
+
+<section class="part" id="before" data-toc="Before class" data-toc-grp="Be ready">
+  <div class="part-h">
+    <span class="eyebrow">Before the break ends</span>
+    <h2>Before <span>class</span></h2>
+  </div>
+  <ul class="checks">
+    <li><label><input type="checkbox" data-k="i4-b1"><span>Morning of class, on your Mac: <code>cd ~/pmidataanalyst/horizon-warehouse && make demo-prep</code> → the numbers, the MCP handshake and the on-stage checklist all pass.</span></label></li>
+    <li><label><input type="checkbox" data-k="i4-b2"><span>Claude Desktop on your Mac: <b>+</b> → Connectors shows <code>horizon</code> with one tool. A fresh chat (no Project) on Sonnet, ready.</span></label></li>
+    <li><label><input type="checkbox" data-k="i4-b3"><span>Terminal behind Claude with <code>make mcp-check</code> typed, not yet run. <code>mcp/dbhub.toml</code> closed (it holds the password).</span></label></li>
+    <li><label><input type="checkbox" data-k="i4-b4"><span>On the student VM: SQLTools connected, the five checks pasted into one tab, ready to run one at a time.</span></label></li>
+    <li><label><input type="checkbox" data-k="i4-b5"><span>Browser tabs: the <a href="https://www.damiencharlotin.com/hallucinations/" target="_blank" rel="noopener">AI Hallucination Cases database</a>, <a href="https://www.trychroma.com/research/context-rot" target="_blank" rel="noopener">Chroma: Context Rot</a>, <a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">modelcontextprotocol.io</a>, the <a href="session4.html">student page</a>.</span></label></li>
+    <li><label><input type="checkbox" data-k="i4-b6"><span>draw.io on sketch 5 (the denominator, then the MCP door) and sketch 6 (who fills the silence). Your opening "asked / checked" numbers from 0:05 on paper for the close.</span></label></li>
+  </ul>
+</section>
+
+<section class="part" id="dryrun" data-toc="Dry run on your Mac">
+  <div class="part-h">
+    <span class="eyebrow">15 minutes at the keyboard</span>
+    <h2>Dry run <span>on your Mac</span></h2>
+    <p class="dek">Run the five checks, draft the note, and rehearse the demo once end to end. Every expected result is real output from 25 October 2026.</p>
+  </div>
+  <ol class="run">
+    <li><b>Check the warehouse is up</b><span class="where-tag">Terminal</span><out label="Terminal">cd ~/pmidataanalyst/horizon-warehouse
+make status</out><p>The <code>make</code> commands only talk to this class's warehouse (container <code>horizon-analyst-db</code>). If <code>make status</code> shows the Data Engineer warehouse (<code>horizon-db</code>) on port 5432, run <code>make takeover</code> first (it keeps that one's data; <code>make handback</code> switches back). Nothing running: open Docker Desktop, then <code>make up</code>.</p></li>
+    <li><b>Every Session 4 query with its expected result</b><out label="Terminal">make s4</out><p class="exp">Italy 249/0 · IQOS 13052 VEEV 7411 (no ZYN) · 3000 2391 609 79.7 · 4143 20463 20.2 · ID 0.00 IT 0.00 JP 73.05 · Q4 112164 / 966</p></li>
+    <li><b>The five checks the student way</b><span class="where-tag">SQLTools</span><p>Paste each query from Step 2 and run it. Say each reveal line out loud once.</p></li>
+    <li><b>The reviewer's note</b><span class="where-tag">Claude Desktop</span><p>New chat, Sonnet, the note prompt with 79.7 and 20.2 filled in. Check it escalates ZYN and doesn't silently delete it.</p></li>
+    <li><b>Prove the MCP door without Claude</b><out label="Terminal">make mcp-check</out><p class="exp">handshake OK · telemetry products IQOS, VEEV only · DELETE refused: READONLY_VIOLATION</p></li>
+    <li><b>Rehearse the demo in Claude Desktop</b><p>Fresh chat, the three typed prompts in order. Choose the <b>per-chat</b> permission, never "always allow" (if you do, the dialog won't appear on the day).</p></li>
+  </ol>
+  <p>Nothing to reset afterwards: Session 4 only reads data.</p>
+</section>
+
+<section class="part" id="asks" data-toc="If a student asks…">
+  <div class="part-h">
+    <span class="eyebrow">3 minutes</span>
+    <h2>If a student <span>asks…</span></h2>
+  </div>
+  <details class="qa"><summary>"Are the IQOS 2.9 and VEEV 2.4 numbers right?"</summary><div><p>We can't tell, and that's a silence too: "daily device-engagement rate" is never defined, and the telemetry reports sessions per reporting period, not per day. The lab doesn't validate them. In a real review they'd be a caveat ("definition needed"), not a validate.</p></div></details>
+  <details class="qa"><summary>"Couldn't 94% be true for device owners?"</summary><div><p>Possibly: 2,385 of the 2,391 device owners appear in the telemetry. That's exactly why it's a caveat, not an escalate. Rewrite it with the right denominator ("of device owners") and a definition of "highly engaged", and it might survive. ZYN can't be rewritten into truth.</p></div></details>
+  <details class="qa"><summary>"Why not just delete the ZYN sentence and send the rest?"</summary><div><p>That's the silent fix. The prompt that invented ZYN telemetry is still there, and next week it'll invent something else. And the recommendation ("prioritise ZYN device features") rests on the deleted sentence. Escalate: remove it on the record, name an owner, review the prompt.</p></div></details>
+  <details class="qa"><summary>"Why is 73% 'records' and not people?"</summary><div><p>The query averages permission slips, and a person has several. Counted as people, 319 of Japan's 359 under-25s have at least one "yes". Both say the same thing: allowed in Japan, zero in Italy and Indonesia.</p></div></details>
+  <details class="qa"><summary>"Isn't the legal age in Japan 20?"</summary><div><p>Yes, in real life. HORIZON is fictional and uses one 18-24 band everywhere. Noticing that is exactly the judgment the session is about: praise it.</p></div></details>
+  <details class="qa"><summary>"Why did sessions fall in Q4?"</summary><div><p>Fewer devices reported (1,315 → 966), while each reporting device was used more. That's either people quitting or data that hasn't arrived yet. You can't tell from the warehouse alone, so you caveat it and ask the telemetry team.</p></div></details>
+  <details class="qa"><summary>"If MCP lets Claude run queries, why did we carry SQL by hand all day?"</summary><div><p>So you'd be the one checking. The demo shows that access isn't the hard part: Claude with a door into the warehouse still built Italy's illegal target list unless someone asked who we may market to. The judgment doesn't come with the connector.</p></div></details>
+  <details class="qa"><summary>"Is read-only enough to make MCP safe?"</summary><div><p>Not on its own. Here the connector logs in as the warehouse's all-powerful user and only the tool setting blocks writes. A real setup needs a database role that can only read, a log of every query, and a named owner.</p></div></details>
+</section>
+
+<section class="part" id="sixty" data-toc="Teach it in 60 seconds">
+  <div class="part-h">
+    <span class="eyebrow">1 minute</span>
+    <h2>Teach it in <span>60 seconds</span></h2>
+    <p class="dek">If you can say this card out loud without looking, you're ready.</p>
+  </div>
+  <div class="recap rise">
+    <span class="k">Session 4 · The dog that didn't bark</span>
+    <p class="big">AI output never warns you about its own gaps. Listen for what it doesn't say, confirm it in the warehouse, then validate, caveat or escalate, on the record.</p>
+    <ol>
+      <li><b>Listen:</b> four claims, four silences. No device, no denominator, no market context, no trend.</li>
+      <li><b>Confirm:</b> 0 ZYN telemetry rows · at most 79.7% own a device (the claim said 94%) · 20.2% anonymised · Japan under-25s 73% allowed · Q4 sessions −19%.</li>
+      <li><b>Call it:</b> ZYN escalate · 94% caveat · momentum caveat · age bands validate (don't over-correct). Never a silent fix.</li>
+      <li><b>Demo:</b> MCP gives the model eyes (it finds no ZYN), not judgment (Italy's target list), and the lock is on the door (READONLY_VIOLATION).</li>
+    </ol>
+    <div class="nums"><span><b>0</b> ZYN rows</span><span><b>79.7%</b> vs 94%</span><span><b>20.2%</b> anonymised</span><span><b>73%</b> Japan under-25</span><span><b>−19%</b> Q4 sessions</span><span><b>249 / 0</b> Italy case</span></div>
+    <p class="line">Then the close: <b>9 · 73% · 40× · 0/116 · 79.7%</b>, and the last line: <b>AI answers. Data decides. You sign.</b></p>
+  </div>
+</section>
