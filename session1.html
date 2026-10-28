@@ -461,7 +461,39 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
   <details class="reveal" data-p="s1-zero"><summary><span class="eye" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></span><span>Reveal: the silent zero</span><span class="yourguess"></span></summary><div class="reveal-b">
     <div class="answer"><span class="big bad">0 rows</span><span class="cap">No error. No warning.<span>A dashboard built on this would say nobody adopted VEEV in Indonesia.</span></span></div>
     <p>The right answer is "nothing changes": <b>17 · 16 · 25</b>, because campaign 4 never had an event attributed to it.</p>
-    <p>Why: every single Indonesia event (<b>2,343 of 2,343</b>) has <code>campaign_id</code> = NULL, meaning "no campaign". And <code>NULL &lt;&gt; 4</code> isn't <i>true</i>, it's <i>unknown</i>. <code>WHERE</code> keeps only <i>true</i>, so the "filter" throws every row away. Play with it:</p>
+    <p>Why: every single Indonesia event (<b>2,343 of 2,343</b>) has <code>campaign_id</code> = NULL, meaning "no campaign". And <code>NULL &lt;&gt; 4</code> isn't <i>true</i>, it's <i>unknown</i>. <code>WHERE</code> keeps only <i>true</i>, so the "filter" throws every row away.</p>
+    <p>Here are the two tables as they really are. Campaign 4 exists in the campaign list, but no event anywhere in HORIZON is tagged to it, and no Indonesia event is tagged to any campaign at all:</p>
+    <div class="drawn">
+      <div class="drawn-tab">ref.campaigns <em>"the campaign list"</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one marketing campaign</b>. This is the whole table: 5 rows.</div>
+        <table><thead><tr><th>campaign_id</th><th>market_code</th><th>product_code</th><th>campaign_name</th><th>tagged events</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>IT</td><td>IQOS</td><td>Italy IQOS Autumn Conversion Push</td><td>74</td></tr>
+          <tr class="dim"><td>2</td><td>IT</td><td>ZYN</td><td>IT ZYN Campaign 2024</td><td>0</td></tr>
+          <tr class="dim"><td>3</td><td>ID</td><td>IQOS</td><td>ID IQOS Campaign 2024</td><td>0</td></tr>
+          <tr class="hi"><td>4</td><td>ID</td><td>VEEV</td><td>ID VEEV Campaign 2024</td><td>0</td></tr>
+          <tr class="dim"><td>5</td><td>ID</td><td>ZYN</td><td>ID ZYN Campaign 2024</td><td>0</td></tr>
+        </tbody></table>
+      </div>
+      <p class="drawn-cap">The last column isn't stored in the table; it's <code>count(*)</code> of diary rows per <code>campaign_id</code>. Campaign 4 is real. It just never had an event attributed to it, so there is nothing to exclude.</p>
+    </div>
+    <div class="drawn">
+      <div class="drawn-tab">clr.lifecycle_events <em>"the diary", Indonesia rows</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one thing one consumer did, on one day</b>. 2,343 Indonesia rows; 4 shown.</div>
+        <table><thead><tr><th>event_id</th><th>consumer_id</th><th>product_code</th><th>lifecycle_stage</th><th>event_date</th><th>campaign_id</th></tr></thead>
+        <tbody>
+          <tr><td>13256</td><td>5001</td><td>VEEV</td><td>trial</td><td>2025-07-19</td><td class="null">NULL</td></tr>
+          <tr><td>13312</td><td>5023</td><td>VEEV</td><td>conversion</td><td>2025-08-23</td><td class="null">NULL</td></tr>
+          <tr><td>15267</td><td>5855</td><td>VEEV</td><td>trial</td><td>2025-07-16</td><td class="null">NULL</td></tr>
+          <tr><td>15268</td><td>5855</td><td>VEEV</td><td>conversion</td><td>2025-09-21</td><td class="null">NULL</td></tr>
+          <tr class="more"><td colspan="6">… 2,339 more Indonesia rows, campaign_id NULL on every one</td></tr>
+        </tbody></table>
+      </div>
+      <p class="drawn-cap">Read down the <b>campaign_id</b> column: blank, blank, blank. <code>NULL &lt;&gt; 4</code> is <i>unknown</i> on each of these rows, so <code>WHERE</code> drops all 2,343 of them. The only tagged events in all of HORIZON are the 74 Italian IQOS rows on campaign 1.</p>
+    </div>
+    <p>Play with it: flip the filter, then switch the rows to "Indonesia, as it really is".</p>
     <div class="widget nullab" data-widget="nullab" data-sets='{"mixed":{"rows":[["event 101",4],["event 102",1],["event 103",null],["event 104",2],["event 105",null],["event 106",null]]},"id":{"scale":2343,"rows":[["ID event 1",null],["ID event 2",null],["ID event 3",null],["ID event 4",null],["ID event 5",null],["… 2,338 more",null]]}}'>
       <div class="widget-h"><span class="tag">Try it</span><b>Three truth values</b><span class="sp"><code class="filter-sql">campaign_id &lt;&gt; 4</code></span></div>
       <div class="widget-b">

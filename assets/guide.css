@@ -13,7 +13,7 @@
      .story      the lab as a four-panel strip
      .bigs       big-number tiles
      .wcards     word cards: the word, said simply, a picture, where it shows up
-     .drawn      a drawn table: a tab with the table's name, "one row =", marked rows
+     .drawn      (lives in site.css: the student pages draw table snapshots too)
      .lanes      a walked step: students do / they see / it means / you say
      .results    every result a query can return, and what each one means
      .vs         wrong next to right
@@ -151,47 +151,6 @@
 @media (max-width: 760px) { .wcards { grid-template-columns: minmax(0, 1fr); } }
 h3.cards-h { display: flex; align-items: center; gap: 10px; }
 h3.cards-h::before { content: ""; width: 14px; height: 14px; border-radius: 4px; background: var(--k, var(--hue)); }
-
-/* -------------------------------------------------------- drawn tables --- */
-.drawn { margin: 10px 0 26px; }
-.drawn-tab {
-  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: 2px 10px;
-  background: var(--head); color: var(--paper);
-  border-radius: var(--r-sm) var(--r-sm) 0 0; padding: 7px 14px 6px;
-  font-family: var(--mono); font-size: 13px; font-weight: 500;
-}
-.drawn-tab em { font-style: normal; font-family: var(--sans); font-size: 13.5px; opacity: .75; }
-.drawn-box { border: 2px solid var(--head); border-radius: 0 var(--r) var(--r) var(--r); background: var(--surface); overflow-x: auto; box-shadow: var(--shadow); }
-.drawn-sub { padding: 9px 14px; font-size: 14.5px; color: var(--head); background: var(--surface-2); border-bottom: 1px solid var(--rule-strong); }
-.drawn-sub b { color: var(--hue-ink); }
-.drawn table { font-size: 14px; min-width: 480px; }
-.drawn th, .drawn td { padding: 8px 12px; border-bottom: 1px solid var(--rule); white-space: nowrap; }
-.drawn thead th { color: var(--muted); background: var(--surface); letter-spacing: .06em; text-transform: none; font-size: 12px; }
-.drawn td { font-family: var(--mono); font-size: 13.5px; font-variant-numeric: tabular-nums; }
-.drawn td.note { font-family: var(--sans); font-size: 14px; color: var(--muted); white-space: normal; min-width: 210px; font-style: italic; }
-.drawn th.note { color: var(--hue-ink); }
-.drawn tr.hi td { background: var(--hue-soft) !important; color: var(--head); font-weight: 600; }
-.drawn tr.hi td:first-child { box-shadow: inset 4px 0 0 var(--hue); }
-.drawn tr.hi td.note { font-weight: 500; color: var(--head); }
-.drawn tr.dim td { opacity: .5; }
-.drawn tr.gone td { background: var(--bad-soft) !important; color: var(--bad-ink); }
-.drawn tr.gone td:not(.note) { text-decoration: line-through; text-decoration-color: rgba(200,64,42,.6); }
-.drawn tr.gone td:first-child { box-shadow: inset 4px 0 0 var(--bad); }
-.drawn tr.gone td.note { color: var(--bad-ink); }
-.drawn tr.good td { background: var(--good-soft) !important; }
-.drawn tr.good td:first-child { box-shadow: inset 4px 0 0 var(--good); }
-.drawn tr.more td { font-family: var(--sans); font-style: italic; color: var(--muted); text-align: center; letter-spacing: .04em; }
-.drawn tr.total td { font-weight: 700; color: var(--head); border-top: 2px solid var(--rule-strong); }
-.drawn td.null { color: var(--faint); font-style: italic; }
-.drawn td.t { color: var(--good-ink); font-weight: 600; }
-.drawn td.f { color: var(--bad-ink); font-weight: 600; }
-.drawn tr:last-child td { border-bottom: 0; }
-.drawn-cap { font-size: 14.5px; color: var(--muted); margin-top: 9px; line-height: 1.5; }
-.drawn-cap b { color: var(--head); }
-.drawn.small table { min-width: 0; }
-.drawn-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
-.drawn-pair .drawn table { min-width: 0; }
-@media (max-width: 860px) { .drawn-pair { grid-template-columns: minmax(0, 1fr); } }
 
 /* ---------------------------------------------------------- walked step --- */
 .lanes { display: grid; gap: 10px; margin: 0 0 18px; }
