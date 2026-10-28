@@ -49,7 +49,7 @@
 
 <div class="mast-grid">
   <div class="mast-copy">
-    <div class="kicker"><span class="pill">Instructor guide</span> Session 1 · WA3899 · class time 0:12 to 1:00</div>
+    <div class="kicker"><span class="pill">Instructor guide</span> Session 1 · WA3899 · class time 0:09 to 1:00</div>
     <h1 class="title">Mind-reader <em>not included</em><small>Session 1 taught from zero: what the lab is for, every word and table explained, every step walked, what to say, and what to do when it goes sideways.</small></h1>
     <p class="lede">You don't need to know SQL, PMI or marketing to read this. Read it top to bottom once (<b>18 minutes</b>), do the dry run (<b>15 minutes</b>), then keep the "In class" half open on a second screen while you teach. <strong>Every number on this page was run against the HORIZON warehouse on 25 October 2026.</strong></p>
     <div class="chips"><span>Read · <b>18 min</b></span><span>Dry run · <b>15 min</b></span><span>Class · <b>48 min</b></span><span>Claude · <b>Sonnet</b></span><span>Market · <b>Indonesia</b></span></div>
@@ -395,13 +395,13 @@
 
 <section class="part" id="opener" data-toc="Opener · how the AI works" data-toc-grp="Walk the lab · 7 min">
   <div class="part-h">
-    <span class="eyebrow">Walk the lab · 1 minute · class time 0:12 · slides 14 and 15</span>
+    <span class="eyebrow">Walk the lab · 1 minute · class time 0:09 · slides 13 to 15</span>
     <h2>Opener: how the <span>AI works</span></h2>
-    <p class="dek">Before the lab, six minutes on what Claude actually is. It explains everything that happens in Step 1.</p>
+    <p class="dek">Before the lab, nine minutes on what Claude actually is: the room plays the model, then watches a real one. It explains everything that happens in Step 1.</p>
   </div>
   <div class="lanes">
-    <div class="lane you"><span class="k">You do</span><div><p>On slide 14 the deck has a live next-word widget for the Icebreaker 1 sentence ("IQOS conversions in Italy last quarter were ___"). Click <b>Next word</b> three times and read the words aloud. Drag temperature to 0.1 (same word every time), then to 2.0 and click <b>Ask it 10 times</b>. Point at the dashed "which quarter?" row, then press R. Optional, live: the <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a> (a real GPT-2 in the browser) with <code>The analyst ran the query and the result was</code>.</p></div></div>
-    <div class="lane do"><span class="k">Students do</span><div><p>Predict in the chat: "Which word will it pick?" Then compare with what the room typed at 0:05.</p></div></div>
+    <div class="lane you"><span class="k">You do</span><div><p>Slide 13 is Icebreaker 1: the room finishes "IQOS conversions in Italy last quarter were ___" in the chat with no data (45 seconds, read the spread aloud, press R, screenshot). Slide 14 then has a live next-word widget for the same sentence. Click <b>Next word</b> three times and read the words aloud. Drag temperature to 0.1 (same word every time), then to 2.0 and click <b>Ask it 10 times</b>. Point at the dashed "which quarter?" row, then press R. Optional, live: the <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a> (a real GPT-2 in the browser) with <code>The analyst ran the query and the result was</code>.</p></div></div>
+    <div class="lane do"><span class="k">Students do</span><div><p>Predict in the chat: "Which word will it pick?" Then compare with what the room typed on slide 13.</p></div></div>
     <div class="lane see"><span class="k">They see</span><div><p>Plausible words, picked by weight, and a different spread every time at high temperature. The one answer a good analyst gives, "which quarter?", is never on the list. (In the Transformer Explainer the top candidates are small words like "a" or "the", not a number.)</p></div></div>
     <div class="lane mean"><span class="k">It means</span><div><p>The model isn't computing a result. It's continuing a sentence with whatever sounds likely. It has no idea what query the analyst ran. It writes what sounds right, not what it has checked.</p></div></div>
     <div class="lane say"><span class="k">You say</span><div><p>"It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in."</p></div></div>
@@ -755,12 +755,13 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
 
 <section class="part" id="ros" data-toc="Run of show, with script" data-toc-grp="In class · keep open">
   <div class="part-h">
-    <span class="eyebrow">0:12 to 1:00 · deck slides 13 to 28</span>
+    <span class="eyebrow">0:09 to 1:00 · deck slides 12 to 28</span>
     <h2>Run of show, <span>with script</span></h2>
     <p class="dek">Times match the playbook. Each block: what you do, what you say (word for word if you like), and what the room should see.</p>
   </div>
   <div class="ros">
-    <div><span class="t">0:12<small>4 min</small></span><div><h4>Next-word widget <span class="sl">slide 14</span></h4><p class="d">Next word ×3, temperature 0.1 then 2.0, Ask it 10 times. Point at the dashed "which quarter?" row; press R. Optional: Transformer Explainer live, Tiktokenizer on <code>clr.lifecycle_events</code>.</p><p class="s">It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in.</p></div></div>
+    <div><span class="t">0:09<small>3 min</small></span><div><h4>Be the model <span class="sl">slides 12 and 13</span></h4><p class="d">Session divider, then Icebreaker 1: "IQOS conversions in Italy last quarter were ___". 45 seconds of typing, read the spread aloud, press R, screenshot the chat.</p><p class="s">You just behaved like a language model. The difference: it never types "which quarter?" unless you make it. Now watch a real one finish the same sentence.</p></div></div>
+      <div><span class="t">0:12<small>4 min</small></span><div><h4>Next-word widget <span class="sl">slide 14</span></h4><p class="d">Next word ×3, temperature 0.1 then 2.0, Ask it 10 times. Point at the dashed "which quarter?" row; press R. Optional: Transformer Explainer live, Tiktokenizer on <code>clr.lifecycle_events</code>.</p><p class="s">It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in.</p></div></div>
     <div><span class="t">0:16<small>2 min</small></span><div><h4>Four facts <span class="sl">slide 15</span></h4><p class="d">One sentence per fact.</p><p class="s">And fact 4: it answers anyway, because guessing gets rewarded. Today we give it a polite way to say "I'm not sure".</p></div></div>
     <div><span class="t">0:18<small>3 min</small></span><div><h4>Your experience and the scenario <span class="sl">slides 16 and 17</span></h4><p class="d">Chat: "What did the last AI query you got assume that you never said?" and "Do you feel faster with AI?" Read three answers, then reveal the METR study (19% slower, believed 20% faster). Then the Indonesia Markets Lead's question and the real-world echo (VEEV launched in Indonesia in August 2026).</p><p class="s">What's your first move before you ask an AI to write the query?</p></div></div>
     <div><span class="t">0:21<small>5 min</small></span><div><h4>Challenge cards, concepts, the prompt sandwich <span class="sl">slides 18 to 20</span></h4><p class="d">Four "what is the model left to guess?" cards: take one answer per card. Run the adoption debate here: "In your team, does adoption mean trial, conversion or repeat purchase? Type T, C or R." The room will split. Then the two key concepts and the five-layer prompt (draw playbook sketch 2).</p><p class="s">If we can't agree on what adoption means, how is the model supposed to guess it?</p></div></div>
@@ -828,7 +829,7 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
     <li><label><input type="checkbox" data-k="i1-b3"><span>A second SQLTools tab with the <b>typical silent-zero draft</b> pasted in, ready to run if every Claude in the room handles NULL correctly.</span></label></li>
     <li><label><input type="checkbox" data-k="i1-b4"><span>Browser tabs open: <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a>, <a href="https://tiktokenizer.vercel.app/" target="_blank" rel="noopener">Tiktokenizer</a>, and the <a href="session1.html">student page</a>.</span></label></li>
     <li><label><input type="checkbox" data-k="i1-b5"><span>draw.io open on sketch 2 (the prompt sandwich, then the three-row truth table).</span></label></li>
-    <li><label><input type="checkbox" data-k="i1-b6"><span>Deck on slide 13. Scoreboard (slide 11) reset.</span></label></li>
+    <li><label><input type="checkbox" data-k="i1-b6"><span>Deck on slide 12. Scoreboard (slide 10) reset.</span></label></li>
   </ul>
 </section>
 
