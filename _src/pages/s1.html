@@ -93,7 +93,7 @@
     <div class="term"><dt>Half-open date range</dt><dd><code>&gt;= '2025-07-01' AND &lt; '2025-10-01'</code>: the whole quarter, no "is the 30th included?" debate.</dd></div>
     <div class="term"><dt>NULL</dt><dd>"Unknown". SQL has three truth values: true, false, unknown. <code>WHERE</code> keeps only <em>true</em>.</dd></div>
     <div class="term"><dt>IS DISTINCT FROM</dt><dd>A comparison that treats NULL as a normal value, so unattributed rows are kept.</dd></div>
-    <div class="term"><dt>Few-shot</dt><dd>Showing the model one finished example so it copies your house style. Show, don't tell.</dd></div>
+    <div class="term"><dt>Few-shot</dt><dd>Showing the model a few finished examples (even one) so it copies your house style. Show, don't tell.</dd></div>
     <div class="term"><dt>Chain-of-thought</dt><dd>Asking the model to list its plan (tables, joins, filters) before it writes SQL, so wrong assumptions surface early.</dd></div>
     <div class="term"><dt>Template</dt><dd>A prompt with labelled <code>{{PLACEHOLDERS}}</code> that the next analyst fills in.</dd></div>
   </dl>
@@ -153,6 +153,17 @@ FROM information_schema.tables
 WHERE table_schema IN ('clr', 'mpl', 'ref')
 ORDER BY 1, 2;
     </sql>
+    <out label="Expected · 7 rows">
+table_schema | table_name
+clr          | consumers
+clr          | lifecycle_events
+mpl          | consent_records
+ref          | age_bands
+ref          | campaigns
+ref          | markets
+ref          | products
+    </out>
+    <p>Seven tables. Step 2 hands the model the three it needs, with their columns.</p>
   </reveal>
   <aside class="lesson rise">
     <span class="box-lbl">Hold on to this</span>
@@ -221,6 +232,46 @@ Respond in Markdown only — do not create a Word document or any file.
     <div class="tbl-wrap"><table class="res"><thead><tr><th>adoption_month</th><th class="num">adopting_consumers</th></tr></thead>
       <tbody><tr><td>2025-07-01</td><td class="num">17</td></tr><tr><td>2025-08-01</td><td class="num">16</td></tr><tr><td>2025-09-01</td><td class="num">25</td></tr></tbody></table></div>
     <p>Three months, a few dozen adopters each: an early-stage market. Got no rows? Check the dates: the data covers 2024 and 2025 only.</p>
+    <p><b>Where those numbers come from: one person, three tables.</b> Follow consumer <b>5855</b>, an Indonesian aged 25 to 34, through the three tables your query joins.</p>
+    <div class="drawn small">
+      <div class="drawn-tab">clr.consumers <em>"the people list"</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one consumer</b>. The age-gate reads <b>age_band</b>.</div>
+        <table><thead><tr><th>consumer_id</th><th>market_code</th><th>age_band</th><th class="note">in plain English</th></tr></thead>
+        <tbody>
+          <tr class="hi"><td>5855</td><td>ID</td><td>25-34</td><td class="note">an adult: passes the age-gate</td></tr>
+          <tr class="gone"><td>5443</td><td>ID</td><td>18-24</td><td class="note">under 25: the age-gate removes them</td></tr>
+          <tr class="more"><td colspan="4">… 998 more Indonesians</td></tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="drawn small">
+      <div class="drawn-tab">clr.lifecycle_events <em>"the diary", consumer 5855's rows</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one thing one consumer did, on one day</b>. Adoption = the <b>trial</b> and <b>conversion</b> rows.</div>
+        <table><thead><tr><th>event_id</th><th>lifecycle_stage</th><th>event_date</th><th class="note">counts?</th></tr></thead>
+        <tbody>
+          <tr class="dim"><td>15266</td><td>registration</td><td>2025-06-15</td><td class="note">no: signing up isn't adoption, and June isn't Q3</td></tr>
+          <tr class="hi"><td>15267</td><td>trial</td><td>2025-07-16</td><td class="note">yes: counts for July</td></tr>
+          <tr class="hi"><td>15268</td><td>conversion</td><td>2025-09-21</td><td class="note">yes: counts for September</td></tr>
+        </tbody></table>
+      </div>
+      <p class="drawn-cap"><b>lifecycle_stage</b> has five values, in order: registration → trial → conversion → retention → churn. Only the middle two mean someone actually used VEEV.</p>
+    </div>
+    <div class="drawn small">
+      <div class="drawn-tab">mpl.consent_records <em>"the permission slips", consumer 5855's rows</em></div>
+      <div class="drawn-box">
+        <div class="drawn-sub">One row = <b>one yes/no, for one channel</b>. About 2.5 slips per consumer.</div>
+        <table><thead><tr><th>comm_channel</th><th>marketing_allowed</th></tr></thead>
+        <tbody>
+          <tr><td>push</td><td class="t">true</td></tr>
+          <tr><td>sms</td><td class="f">false</td></tr>
+          <tr><td>email</td><td class="t">true</td></tr>
+          <tr><td>postal</td><td class="t">true</td></tr>
+        </tbody></table>
+      </div>
+      <p class="drawn-cap">At least one <b>true</b>, so 5855 may be marketed to, and counts. (5443's four slips are all <b>false</b>.) <b>Why the query says DISTINCT:</b> the join glues 5855's two qualifying events to three "true" slips, six rows for one person. <code>count(DISTINCT consumer_id)</code> collapses them back to one per month.</p>
+    </div>
   </reveal>
 
   <p>Now see what the rules did.</p>
@@ -255,6 +306,7 @@ ORDER BY 1;
       </div>
     </div>
     <p>Across the quarter: <b>63 people without the rules, 54 with them.</b> Nine under-25s, one adopter in seven, would have gone into a marketing number. Nobody would have noticed, because 63 looks just as plausible as 54.</p>
+    <div class="callout note"><span class="box-lbl">Two things a sharp eye will catch</span><p><b>The months don't add up to the quarter.</b> 24 + 18 + 25 = 67, but 63 different people adopted. Four people, consumer 5855 among them (trial in July, conversion in September), appear in two months: once in each month, once in the quarter. Same story for 17 + 16 + 25 = 58 against 54.</p><p><b>The consent rule removed nobody extra.</b> Every adult who adopted VEEV in Indonesia in Q3 has at least one slip that allows marketing, so the age-gate alone gets you to 17 · 16 · 25. It still belongs in the prompt: next quarter's people may not be so tidy.</p></div>
     <p>And the rule is real in the data. Zero of Indonesia's 462 under-25 consent records allow marketing:</p>
     <sql>
 SELECT count(*) FILTER (WHERE m.marketing_allowed) AS allowed,

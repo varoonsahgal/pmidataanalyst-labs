@@ -77,7 +77,7 @@
   </figure>
   <div class="tbl-wrap"><table class="res"><thead><tr><th>age_band</th><th class="num">consumers</th><th class="num">marketable consumers</th></tr></thead><tbody>
     <tr class="bad"><td>18-24</td><td class="num">249</td><td class="num">0</td></tr><tr><td>25-34</td><td class="num">594</td><td class="num">514</td></tr><tr><td>35-44</td><td class="num">570</td><td class="num">484</td></tr><tr><td>45-54</td><td class="num">353</td><td class="num">303</td></tr><tr><td>55+</td><td class="num">234</td><td class="num">194</td></tr></tbody></table></div>
-  <p>The count was honest. The segment was still non-compliant: <b>0% of Italy's under-25 consent records allow marketing</b> (EU age-gate). The chart never barked.</p>
+  <p><b>Marketable</b> = has at least one consent record with <code>marketing_allowed = true</code>. The count was honest. The segment was still non-compliant: <b>0% of Italy's under-25 consent records allow marketing</b> (EU age-gate). The chart never barked.</p>
   <div class="callout note"><span class="box-lbl">Keep this question in mind</span><p>Does the same rule hold in <b>Japan</b>? The lesson is "check the permission context for <i>this</i> market", not "drop under-25s everywhere". The lab has a trap for over-correctors.</p></div>
 </section>
 
@@ -142,6 +142,46 @@ Respond in Markdown only — do not create a Word document or any file.
 
 <section class="part" id="step2" data-toc="Step 2 · Confirm">
   <stephead step="step2" n="2" eyebrow="Step 2 · 11 min" mins="11 min" model="none">Confirm <span>each suspicion</span>|Predict, then run. Each check turns a suspicion into evidence.</stephead>
+  <p><b>Three tables do all five checks.</b> Here they are, as they really are:</p>
+  <div class="drawn small">
+    <div class="drawn-tab">ref.products <em>"what each product is"</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one product</b>. This is the whole table: 3 rows.</div>
+      <table><thead><tr><th>product_code</th><th>category</th><th>has_device</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr><td>IQOS</td><td>Heated Tobacco</td><td class="t">true</td><td class="note">a device that heats tobacco sticks</td></tr>
+        <tr><td>VEEV</td><td>Vapor</td><td class="t">true</td><td class="note">an e-vapour device</td></tr>
+        <tr class="hi"><td>ZYN</td><td>Oral Nicotine</td><td class="f">false</td><td class="note">a pouch. No device, so nothing to measure</td></tr>
+      </tbody></table>
+    </div>
+  </div>
+  <div class="drawn small">
+    <div class="drawn-tab">det.device_telemetry <em>"the device log", Japan rows</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">One row = <b>one device's activity on one day</b>. 20,463 Japan rows; 2 shown.</div>
+      <table><thead><tr><th>device_id</th><th>consumer_id</th><th>product_code</th><th>event_date</th><th>session_count</th><th class="note">in plain English</th></tr></thead>
+      <tbody>
+        <tr><td>DEV-JP-000002</td><td>2</td><td>IQOS</td><td>2025-07-10</td><td>62</td><td class="note">a device we can tie to a person</td></tr>
+        <tr><td>DEV-JP-000004</td><td class="null">NULL</td><td>IQOS</td><td>2025-09-27</td><td>76</td><td class="note">anonymised: real activity, nobody's name</td></tr>
+        <tr class="more"><td colspan="6">… 20,461 more Japan rows: IQOS and VEEV only</td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Check 1 counts rows per product. Check 3 counts the NULL names. Check 5 adds up <b>session_count</b> by quarter.</p>
+  </div>
+  <div class="drawn small">
+    <div class="drawn-tab">clr.consumers <em>Japan, counted by product</em></div>
+    <div class="drawn-box">
+      <div class="drawn-sub">3,000 rows, one per consumer, counted here by <b>primary_product_interest</b>: the product they signed up for.</div>
+      <table><thead><tr><th>primary_product_interest</th><th>consumers</th><th>has a device?</th></tr></thead>
+      <tbody>
+        <tr><td>IQOS</td><td>1,497</td><td class="t">yes</td></tr>
+        <tr><td>VEEV</td><td>894</td><td class="t">yes</td></tr>
+        <tr class="hi"><td>ZYN</td><td>609</td><td class="f">no</td></tr>
+        <tr class="total"><td>all of Japan</td><td>3,000</td><td></td></tr>
+      </tbody></table>
+    </div>
+    <p class="drawn-cap">Check 2's denominator: at most 1,497 + 894 = <b>2,391</b> of Japan's 3,000 consumers can have any telemetry at all.</p>
+  </div>
 
   <h3 id="c1" data-toc="Check 1 · the hallucination" data-toc-sub>Check 1 · The hallucination</h3>
   <predict id="s4-zyn" ph="a number">How many <b>ZYN</b> rows are in Japan's device telemetry?</predict>
@@ -209,6 +249,7 @@ ORDER BY c.market_code;
   <reveal id="s4-u25" title="Reveal · context, not a blanket ban">
     <figure class="fig" style="margin-top:0"><div class="fig-card anim"><p class="fig-t">Under-25 consent records that allow marketing, by market</p><p class="fig-s">The same band, three different rules.</p>{{CHART:s4-under25}}</div></figure>
     <p><b>In Japan, the age-band line is valid.</b> Flagging it would be an over-correction: you'd throw away a legitimate audience because the same band is restricted in Italy. Bias-aware judgment is "check the context for this market", not "ban the band everywhere". (The <i>engagement story</i> it would market is still built on a hallucination, so the recommendation as a whole doesn't survive; the age-band logic does.)</p>
+    <p><b>Two ways to count the same rule.</b> 73% is the share of consent <i>records</i>: Japan's 359 under-25s hold 924 slips, and 675 say yes. Counted by <i>person</i>, 319 of the 359 have at least one slip that says yes. Part 2's server counts people. Both counts say the same thing: Japan is not Italy.</p>
   </reveal>
 
   <h3 id="c5" data-toc="Check 5 · sustain momentum?" data-toc-sub>Check 5 (optional) · "Sustain momentum"</h3>
@@ -229,6 +270,7 @@ ORDER BY 1;
       <figure class="fig" style="margin:0"><div class="fig-card anim"><p class="fig-t">Device sessions</p><p class="fig-s">Japan, by quarter</p>{{CHART:s4-sessions}}</div></figure>
       <figure class="fig" style="margin:0"><div class="fig-card anim"><p class="fig-t">Devices reporting</p><p class="fig-s">Japan, by quarter</p>{{CHART:s4-devices}}</div></figure>
     </div>
+    <p>Eight quarters come back: the telemetry starts in 2024-Q1. The charts show all eight; the table keeps the last three.</p>
     <div class="tbl-wrap"><table class="res"><thead><tr><th>quarter</th><th class="num">sessions</th><th class="num">devices_reporting</th><th class="num">sessions_per_device</th></tr></thead><tbody>
       <tr><td>2025-Q2</td><td class="num">139252</td><td class="num">1329</td><td class="num">104.8</td></tr>
       <tr><td>2025-Q3</td><td class="num">137824</td><td class="num">1315</td><td class="num">104.8</td></tr>
@@ -375,7 +417,7 @@ Fix anything that fails. Finish with a table of the five results and the folder 
     <tr><td><b>DATABASE</b></td><td>Separate settings, because the <code>!</code> in the password breaks a URL. <b>Read-only connection</b>: the lock is on the door, so the database refuses a write whatever the model asks.</td></tr>
     <tr><td><b>TOOLS</b></td><td>Two general tools (look at the tables, run a SELECT) and two <b>judgment tools</b> holding today's rules: no device means no engagement number, and only consented consumers are a target. The 50-row cap keeps results small (see the box below).</td></tr>
     <tr><td><b>CONNECT</b></td><td><code>.mcp.json</code> tells Claude Code how to start your server: which program, which file. It's project-scoped: it only applies in this folder.</td></tr>
-    <tr><td><b>PROVE IT</b></td><td>Five expected numbers you already know from Part 1. The test is the spec: Claude isn't done until the numbers match. The DELETE matches no rows (<code>WHERE 1 = 0</code>), so even a broken lock couldn't hurt anything.</td></tr>
+    <tr><td><b>PROVE IT</b></td><td>Five expected results you can check by hand: 15,597 is every row of the diary, Italy's 249 and 0 are the case file, and Japan's 359 and 319 are Check 4 counted by person. The test is the spec: Claude isn't done until the numbers match. The DELETE matches no rows (<code>WHERE 1 = 0</code>), so even a broken lock couldn't hurt anything.</td></tr>
   </tbody></table></div>
   <h3 id="ctxwin" data-toc="While it builds · context windows" data-toc-sub>While it builds · how big is the box?</h3>
   <p>Open the <a href="https://context-windows.damien-henry.com/" target="_blank" rel="noopener"><b>LLM Context Window Visualizer</b></a> in your browser. Don't choose a model yet.</p>
