@@ -81,7 +81,7 @@
     <div class="term"><dt>Token</dt><dd>The word-pieces a model reads and writes, roughly ¾ of an English word. Prices are per million tokens.</dd></div>
     <div class="term"><dt>Next-token prediction</dt><dd>How an LLM writes: it predicts the next token, over and over, from the text it can see.</dd></div>
     <div class="term"><dt>Temperature · sampling</dt><dd>How adventurous the next-token choice is. Why one prompt gives different answers.</dd></div>
-    <div class="term"><dt>Context window</dt><dd>Everything the model can see right now: your prompt and the chat so far.</dd></div>
+    <div class="term"><dt>Context window</dt><dd>Everything the model can see right now: its instructions, your prompt, the chat so far, every tool definition and every tool result.</dd></div>
     <div class="term"><dt>Context rot</dt><dd>Models get less reliable as the input grows (Chroma tested 18 models in 2025). Start a fresh chat for each new task.</dd></div>
     <div class="term"><dt>Lost in the middle</dt><dd>Models use the start and end of a long prompt best. Put rules on top and the question last.</dd></div>
     <div class="term"><dt>Grounding</dt><dd>Giving the model the real facts it needs (schema, rules) so it writes against reality.</dd></div>
@@ -96,6 +96,13 @@
     <div class="term"><dt>Model picker</dt><dd>The model name next to the send button in Claude Desktop. You can change it mid-chat; it applies from the next reply.</dd></div>
     <div class="term"><dt>Project · Claude Desktop</dt><dd>A workspace whose instructions apply to every chat inside it. A good home for your schema and rules.</dd></div>
     <div class="term"><dt>MCP</dt><dd>Model Context Protocol: an open standard for plugging tools and data into an AI app ("a USB-C port for AI").</dd></div>
+    <div class="term"><dt>MCP client</dt><dd>The app that starts an MCP server and calls its tools on the model's behalf. In Session 4 Part 2: Claude Code.</dd></div>
+    <div class="term"><dt>MCP server</dt><dd>A small program that offers tools. Yours is <code>server.py</code>: four tools over HORIZON.</dd></div>
+    <div class="term"><dt>Tool · MCP</dt><dd>A function a server offers. The model sees only its name, description and input schema, never its code.</dd></div>
+    <div class="term"><dt>Tool poisoning</dt><dd>Instructions hidden in a tool's description. Whoever writes a server writes words into your model's context.</dd></div>
+    <div class="term"><dt>Claude Code</dt><dd>Anthropic's agent for working in files and folders: the Code tab of the Claude app. It is the MCP client in Part 2.</dd></div>
+    <div class="term"><dt>Custom agent</dt><dd>A Claude with its own instructions, its own tools and its own context window, defined in one Markdown file in <code>.claude\agents\</code>.</dd></div>
+    <div class="term"><dt>Least privilege</dt><dd>Give an agent only the tools its job needs. Enforced by its <code>tools</code> list, not by asking nicely.</dd></div>
     <div class="term"><dt>Prompt hygiene</dt><dd>Everything you paste leaves your data boundary. Schema and rules yes; rows, credentials, connection strings never.</dd></div>
   </dl>
 </section>

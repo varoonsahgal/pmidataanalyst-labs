@@ -62,8 +62,8 @@
     <div class="row"><span class="lbl">0:12 S1 · Mind-reader not included<small>WA3899 · Indonesia · VEEV</small></span><span class="v hot">9</span></div>
     <div class="row"><span class="lbl">1:05 S2 · Deepfake data<small>WA3900 · Japan · ZYN</small></span><span class="v hot">73%</span></div>
     <div class="row"><span class="lbl">2:07 S3 · Compared to what?<small>WA3901 · Indonesia · VEEV</small></span><span class="v hot">0 / 116</span></div>
-    <div class="row"><span class="lbl">3:00 S4 · The dog that didn't bark<small>WA3902 · Japan · all products</small></span><span class="v hot">79.7%</span></div>
-    <div class="row"><span class="lbl">3:48 Close<small>the score, five numbers, one Monday move each</small></span><span class="v">4:00</span></div>
+    <div class="row"><span class="lbl">3:00 S4 · The dog that didn't bark<small>WA3902 · Japan · Part 2 builds an MCP server (to 4:30)</small></span><span class="v hot">79.7%</span></div>
+    <div class="row"><span class="lbl">4:30 Close<small>the score, five numbers, one Monday move each</small></span><span class="v">4:42</span></div>
     <p class="ft">Breaks: a 5-minute stretch at <b>1:00</b> and <b>2:55</b>, a 12-minute break at <b>1:55</b>.</p>
   </aside>
 </div>
@@ -377,7 +377,7 @@
       <span class="n">Session 4 · WA3902 · 3:00 · Judge</span>
       <h3>The dog that didn't bark</h3>
       <p class="one">Read for what's missing.</p>
-      <p class="tease">A polished AI analysis claims engagement numbers for a product with no device, and "94%" of a population where at most 79.7% could qualify. Validate, caveat or escalate. Then the MCP demo.</p>
+      <p class="tease">A polished AI analysis claims engagement numbers for a product with no device, and "94%" of a population where at most 79.7% could qualify. Validate, caveat or escalate. Then Part 2: every student builds an MCP server and a reviewer agent in Claude Code, and still signs.</p>
       <span class="foot2"><span>AI Judgment &amp; Bias Awareness</span><span class="go">Open the guide →</span></span>
     </a>
   </div>
@@ -579,7 +579,7 @@
     <div class="wcard ai"><h4>Sycophancy <small>S3</small></h4><p>Models tend to agree with the user, including abandoning a correct answer when you just say "are you sure?" (Sharma et al., 2024).</p><p class="like">"Agreement is not confirmation."</p></div>
     <div class="wcard ai"><h4>Explanations aren't evidence <small>S3</small></h4><p>Anthropic's research found Claude's description of how it solved a sum differs from what it actually computed. A fluent explanation proves nothing.</p><p class="like">"An explanation is not evidence."</p></div>
     <div class="wcard ai"><h4>Context rot <small>S4</small></h4><p>Models get less reliable as their input grows (Chroma tested 18 models in 2025; all degraded). Long chats full of old guesses make worse reviewers.</p><p class="like">"New task, new chat."</p></div>
-    <div class="wcard ai"><h4>MCP <small>S4 demo</small></h4><p>Model Context Protocol: an open standard for plugging tools and data into an AI app, "a USB-C port for AI". In the demo, Claude gets a read-only door into HORIZON.</p><p class="like">"MCP gives it eyes. It doesn't give it judgment."</p></div>
+    <div class="wcard ai"><h4>MCP <small>S4 Part 2</small></h4><p>Model Context Protocol: an open standard for plugging tools and data into an AI app, "a USB-C port for AI". In Session 4 Part 2, students build a read-only MCP server over HORIZON with Claude Code.</p><p class="like">"MCP gives it eyes. It doesn't give it judgment."</p></div>
   </div>
   <div class="point rise"><span class="k">Back to the point</span><p>Every AI idea in the day explains one half of the rule: <b>AI answers</b> (fluently, from whatever it was given). The labs supply the other two halves.</p></div>
 </section>
@@ -606,7 +606,7 @@
     <tr><td>know the setup works</td><td>Run <code>SELECT count(*) FROM clr.lifecycle_events;</code> → <b>15597</b>. Everyone types it in the chat at 0:02.</td></tr>
   </tbody></table></div>
   <div class="callout note"><span class="box-lbl">Prompt hygiene · say it once, at the start</span><p>Everything pasted into an AI tool leaves the company's data boundary. <b>Table names, column names, rules and definitions: yes. Real consumer rows, passwords, connection strings: never.</b> No prompt in the labs pastes a data row.</p></div>
-  <div class="point rise"><span class="k">Back to the point</span><p>The tools are deliberately separate: Claude can't touch the data, so students carry every query across by hand and read every number themselves. That's "you sign", built into the setup. Session 4's MCP demo shows what happens when the model gets its own door.</p></div>
+  <div class="point rise"><span class="k">Back to the point</span><p>The tools are deliberately separate: Claude can't touch the data, so students carry every query across by hand and read every number themselves. That's "you sign", built into the setup. Session 4 Part 2 shows what happens when the model gets its own door, and why the rules go in the door.</p></div>
 </section>
 
 <div class="zone" id="z-ready"><b>Be ready</b><span>Your Mac, the morning of class, and where everything lives.</span><i>reference</i></div>
@@ -615,7 +615,7 @@
   <div class="part-h">
     <span class="eyebrow">Reference</span>
     <h2>Your Mac's <span>warehouse</span></h2>
-    <p class="dek">Your Mac runs the same warehouse as the VMs, in Docker. Students never see it. You use it to rehearse, to show results if a VM misbehaves, and for the Session 4 MCP demo.</p>
+    <p class="dek">Your Mac runs the same warehouse as the VMs, in Docker. Students never see it. You use it to rehearse, to show results if a VM misbehaves, and for Session 4 Part 2 (<code>make mcp-lab-check</code> proves the reference MCP server).</p>
   </div>
   <div class="code out"><div class="code-h"><span class="where"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h10M4 18h7"/></svg>Terminal</span><span class="sp"></span><span class="hint"></span></div><pre>cd ~/pmidataanalyst/horizon-warehouse
 make help          # every command
@@ -626,9 +626,9 @@ make before-class  # the morning of class: fresh rebuild + every number checked
 make s1            # run a session&#x27;s queries with expected results (s1 … s4)
 make s2-reset      # drop Session 2&#x27;s fake tables (between runs)
 make s2-fallback   # load a ready-made Session 2 table if Claude&#x27;s script won&#x27;t run
-make demo-prep     # Session 4: numbers, MCP check, on-stage checklist
+make mcp-lab-check # Session 4 Part 2: the reference MCP server, its tool definitions, 7 checks
 make psql          # a SQL prompt in Terminal (\q to leave)</pre></div>
-  <div class="callout note"><span class="box-lbl">Port 5432 is shared</span><p>Your Data Engineer warehouse (<code>~/pmidataeng</code>, container <code>horizon-db</code>) holds identical data on the same port, so SQLTools, <code>psql</code> and the MCP demo give the same numbers on either. But the <code>make</code> commands above only talk to this class's container, <code>horizon-analyst-db</code>. If <code>make status</code> shows <code>horizon-db</code> on 5432, run <code>make takeover</code> first (it stops the other one and keeps its data); <code>make handback</code> switches back afterwards.</p></div>
+  <div class="callout note"><span class="box-lbl">Port 5432 is shared</span><p>Your Data Engineer warehouse (<code>~/pmidataeng</code>, container <code>horizon-db</code>) holds identical data on the same port, so SQLTools, <code>psql</code> and the MCP server give the same numbers on either. But the <code>make</code> commands above only talk to this class's container, <code>horizon-analyst-db</code>. If <code>make status</code> shows <code>horizon-db</code> on 5432, run <code>make takeover</code> first (it stops the other one and keeps its data); <code>make handback</code> switches back afterwards.</p></div>
 </section>
 
 <section class="part" id="morning" data-toc="The morning of class">
@@ -643,7 +643,7 @@ make psql          # a SQL prompt in Terminal (\q to leave)</pre></div>
     <li><label><input type="checkbox" data-k="i0-m4"><span>Deck open (<code>deck/PMI_DataAnalyst_FutureSkills_Full_Deck.html</code>), notes hidden, <b>scoreboard on slide 11 reset</b>. Keys: ← → move · R reveal · N notes · URL <code>#24</code> jumps to slide 24.</span></label></li>
     <li><label><input type="checkbox" data-k="i0-m5"><span>Browser tabs: Transformer Explainer, Tiktokenizer, Which Face Is Real?, Datasaurus, the student site, these guides.</span></label></li>
     <li><label><input type="checkbox" data-k="i0-m6"><span>draw.io file open with the six sketches (playbook → Six draw.io sketches).</span></label></li>
-    <li><label><input type="checkbox" data-k="i0-m7"><span>Session 4: <code>make demo-prep</code>; Claude Desktop on your Mac shows the <code>horizon</code> connector.</span></label></li>
+    <li><label><input type="checkbox" data-k="i0-m7"><span>Session 4: <code>make mcp-lab-check</code> passes; Part 2 run once on a student VM in the Code tab.</span></label></li>
     <li><label><input type="checkbox" data-k="i0-m8"><span>Paper and pen for the two opening numbers ("asked an AI" vs "checked against data"); you read them back at 3:51.</span></label></li>
   </ul>
 </section>
@@ -655,10 +655,10 @@ make psql          # a SQL prompt in Terminal (\q to leave)</pre></div>
   </div>
   <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>You want</th><th>Open</th></tr></thead><tbody>
     <tr><td>The student lab guides (what students follow)</td><td><a href="index.html">the student site</a> · <a href="session1.html">S1</a> · <a href="session2.html">S2</a> · <a href="session3.html">S3</a> · <a href="session4.html">S4</a> · <a href="glossary.html">glossary</a></td></tr>
-    <tr><td>The deck you present (85 slides)</td><td><code>~/pmidataanalyst/deck/PMI_DataAnalyst_FutureSkills_Full_Deck.html</code></td></tr>
+    <tr><td>The deck you present (90 slides)</td><td><code>~/pmidataanalyst/deck/PMI_DataAnalyst_FutureSkills_Full_Deck.html</code></td></tr>
     <tr><td>The playbook: question bank, links with timing, draw.io sketches</td><td><code>~/pmidataanalyst/playbook/PMI_DataAnalyst_4hr_Instructor_Playbook.html</code></td></tr>
     <tr><td>Every query with its expected number</td><td><code>~/pmidataanalyst/horizon-warehouse/sql/</code></td></tr>
-    <tr><td>The Session 4 MCP demo runbook</td><td><code>~/pmidataanalyst/horizon-warehouse/mcp/DEMO_session4_mcp.md</code> (and the Session 4 guide)</td></tr>
+    <tr><td>Session 4 Part 2: the reference MCP server, its check and the agent template</td><td><code>~/pmidataanalyst/horizon-warehouse/mcp-lab/</code> (and the Session 4 guide). The old instructor-only demo runbook is still in <code>mcp/DEMO_session4_mcp.md</code>.</td></tr>
   </tbody></table></div>
   <h3>Every number, one card</h3>
   <div class="recap rise">

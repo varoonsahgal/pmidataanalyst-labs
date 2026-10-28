@@ -22,6 +22,7 @@ import json
 import os
 import re
 import sys
+import zipfile
 from html import escape
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -109,6 +110,7 @@ MODELS = {
     "haiku": ("haiku", "Claude Desktop · Haiku (thrifty)"),
     "none": ("none", "SQLTools only · no model"),
     "any": ("sonnet", "Claude Desktop"),
+    "code": ("opus", "Claude Code · Code tab"),
 }
 
 # --------------------------------------------------------------------------- SQL highlighting
@@ -551,8 +553,21 @@ def write_images():
             f.write(svg)
 
 
+# Session 4 Part 2 fallback: the reference MCP server, zipped from the warehouse folder.
+MCP_LAB = os.path.join(OUT, "..", "horizon-warehouse", "mcp-lab")
+MCP_ZIP = ["server.py", "check.py", "requirements.txt", "README.md"]
+
+
+def write_mcp_zip():
+    os.makedirs(os.path.join(OUT, "downloads"), exist_ok=True)
+    with zipfile.ZipFile(os.path.join(OUT, "downloads", "horizon-mcp.zip"), "w", zipfile.ZIP_DEFLATED) as z:
+        for name in MCP_ZIP:
+            z.write(os.path.join(MCP_LAB, name), name)
+
+
 def main():
     write_images()
+    write_mcp_zip()
     order = [p for p in PAGES if p["key"] != "gl"]
     for i, p in enumerate(PAGES):
         src = os.path.join(HERE, "pages", p["key"] + ".html")

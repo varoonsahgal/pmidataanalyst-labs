@@ -400,9 +400,9 @@
     <p class="dek">Before the lab, six minutes on what Claude actually is. It explains everything that happens in Step 1.</p>
   </div>
   <div class="lanes">
-    <div class="lane you"><span class="k">You do</span><div><p>Share your screen and open the <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a> (a free website that runs a small AI model, GPT-2, in the browser). Type <code>The analyst ran the query and the result was</code>. Read the top three bars aloud. Drag the temperature slider up and generate twice.</p></div></div>
-    <div class="lane do"><span class="k">Students do</span><div><p>Predict in the chat: "Will the model's top candidate for the next word be a number?"</p></div></div>
-    <div class="lane see"><span class="k">They see</span><div><p>No. The top candidates are small words like "a", "that" or "the". Then two generations at higher temperature give two different continuations.</p></div></div>
+    <div class="lane you"><span class="k">You do</span><div><p>On slide 14 the deck has a live next-word widget for the Icebreaker 1 sentence ("IQOS conversions in Italy last quarter were ___"). Click <b>Next word</b> three times and read the words aloud. Drag temperature to 0.1 (same word every time), then to 2.0 and click <b>Ask it 10 times</b>. Point at the dashed "which quarter?" row, then press R. Optional, live: the <a href="https://poloclub.github.io/transformer-explainer/" target="_blank" rel="noopener">Transformer Explainer</a> (a real GPT-2 in the browser) with <code>The analyst ran the query and the result was</code>.</p></div></div>
+    <div class="lane do"><span class="k">Students do</span><div><p>Predict in the chat: "Which word will it pick?" Then compare with what the room typed at 0:05.</p></div></div>
+    <div class="lane see"><span class="k">They see</span><div><p>Plausible words, picked by weight, and a different spread every time at high temperature. The one answer a good analyst gives, "which quarter?", is never on the list. (In the Transformer Explainer the top candidates are small words like "a" or "the", not a number.)</p></div></div>
     <div class="lane mean"><span class="k">It means</span><div><p>The model isn't computing a result. It's continuing a sentence with whatever sounds likely. It has no idea what query the analyst ran. It writes what sounds right, not what it has checked.</p></div></div>
     <div class="lane say"><span class="k">You say</span><div><p>"It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in."</p></div></div>
   </div>
@@ -735,7 +735,7 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
 
 <section class="part" id="debrief" data-toc="Debrief">
   <div class="part-h">
-    <span class="eyebrow">Debrief · 5 min · class time 0:54 · slides 26 and 27</span>
+    <span class="eyebrow">Debrief · 5 min · class time 0:54 · slides 26 to 28</span>
     <h2>What just <span>happened</span></h2>
   </div>
   <div class="tbl-wrap"><table class="why-tbl"><thead><tr><th>What students did</th><th>What it taught</th></tr></thead><tbody>
@@ -746,7 +746,7 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
   </tbody></table></div>
   <div class="chatbox rise"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9.5h8M8 12.5h5" stroke-linecap="round"/></svg></span><span class="box-lbl">Discussion</span><p>Which question do you ask an AI tool most often at work? Name the three placeholders that would turn it into a template, and the hidden assumption each one makes explicit.</p></div>
   <div class="unmute rise"><span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M8.5 21h7"/></svg></span><span class="box-lbl">Unmute moment</span><p>"Who has shipped a number that was right for the question they <b>heard</b>, but not for the question that was <b>meant</b>?"</p></div>
-  <p>Pick a person, not the room (someone who typed earlier). Then <b>Takeaway #1</b> (slide 27): <i>"The model only knows what you tell it."</i> And the Monday move: take one ambiguous request from this week, write down its timeframe, its definition and the one rule it silently assumes, and make those three placeholders.</p>
+  <p>Pick a person, not the room (someone who typed earlier). Then <b>Takeaway #1</b> (slide 28): <i>"The model only knows what you tell it."</i> And the Monday move: take one ambiguous request from this week, write down its timeframe, its definition and the one rule it silently assumes, and make those three placeholders.</p>
   <div class="point rise"><span class="k">Back to the point</span><p>Four steps, one sentence: <b>what you don't say, it makes up.</b> Session 4 is the mirror image: what <i>it</i> doesn't say, you have to find. Mention that now; you'll pay it off at 3:00.</p></div>
 </section>
 
@@ -754,21 +754,21 @@ Respond in Markdown only — do not create a Word document or any file.</pre></d
 
 <section class="part" id="ros" data-toc="Run of show, with script" data-toc-grp="In class · keep open">
   <div class="part-h">
-    <span class="eyebrow">0:12 to 1:00 · deck slides 13 to 27</span>
+    <span class="eyebrow">0:12 to 1:00 · deck slides 13 to 28</span>
     <h2>Run of show, <span>with script</span></h2>
     <p class="dek">Times match the playbook. Each block: what you do, what you say (word for word if you like), and what the room should see.</p>
   </div>
   <div class="ros">
-    <div><span class="t">0:12<small>4 min</small></span><div><h4>Transformer Explainer <span class="sl">slide 14</span></h4><p class="d">Share screen. Type "The analyst ran the query and the result was". Predict: top candidate a number? Read the top three bars. Drag temperature up, generate twice. Tiktokenizer on <code>clr.lifecycle_events</code>.</p><p class="s">It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in.</p></div></div>
+    <div><span class="t">0:12<small>4 min</small></span><div><h4>Next-word widget <span class="sl">slide 14</span></h4><p class="d">Next word ×3, temperature 0.1 then 2.0, Ask it 10 times. Point at the dashed "which quarter?" row; press R. Optional: Transformer Explainer live, Tiktokenizer on <code>clr.lifecycle_events</code>.</p><p class="s">It doesn't look things up. It continues text. Everything it knows about HORIZON is whatever you paste in.</p></div></div>
     <div><span class="t">0:16<small>2 min</small></span><div><h4>Four facts <span class="sl">slide 15</span></h4><p class="d">One sentence per fact.</p><p class="s">And fact 4: it answers anyway, because guessing gets rewarded. Today we give it a polite way to say "I'm not sure".</p></div></div>
-    <div><span class="t">0:18<small>3 min</small></span><div><h4>Mindset and the scenario <span class="sl">slides 16 and 17</span></h4><p class="d">Chat: "What did the last AI query you got assume that you never said?" Read three answers. Then the Indonesia Markets Lead's question and the real-world echo (VEEV launched in Indonesia in August 2026).</p><p class="s">What's your first move before you ask an AI to write the query?</p></div></div>
+    <div><span class="t">0:18<small>3 min</small></span><div><h4>Your experience and the scenario <span class="sl">slides 16 and 17</span></h4><p class="d">Chat: "What did the last AI query you got assume that you never said?" and "Do you feel faster with AI?" Read three answers, then reveal the METR study (19% slower, believed 20% faster). Then the Indonesia Markets Lead's question and the real-world echo (VEEV launched in Indonesia in August 2026).</p><p class="s">What's your first move before you ask an AI to write the query?</p></div></div>
     <div><span class="t">0:21<small>5 min</small></span><div><h4>Challenge cards, concepts, the prompt sandwich <span class="sl">slides 18 to 20</span></h4><p class="d">Four "what is the model left to guess?" cards: take one answer per card. Run the adoption debate here: "In your team, does adoption mean trial, conversion or repeat purchase? Type T, C or R." The room will split. Then the two key concepts and the five-layer prompt (draw playbook sketch 2).</p><p class="s">If we can't agree on what adoption means, how is the model supposed to guess it?</p></div></div>
     <div class="key"><span class="t">0:26<small>5 min</small></span><div><h4>Step 1 · Ask it raw <span class="sl">slide 22</span></h4><p class="d">Everyone pastes the vague prompt. Read Claude's questions aloud. Then "just guess". Predict "will it run?". Run it.</p><p class="x">ERROR: relation "…" does not exist.</p><p class="s">An error is a gift. The scary query is the one that runs.</p></div></div>
     <div class="key"><span class="t">0:31<small>10 min</small></span><div><h4>Step 2 · Ground it <span class="sl">slide 23</span></h4><p class="d">New chat. Walk the "why each line is there" table. Run → 17 · 16 · 25. Predict the under-25 count. Run the "what the rules removed" query → 9. Age-gate check → 0 of 462. Chat: the unwritten rule.</p><p class="s">Nine people, one in seven, and 63 looked just as believable as 54.</p></div></div>
     <div class="key"><span class="t">0:41<small>6 min</small></span><div><h4>Step 3 · The silent zero <span class="sl">slide 24</span></h4><p class="d">Same chat: "also exclude campaign 4". Read the WHERE clause together before running. Predict both numbers. Run the typical draft → 0 rows. Truth table (sketch 2). Fix prompt → 17 · 16 · 25.</p><p class="s">No error. No warning. A dashboard would say nobody adopted VEEV.</p></div></div>
     <div><span class="t">0:47<small>7 min</small></span><div><h4>Step 4 · Make it reusable <span class="sl">slide 25</span></h4><p class="d">The three patterns. Everyone copies the template into a note. Project tip. Japan test only if ahead.</p><p class="s">Do the thinking once. Template it.</p></div></div>
-    <div><span class="t">0:54<small>6 min</small></span><div><h4>Debrief and takeaway <span class="sl">slides 26 and 27</span></h4><p class="d">Placeholders question, then the unmute ("right for the question they heard…"). Takeaway #1 and the Monday move.</p><p class="s">The model only knows what you tell it.</p></div></div>
-    <div><span class="t">1:00<small>5 min</small></span><div><h4>Stretch <span class="sl">slide 28</span></h4><p class="d">"Five minutes. Stand up. When you're back: a face, and a question you won't be able to answer."</p></div></div>
+    <div><span class="t">0:54<small>6 min</small></span><div><h4>Vote, debrief and takeaway <span class="sl">slides 26 to 28</span></h4><p class="d">The vote: obviously wrong or 90% right? (Number 2: smoke alarm vs carbon monoxide.) Then the "almost right" chat, the unmute ("right for the question they heard…"), the Mars Climate Orbiter and Excel-genes stories. Takeaway #1 and the Monday move.</p><p class="s">The model only knows what you tell it.</p></div></div>
+    <div><span class="t">1:00<small>5 min</small></span><div><h4>Stretch <span class="sl">slide 29</span></h4><p class="d">"Five minutes. Stand up. When you're back: a face, and a question you won't be able to answer."</p></div></div>
   </div>
 </section>
 

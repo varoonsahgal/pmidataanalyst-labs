@@ -1798,3 +1798,17 @@ svg.art-s4 {
   mask-image: linear-gradient(90deg, transparent 0, #000 9%, #000 91%, transparent 100%), linear-gradient(180deg, #000 80%, transparent 100%);
   mask-composite: intersect;
 }
+
+/* Session 4 Part 2: the four-node MCP diagram and the tool anatomy */
+.mcp.four { grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; }
+.mcp.four .wire { width: 56px; }
+.mcp .node.client { border-color: var(--hue); box-shadow: 0 0 0 3px color-mix(in srgb, var(--hue) 35%, transparent), var(--shadow); }
+.mcp .node.model { border-style: dashed; }
+.mcp .node.client small, .mcp .node.client b { color: #fff; }
+@media (max-width: 900px) { .mcp.four { grid-template-columns: 1fr; justify-items: stretch; } .mcp.four .wire { width: 2px; height: 34px; justify-self: center; background: repeating-linear-gradient(180deg, var(--hue) 0 8px, transparent 8px 14px); background-size: 2px 14px; } .mcp.four .wire span { left: 14px; top: 9px; transform: none; } }
+.part-break { margin: 56px 0 8px; padding: 26px 24px; border-radius: 18px; background: linear-gradient(160deg, #0F2648, #081A35); color: #E9F0FA; border: 1px solid #1B355C; }
+.part-break .eyebrow { color: var(--hue-hi); }
+.part-break h2 { color: #fff; margin: 6px 0 8px; }
+.part-break h2 span { color: var(--hue-hi); }
+.part-break p { color: rgba(233,240,250,.85); margin: 0; }
+.part-break b { color: #fff; }
