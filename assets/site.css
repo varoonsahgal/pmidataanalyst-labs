@@ -1000,6 +1000,27 @@ table.res td { font-family: var(--mono); font-size: 14px; }
   font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.5);
 }
 
+/* ---------------------------------------------------------------- pattern cards (few-shot, chain-of-thought) */
+.pattern { margin: 22px 0 28px; border: 1px solid var(--rule); border-radius: var(--r); background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
+.pattern-h { padding: 18px 22px 16px; border-bottom: 1px solid var(--rule); background: linear-gradient(180deg, var(--hue-soft), var(--surface) 160%); }
+.pattern-n { display: inline-block; font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--hue-ink); margin-bottom: 8px; }
+.pattern-h h4 { margin: 0 0 6px; font-size: 22px; line-height: 1.2; letter-spacing: -.01em; color: var(--head); }
+.pattern-h p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--ink); }
+.pattern-h p em { font-style: normal; font-weight: 600; color: var(--hue-ink); }
+.pattern-b { padding: 16px 22px 4px; }
+.pattern-b > p { margin: 0 0 14px; }
+.pattern-b .code { margin: 14px 0 16px; }
+.pattern-vs { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin: 4px 0 16px; }
+.pattern-vs > div { padding: 14px 16px; border-radius: var(--r-sm); }
+.pattern-vs .no { background: var(--bad-soft); }
+.pattern-vs .yes { background: var(--good-soft); }
+.pattern-vs .box-lbl { display: block; margin-bottom: 6px; }
+.pattern-vs .no .box-lbl { color: var(--bad-ink); }
+.pattern-vs .yes .box-lbl { color: var(--good-ink); }
+.pattern-vs p { margin: 0; font-size: 15px; line-height: 1.55; color: var(--ink); }
+.pattern-tie { margin: 0 0 18px; padding: 12px 16px; border-left: 3px solid var(--hue); background: var(--surface-2); border-radius: 0 var(--r-sm) var(--r-sm) 0; font-size: 15.5px; line-height: 1.55; }
+@media (max-width: 700px) { .pattern-vs { grid-template-columns: minmax(0, 1fr); } }
+
 /* ---------------------------------------------------------------- words (term cards) */
 .terms { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; margin: 18px 0 8px; }
 .term {

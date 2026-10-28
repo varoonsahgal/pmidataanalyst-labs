@@ -388,6 +388,77 @@ Respond in Markdown only — do not create a Word document or any file.
   <p><b>What a good template looks like:</b> labelled placeholders, the schema block, the rules block with <code>{{AGE_GATE_RULE}}</code> and <code>{{CAMPAIGN_RULE}}</code>, the "list your plan first" line, the worked example, and the question at the very end. If VEEV or <code>'ID'</code> still appear outside the example, ask Claude to replace them.</p>
   <div class="callout tip"><span class="box-lbl">Your day-one takeaway</span><p><b>Copy the template into a note you keep.</b> It's the first reusable thing you've built today.</p></div>
 
+  <h3 id="patterns" data-toc="Few-shot and chain-of-thought, up close" data-toc-sub>Two of those patterns, up close: few-shot and chain-of-thought</h3>
+  <p>You'll meet these two far beyond today's template, so each gets a two-minute example you can paste. Run them if you're ahead; if not, read the typical answer and move on.</p>
+
+  <div class="pattern">
+    <div class="pattern-h"><span class="pattern-n">Pattern 1 · Few-shot</span><h4>Show it, don't describe it</h4><p>Give the model two or three finished examples of exactly what you want, then the new case. It copies the <em>shape</em> of the examples: the format, the level of detail, and the habits inside them.</p></div>
+    <div class="pattern-b">
+      <p>Two examples here teach two things at once: the four-field format, and the house habit of writing <b>ASSUMPTION</b> where the request is silent. Then comes the question this whole lab started with.</p>
+      <prompt model="sonnet" note="Optional · 1 min · a new chat works best">
+Turn each request into four fields: MARKET, PRODUCT, TIMEFRAME, METRIC. Where the request does not say, write ASSUMPTION and what you would need to ask. Follow the examples exactly.
+
+Request: "How did IQOS do in Italy in Q3?"
+MARKET: IT
+PRODUCT: IQOS
+TIMEFRAME: 2025-07-01 to 2025-09-30 · ASSUMPTION: Q3 = Q3 2025, the latest full quarter in HORIZON
+METRIC: ASSUMPTION · "did" could mean sell-through, trials or conversions
+
+Request: "Are ZYN trials in Japan picking up since the summer?"
+MARKET: JP
+PRODUCT: ZYN
+TIMEFRAME: 2025-06-01 to the latest event date · ASSUMPTION: "the summer" = from June 2025
+METRIC: trial events per month
+
+Request: "What's our early VEEV adoption looking like?"
+
+Respond in Markdown only — do not create a Word document or any file.
+      </prompt>
+      <out label="A typical answer · yours will differ in wording">
+MARKET: ASSUMPTION · no market is named. Which market is this about?
+PRODUCT: VEEV
+TIMEFRAME: ASSUMPTION · "early" is not a date. From the launch date until when?
+METRIC: ASSUMPTION · "adoption" is undefined. Registrations, trials or conversions?
+      </out>
+      <div class="pattern-vs">
+        <div class="no"><span class="box-lbl">Without the examples</span><p>Describe the format in words and you get a different shape each time, with the blanks quietly filled in. That is Step 1: "early VEEV adoption" came back with invented tables, plus a timeframe and a definition it never told you it had picked.</p></div>
+        <div class="yes"><span class="box-lbl">With two examples</span><p>The same four lines every time, and three of them say ASSUMPTION. The model named the gaps instead of filling them, because the examples showed it that's what we do here.</p></div>
+      </div>
+      <p class="pattern-tie"><b>In your template:</b> requirement 5, the worked Indonesia query, is few-shot with a single example (people say "one-shot"). It teaches house style, the comment header, the join order and the NULL-safe filter, without re-spelling every rule.</p>
+    </div>
+  </div>
+
+  <div class="pattern">
+    <div class="pattern-h"><span class="pattern-n">Pattern 2 · Chain-of-thought</span><h4>Make it think on the page</h4><p>Ask for the reasoning before the answer: the cases, the steps, the plan. It doesn't make the model smarter. It puts the guess where you can <em>read</em> it, so you check the plan before you run the SQL. Newer models do some of this silently; asking for it in writing puts it in front of you.</p></div>
+    <div class="pattern-b">
+      <p>Here is Step 3's trap again, this time with the reasoning requested up front. Watch where the word <i>unknown</i> appears.</p>
+      <prompt model="sonnet" note="Optional · 1 min · new chat">
+Context: in clr.lifecycle_events, campaign_id is an integer column. It is NULL on every event that was not attributed to a campaign.
+Task: add a filter so that events attributed to campaign 4 are excluded, and nothing else is.
+
+Before writing any SQL, reason in numbered steps:
+1. Which values can campaign_id hold on a row?
+2. For each of those values, what does campaign_id <> 4 evaluate to: true, false or unknown?
+3. Which of those rows does WHERE keep?
+Then write the one-line filter you recommend, and say why.
+
+Respond in Markdown only — do not create a Word document or any file.
+      </prompt>
+      <out label="A typical answer">
+1. campaign_id is 4, some other number, or NULL (unattributed).
+2. 4 → false. Another number → true. NULL → unknown: any comparison with NULL is unknown.
+3. WHERE keeps only true. Campaign 4 rows go (good), other campaigns stay (good), and every NULL row is dropped too (bad: those are the unattributed events we want to keep).
+
+Recommended:  AND campaign_id IS DISTINCT FROM 4   -- removes campaign 4 only; keeps NULL
+      </out>
+      <div class="pattern-vs">
+        <div class="no"><span class="box-lbl">Without the steps</span><p>You get <code>AND campaign_id &lt;&gt; 4</code>, fluent and wrong, and the first sign of trouble is zero rows on a dashboard.</p></div>
+        <div class="yes"><span class="box-lbl">With the steps</span><p>Step 2 says <i>unknown</i> and step 3 says <i>dropped</i>, before any SQL exists. Even if the model had still recommended <code>&lt;&gt; 4</code>, you'd have caught it reading the plan.</p></div>
+      </div>
+      <p class="pattern-tie"><b>In your template:</b> requirement 4, "Before writing SQL, list the tables, joins and filters you will use, and how you will treat NULL values", is this pattern generalised to every future question. <b>The plan is what you review. The SQL is what you run. The warehouse still decides.</b></p>
+    </div>
+  </div>
+
   <h3 id="japan" data-toc="Optional: a second market" data-toc-sub>Optional: test it on a different market</h3>
   <p>If there's time, fill the template for <b>IQOS in Japan, Q3 2025</b>, adoption = trial or conversion, and paste it into a new chat. Flip the market to see which placeholders change meaning:</p>
   <div class="widget tpl" data-widget="tpl" data-vals='{"ID":{"m":"ID","p":"VEEV","w":"2025-07-01 → 2025-10-01 (Q3 2025)","a":"trial, conversion","g":"exclude age_band 18-24 (no under-25 marketing in Indonesia)","c":"exclude campaign 4 only; keep unattributed (NULL) events"},"JP":{"m":"JP","p":"IQOS","w":"2025-07-01 → 2025-10-01 (Q3 2025)","a":"trial, conversion","g":"none in Japan: the 18-24 band may be marketed to (consent still required)","c":"no campaign exclusion; keep unattributed (NULL) events"}}'>
@@ -481,6 +552,7 @@ Respond in Markdown only — do not create a Word document or any file.
     <a class="lnk" href="https://tiktokenizer.vercel.app/" target="_blank" rel="noopener"><span class="fi">TK</span><span><b>Tiktokenizer</b><span>See how your prompt splits into tokens</span></span></a>
     <a class="lnk" href="https://docs.claude.com/en/docs/build-with-claude/prompt-engineering/overview" target="_blank" rel="noopener"><span class="fi">A\</span><span><b>Anthropic · prompt engineering overview</b><span>The official guide to prompting Claude</span></span></a>
     <a class="lnk" href="https://arxiv.org/abs/2307.03172" target="_blank" rel="noopener"><span class="fi">LM</span><span><b>Liu et al., Lost in the Middle</b><span>TACL 2024: why the question goes last</span></span></a>
+    <a class="lnk" href="https://arxiv.org/abs/2005.14165" target="_blank" rel="noopener"><span class="fi">FS</span><span><b>Brown et al., Language Models are Few-Shot Learners</b><span>2020: the paper that named few-shot</span></span></a>
     <a class="lnk" href="https://arxiv.org/abs/2201.11903" target="_blank" rel="noopener"><span class="fi">CoT</span><span><b>Wei et al., Chain-of-Thought Prompting</b><span>2022: asking for the plan first</span></span></a>
     <a class="lnk" href="https://www.postgresql.org/docs/current/functions-comparison.html" target="_blank" rel="noopener"><span class="fi">PG</span><span><b>PostgreSQL · comparisons and NULL</b><span>The official word on three-valued logic</span></span></a>
   </div>
